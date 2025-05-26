@@ -4,18 +4,14 @@ info:
   version: v1.0.0
   description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Uebermittlung seiner Kommunikationsdaten an die MArktrollen LF, NB, ÜNB und MSB.
 tags:
-  - name: Kopfdaten
-    externalDocs:
+  - name: Uebermittlung der Kommunikationsdaten
     description: Find out more
-    url: https://edi-energy.de
-  - name: Test
-    externalDocs:
-    description: Find out more
-    url: https://edi-energy.de
+    
 paths:
   /CommunicationInformation/v1:
     post: 
-      tags: Kopfdaten
+      tags: 
+       - Uebermittlung der Kommunikationsdaten
       summary: Uebermittlung der Kommunikationsdaten
       parameters:
         - name: transactionId
@@ -25,7 +21,7 @@ paths:
           style: simple 
           explode: false
           schema: 
-          $ref: '#/components/schemas/transactionId'
+            $ref: '#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -33,7 +29,7 @@ paths:
           style: simple
           explode: false
           schema:
-          $ref: '#/components/schemas/creationDateTime'
+            $ref: '#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
@@ -41,12 +37,12 @@ paths:
           style: simple
           explode: false
           schema:
-          $ref: '#/components/schemas/initialTransactionId'
-      requestBody:
-        content:
-         application/json:
-           schema:
-             $ref: '#/components/schemas/identificationParameter'
+            $ref: '#/components/schemas/initialTransactionId'
+      #requestBody:
+        #content:
+         #application/json:
+           #schema:
+             #$ref: '#/components/schemas/identificationParameter'
       responses:
         "202":
           description: accepted
@@ -60,3 +56,19 @@ paths:
           description: Method not allowed
         "500":
           description: Internal Server Error
+
+components:
+  schemas:
+    transactionId:
+      type: string
+      description: Transaktions-ID
+      example: "123e4567-e89b-12d3-a456-426614174000"
+    creationDateTime:
+      type: string
+      format: date-time
+      description: Zeitpunkt der Erstellung des Aufrufs
+      example: "2025-04-24T10:00:00Z"
+    initialTransactionId:
+      type: string
+      description: Idempotenz-Schlüssel für Retries
+      example: "123e4567-e89b-12d3-a456-426614174001"
