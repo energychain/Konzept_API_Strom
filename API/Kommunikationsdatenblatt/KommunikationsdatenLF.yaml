@@ -1,5 +1,62 @@
-openapi: 2.0.0
+openapi: 3.0.0
 info:
-  title: Kommunikationsdaten eines Lieferanten
-  version: 1.0.0
-  description: Diese Schnittstelle nutzt ein Unternehmen in der MArktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die MArktrollen LF, NB, ÜNB und MSB.
+  title: EDI@Energy API-Webdienst zur Uebermittlung der Kommunikationsdaten eines Lieferanten
+  version: v1.0.0
+  description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Uebermittlung seiner Kommunikationsdaten an die MArktrollen LF, NB, ÜNB und MSB.
+tags:
+  - name: Kopfdaten
+    externalDocs:
+    description: Find out more
+    url: https://edi-energy.de
+  - name: Test
+    externalDocs:
+    description: Find out more
+    url: https://edi-energy.de
+paths:
+  /CommunicationInformation/v1:
+    post: 
+      tags: Kopfdaten
+      summary: Uebermittlung der Kommunikationsdaten
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage der MaLo-ID der Marktlokation des sendenden Marktpartners.
+          required: true
+          style: simple 
+          explode: false
+          schema: 
+          $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+          $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+          $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+         application/json:
+           schema:
+             $ref: '#/components/schemas/identificationParameter'
+      responses:
+        "202":
+          description: accepted
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "405":
+          description: Method not allowed
+        "500":
+          description: Internal Server Error
