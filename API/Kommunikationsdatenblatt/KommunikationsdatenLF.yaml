@@ -21,7 +21,8 @@ paths:
           style: simple 
           explode: false
           schema: 
-            $ref: '#/components/schemas/transactionId'
+            $ref: '../../schema/transactionId.yaml#/components/schemas/transactionId'
+            #Alternative: '#'/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -29,7 +30,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '#/components/schemas/creationDateTime'
+            $ref: '../../schema/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
@@ -37,7 +38,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '#/components/schemas/initialTransactionId'
+            $ref: '../../schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       #requestBody:
         #content:
          #application/json:
@@ -58,17 +59,17 @@ paths:
           description: Internal Server Error
 
 components:
-  schemas:
-    transactionId:
-      type: string
-      description: Transaktions-ID
-      example: "123e4567-e89b-12d3-a456-426614174000"
-    creationDateTime:
-      type: string
-      format: date-time
-      description: Zeitpunkt der Erstellung des Aufrufs
-      example: "2025-04-24T10:00:00Z"
-    initialTransactionId:
-      type: string
-      description: Idempotenz-Schlüssel für Retries
-      example: "123e4567-e89b-12d3-a456-426614174001"
+  #schemas:
+    #transactionId:
+      #type: string
+      #description: Transaktions-ID
+      #example: "123e4567-e89b-12d3-a456-426614174000"
+    #creationDateTime:
+      #type: string
+      #format: date-time
+      #description: Zeitpunkt der Erstellung des Aufrufs
+      #example: "2025-04-24T10:00:00Z"
+    #initialTransactionId:
+      #type: string
+      #description: Idempotenz-Schlüssel für Retries
+      #example: "123e4567-e89b-12d3-a456-426614174001"
