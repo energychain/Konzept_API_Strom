@@ -4,7 +4,7 @@ info:
   version: v1.0.0
   description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Uebermittlung seiner Kommunikationsdaten an die MArktrollen LF, NB, ÜNB und MSB.
 tags:
-  - name: Uebermittlung der Kommunikationsdaten
+  - name: Uebermittlung der Kommunikationsdaten Test
     description: Find out more
     
 paths:
