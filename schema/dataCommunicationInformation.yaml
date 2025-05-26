@@ -1,0 +1,9 @@
+components:
+  schemas:
+    dataCommunicationInformation:
+      required:
+        - company
+      type: object
+      properties:
+        company:
+          $ref: './company.yaml#/components/schemas/company'
