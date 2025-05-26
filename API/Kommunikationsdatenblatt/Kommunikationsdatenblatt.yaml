@@ -1,0 +1,5 @@
+openapi: 2.0.0
+info:
+  title: Kommunikationsdaten eines Lieferanten
+  version: 1.0.0
+  description: Diese Schnittstelle nutzt ein Unternehmen in der MArktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die MArktrollen LF, NB, ÜNB und MSB.
