@@ -1,0 +1,6 @@
+components:
+  schemas:
+    ibanNumber:
+      type: string
+      description: Angabe einer IBAN
+      example: DE4711DE91100000000123456789

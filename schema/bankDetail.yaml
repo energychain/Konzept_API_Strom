@@ -1,0 +1,13 @@
+components:
+  schemas:
+    bankDetail:
+      type: object
+      required:
+        - ibanNumber
+        - bic
+      properties:
+        ibanNumber:
+          $ref: './ibanNumber.yaml#/components/schemas/ibanNumber'
+        bic:
+          $ref: './bic.yaml#/components/schemas/bic'
+          

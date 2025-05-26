@@ -3,7 +3,11 @@ components:
     dataCommunicationInformation:
       required:
         - company
+        - bankDetail
       type: object
       properties:
         company:
           $ref: './company.yaml#/components/schemas/company'
+        bankDetail:
+          $ref: './bankDetail.yaml#/components/schemas/bankDetail'
+          
