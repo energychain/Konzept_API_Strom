@@ -1,0 +1,6 @@
+components:
+  schemas:
+    courtName:
+      type: string
+      description: Name des Gerichts
+      example: Amtsgericht Musterhausen

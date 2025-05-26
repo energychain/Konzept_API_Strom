@@ -5,9 +5,15 @@ components:
       required:
         - ibanNumber
         - bic
+        - bankName
+        - accountHolder
       properties:
         ibanNumber:
           $ref: './ibanNumber.yaml#/components/schemas/ibanNumber'
         bic:
           $ref: './bic.yaml#/components/schemas/bic'
-          
+        bankName:
+          $ref: './bankName.yaml#/components/schemas/bankName' 
+        accountHolder:
+          $ref: './nameV2.yaml#/components/schemas/nameV2'
+          description: Kontoinhaber        

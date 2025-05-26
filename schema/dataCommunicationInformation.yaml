@@ -3,11 +3,17 @@ components:
     dataCommunicationInformation:
       required:
         - company
+        - addressV2
         - bankDetail
+        - courtData
       type: object
       properties:
         company:
           $ref: './company.yaml#/components/schemas/company'
+        addressV2:
+          $ref: './addressV2.yaml#/components/schemas/addressV2'
         bankDetail:
           $ref: './bankDetail.yaml#/components/schemas/bankDetail'
+        courtData:
+          $ref: './courtData.yaml#/components/schemas/courtData'
           

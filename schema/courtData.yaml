@@ -1,0 +1,14 @@
+components:
+  schemas:
+    courtData:
+      type: object
+      description: Gericht und Handelsregister-Nummer
+      required:
+        - courtName
+        - commercialRegisterNumber
+      properties:
+        courtName:
+          $ref: './courtName.yaml#/components/schemas/courtName'
+        commercialRegisterNumber:
+          $ref: './commercialRegisterNumber.yaml#/components/schemas/commercialRegisterNumber'
+        
