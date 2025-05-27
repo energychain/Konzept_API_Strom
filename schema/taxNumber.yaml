@@ -1,0 +1,6 @@
+components:
+  schemas:
+    taxNumber:
+      type: string
+      description: Angabe der Steuernummer
+      example: 1345678899

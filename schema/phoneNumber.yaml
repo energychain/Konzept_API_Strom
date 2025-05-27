@@ -1,0 +1,7 @@
+components:
+  schemas:
+    phoneNumber:
+      type: string
+      description: Angabe einer Telefonnumer
+      example: "+49976538888888888888"
+      pattern: \\^[+][0-9]*$

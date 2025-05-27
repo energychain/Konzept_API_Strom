@@ -1,0 +1,6 @@
+components:
+  schemas:  
+    organizationalUnit:
+      type: string
+      description: Organisatorische Einheit in einem Unternehmen
+      example: Abteilung XYZ

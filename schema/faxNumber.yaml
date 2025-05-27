@@ -1,0 +1,7 @@
+components:
+  schemas:
+    faxNumber:
+      type: string
+      description: Angabe einer Faxnummer
+      example: "+49976538888888888888"
+      pattern: \\^[+][0-9]*$

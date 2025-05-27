@@ -1,0 +1,12 @@
+components:
+  schemas:
+   taxOfficeData:
+     description: Angabe von Steuernummer und Umsatzsteuernummer eines Unternehmens
+     type: object
+     properties:
+      taxNumber:
+        $ref: './taxNumber.yaml#/components/schemas/taxNumber'
+        dexcritption: Angabe der Steuernummer
+      vatNumber:
+        $ref: './vatNumber.yaml#/components/schemas/vatNumber'
+        description: Angabe der Umsatzsteuernummer

@@ -1,0 +1,6 @@
+components:
+  schemas:
+    vatNumber:
+      type: string
+      description: Angabe der Umsatzsteuernummer
+      example: 1345678899
