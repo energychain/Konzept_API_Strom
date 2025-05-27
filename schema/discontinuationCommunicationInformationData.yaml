@@ -2,9 +2,9 @@ components:
   schemas:
     discontinuationCommunicationInformationData:
       required:
-        - versionsData
+        - versionData
       type: object
       properties:
-        versionsData:
-         $ref: './versionsData.yaml#/components/schemas/versionsData'
+        versionData:
+         $ref: './versionData.yaml#/components/schemas/versionData'
         

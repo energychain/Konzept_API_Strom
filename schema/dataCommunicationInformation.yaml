@@ -6,7 +6,7 @@ components:
         - bankDetail
         - courtData
         - faxNumber
-        - versionsData
+        - versionData
         - website
         - taxOfficeData
         - contactForDatatransfer
@@ -17,8 +17,8 @@ components:
       properties:
         companyNameAndAdress:
           $ref: './companyNameAndAdress.yaml#/components/schemas/companyNameAndAdress'
-        versionsData:
-         $ref: './versionsData.yaml#/components/schemas/versionsData'
+        versionData:
+         $ref: './versionData.yaml#/components/schemas/versionData'
         bankDetail:
           $ref: './bankDetail.yaml#/components/schemas/bankDetail'
         courtData:

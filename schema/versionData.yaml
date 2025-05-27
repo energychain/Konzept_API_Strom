@@ -1,6 +1,6 @@
 components:
   schemas:
-   versionsData:
+   versionData:
      description: Versionsangabe eines Objektes, einer Liste oder eines Datensatzes
      required:
       - versionsNumber
