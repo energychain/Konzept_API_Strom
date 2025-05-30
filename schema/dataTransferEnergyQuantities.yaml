@@ -1,0 +1,19 @@
+components:
+  schemas:
+    dataTransferEnergyQuantities:
+      type: array
+      description: Parameter, die zur Übermittlung von Energiemengen auf Ebene der Marktlokation übergeben werden (inklusive der Angabe der Messperiode).
+      items:
+        type: object
+        properties:
+          startMeasurementPeriod:
+            $ref: "./startMeasurementPeriod.yaml#/components/schemas/startMeasurementPeriod"
+          endMeasurementPeriod:
+            $ref: "./endMeasurementPeriod.yaml#/components/schemas/endMeasurementPeriod"
+          energyQuantityMeasurement:
+            type: array
+            items:
+              $ref: "./energyQuantityMeasurement.yaml#/components/schemas/energyQuantityMeasurement"
+      required:
+       - startMeasurementPeriod
+       - endMeasurementPeriod

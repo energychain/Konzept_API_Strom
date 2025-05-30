@@ -1,0 +1,7 @@
+components:
+  schemas:
+    energyQuantity:
+      type: number
+      format: double
+      description: Zahl mit Nachkommastelle
+      example: 1234.876

@@ -1,0 +1,13 @@
+components:
+  schemas:
+    plausibilityCheck:
+      type: string
+      description: Plausibilisierungshinweis
+      enum:
+        - Kundenselbstablesung
+        - Leerstand
+        - Realer Zählerüberlauf geprüft
+        - Plausibel wegen Kontrollablesung
+        - Plausibel wegen Kundenhinweis
+        - Austausch des Ersatzwertes
+        - Rechenwert

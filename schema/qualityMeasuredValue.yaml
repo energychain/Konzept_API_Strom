@@ -1,0 +1,12 @@
+components:
+  schemas:
+    qualityMeasuredValue:
+      type: string
+      description: Messwertqualität der Energiemenge
+      enum:
+        - Wahrer Wert
+        - Ersatzwert
+        - Vorschlagswert
+        - Nicht verwendbarer Wert
+        - Prognosewert
+        - Vorläufiger Wert
