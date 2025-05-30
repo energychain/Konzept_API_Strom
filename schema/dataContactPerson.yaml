@@ -1,0 +1,34 @@
+components:
+  schemas:
+    dataContactPerson:
+      type: array
+      items:
+        type: object
+        properties:
+          company:
+            $ref: "./company.yaml#/components/schemas/company"
+          address: 
+            description: Adresse des Unternehmens
+            $ref: "./address.yaml#/components/schemas/address"
+          department:
+            type: string
+            description: Name der organisatorischen Einheit
+            example: Abteilung XY
+          eMail:
+            type: string
+            description: E-Mailadresse des Ansprechpartners
+            example: peter.mueller@stadtwerkxy.de
+          phoneNumber:
+            type: string
+            description: Telefonnummer des Ansprechpartners
+            example: +4912345678
+        required:
+          - company
+          - address
+          - department
+          - eMail
+          - phoneNumber
+
+        
+
+        
