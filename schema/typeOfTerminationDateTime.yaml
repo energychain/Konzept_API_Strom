@@ -1,0 +1,9 @@
+components:
+  schemas:
+    typeOfTerminationDateTime:
+      type: string
+      description: Angabe ob das Kündigungsdatum in der Kündigung zum nächstmöglichen Termin oder zu einem fixen Termin angegen ist.
+      example: fixesDateTime
+      enum:
+      - fixesDateTime
+      - earliestPossiblDateTime

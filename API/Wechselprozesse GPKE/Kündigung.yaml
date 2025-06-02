@@ -40,11 +40,11 @@ paths:
           explode: false
           schema:
             $ref: '../../schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
-      #requestBody:
-        #content:
-         #application/json:
-           #schema:
-             #$ref: '../../schema/dataCommunicationInformation.yaml#/components/schemas/dataCommunicationInformation'
+      requestBody:
+        content:
+         application/json:
+           schema:
+             $ref: '../../schema/terminationDetails.yaml#/components/schemas/terminationDetails'
       responses:
         "202":
           description: accepted
