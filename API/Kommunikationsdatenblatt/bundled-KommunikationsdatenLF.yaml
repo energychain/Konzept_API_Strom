@@ -1,0 +1,399 @@
+openapi: 3.0.0
+info:
+  title: EDI@Energy API-Webdienst zur Übermittlung der Kommunikationsdaten eines Lieferanten
+  version: v1.0.0
+  description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die Marktrollen LF, NB, ÜNB und MSB.
+tags:
+  - name: Übermittlung der Kommunikationsdaten
+    description: Find out more
+  - name: Abkündigung von Kommunikationsdaten
+    description: Find out more
+paths:
+  /CommunicationInformation/v1:
+    post:
+      tags:
+        - Übermittlung der Kommunikationsdaten
+      description: Dieser POST wird aufgerufen, wenn der LF ein Kommunikationsdatenblatt an die Empfänger sendet
+      summary: Übermittlung der Kommunikationsdaten
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Übermittlung der Kommunikationsdaten.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dataCommunicationInformation'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+  /discontinuationCommunicationInformation/v1:
+    post:
+      tags:
+        - Abkündigung von Kommunikationsdaten
+      description: Dieser POST wird aufgerufen, wenn der LF ein leeres Kommunikationsdatenblatt an die Empfänger sendet
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Übermittlung der Kommunikationsdaten.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/discontinuationCommunicationInformationData'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    transactionId:
+      type: string
+      description: Externe Transaktionsnummer zur eindeutigen Identifikation des Vorgangs des sendenden Marktpartners
+      format: UUID RFC4122
+      example: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+    creationDateTime:
+      pattern: 20(\d{2}(\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01])|\-02\-(0[1-9]|1\d|2[0-8])|\-(0[469]|11)\-(0[1-9]|[12]\d|30))|([02468][048]|[13579][26])\-02\-(29))T([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.[\d]{1,4})?Z
+      type: string
+      description: Zeitpunkt an dem der Aufruf erstellt wurde
+      example: '2023-08-01T12:30:00.1704Z'
+    initialTransactionId:
+      type: string
+      description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+      format: UUID RFC4122
+      example: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+    company:
+      type: string
+      description: Angabe des Firmennamen
+      example: BDEW & Co. KG
+    countryCode:
+      type: string
+      pattern: '[A-Z]{2}'
+      description: Angabe des Ländercodes nach ISO-3166-1 Alpha-2
+      example: DE
+    zipCode:
+      type: string
+      description: Angabe der Postleitzahl der Marktlokationsadresse
+      example: 12117
+    city:
+      type: string
+      description: Angabe des Ortes der Marktlokationsadresse
+      example: Berlin
+    street:
+      type: string
+      description: Angabe der Straße der Marktlokationsadresse
+      example: Reinhardtstraße
+    houseNumber:
+      type: integer
+      description: Angabe der Hausnummer der Marktlokationsadresse
+      example: 32
+    houseNumberAddition:
+      type: string
+      description: Angabe der Hausnummernergänzung der Marktlokationsadresse
+      example: F
+    addressV2:
+      description: Eine postalische Adresse mit Pflichtfeldern
+      required:
+        - countryCode
+        - zipCode
+        - street
+        - houseNumber
+        - city
+      type: object
+      properties:
+        countryCode:
+          $ref: '#/components/schemas/countryCode'
+        zipCode:
+          $ref: '#/components/schemas/zipCode'
+        city:
+          $ref: '#/components/schemas/city'
+        street:
+          $ref: '#/components/schemas/street'
+        houseNumber:
+          $ref: '#/components/schemas/houseNumber'
+        houseNumberAddition:
+          $ref: '#/components/schemas/houseNumberAddition'
+    companyNameAndAdress:
+      description: Name und Anschrift eines Unternehmens
+      required:
+        - address
+        - company
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/company'
+        address:
+          $ref: '#/components/schemas/addressV2'
+    versionNumber:
+      type: int
+      format: int32
+      description: Die Versionsnummer des Objektes, eines Datensatzes oder einer Liste
+      example: 1
+    validFromTime:
+      pattern: 20(\d{2}(\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01])|\-02\-(0[1-9]|1\d|2[0-8])|\-(0[469]|11)\-(0[1-9]|[12]\d|30))|([02468][048]|[13579][26])\-02\-(29))T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ
+      type: string
+      description: Gültig-Ab Datum für ein Objekt, eine Liste oder einen Datensatz
+      example: '2025-08-01T22:00:00Z'
+    versionData:
+      description: Versionsangabe eines Objektes, einer Liste oder eines Datensatzes
+      required:
+        - versionsNumber
+        - validFromTime
+      type: object
+      properties:
+        versionsNumber:
+          $ref: '#/components/schemas/versionNumber'
+        validFromTime:
+          $ref: '#/components/schemas/validFromTime'
+        previousVersion:
+          $ref: '#/components/schemas/versionNumber'
+          description: Angabe der Vorgängerversion
+    ibanNumber:
+      type: string
+      description: Angabe einer IBAN
+      example: DE4711DE91100000000123456789
+    bic:
+      type: string
+      description: Angabe einer BIC
+      example: WALEDDE3TER
+    bankName:
+      type: string
+      description: Name der Bank
+      example: Bank der Schönen und Reichen
+    bankDetail:
+      type: object
+      required:
+        - ibanNumber
+        - bic
+        - bankName
+        - accountHolder
+      properties:
+        ibanNumber:
+          $ref: '#/components/schemas/ibanNumber'
+        bic:
+          $ref: '#/components/schemas/bic'
+        bankName:
+          $ref: '#/components/schemas/bankName'
+        accountHolder:
+          $ref: '#/components/schemas/company'
+          description: Kontoinhaber
+    courtName:
+      type: string
+      description: Name des Gerichts
+      example: Amtsgericht Musterhausen
+    commercialRegisterNumber:
+      type: string
+      description: Die Handelsregister-Nummer eines Unternehmens
+      example: xyz 123456789
+    courtData:
+      type: object
+      description: Gericht und Handelsregister-Nummer
+      required:
+        - courtName
+        - commercialRegisterNumber
+      properties:
+        courtName:
+          $ref: '#/components/schemas/courtName'
+        commercialRegisterNumber:
+          $ref: '#/components/schemas/commercialRegisterNumber'
+    faxNumber:
+      type: string
+      description: Angabe einer Faxnummer
+      example: '+49976538888888888888'
+      pattern: \\^[+][0-9]*$
+    website:
+      type: string
+      description: Angabe einer Internetseite
+      example: https://www.eine-unternehmens-adresse.de
+    taxNumber:
+      type: string
+      description: Angabe der Steuernummer
+      example: 1345678899
+    vatNumber:
+      type: string
+      description: Angabe der Umsatzsteuernummer
+      example: 1345678899
+    taxOfficeData:
+      description: Angabe von Steuernummer und Umsatzsteuernummer eines Unternehmens
+      type: object
+      properties:
+        taxNumber:
+          $ref: '#/components/schemas/taxNumber'
+          dexcritption: Angabe der Steuernummer
+        vatNumber:
+          $ref: '#/components/schemas/vatNumber'
+          description: Angabe der Umsatzsteuernummer
+    organizationalUnit:
+      type: string
+      description: Organisatorische Einheit in einem Unternehmen
+      example: Abteilung XYZ
+    email:
+      type: string
+      description: Angabe einer E-Mail
+      example: test@test.de
+      pattern: \\^[a-zA-Z0–9._%+-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,}$
+    phoneNumber:
+      type: string
+      description: Angabe einer Telefonnumer
+      example: '+49976538888888888888'
+      pattern: \\^[+][0-9]*$
+    contactData:
+      description: Kontaktdaten einer natürlichen oder juristischen Person
+      required:
+        - email
+        - phoneNumber
+      type: object
+      properties:
+        email:
+          $ref: '#/components/schemas/email'
+        phoneNumber:
+          $ref: '#/components/schemas/phoneNumber'
+        faxNumber:
+          $ref: '#/components/schemas/faxNumber'
+    contactCompany:
+      description: Name und Anschrift eines Unternehmens
+      required:
+        - address
+        - company
+        - organizationalUnit
+        - contactData
+      type: object
+      properties:
+        company:
+          $ref: '#/components/schemas/company'
+        address:
+          $ref: '#/components/schemas/addressV2'
+        organizationalUnit:
+          $ref: '#/components/schemas/organizationalUnit'
+        contactData:
+          $ref: '#/components/schemas/contactData'
+    dataCommunicationInformation:
+      required:
+        - companyNameAndAdress
+        - bankDetail
+        - courtData
+        - faxNumber
+        - versionData
+        - website
+        - taxOfficeData
+        - contactForDatatransfer
+        - contactForMasterDataProcess
+        - contactForMeasuredValueProcess
+        - contactForAccountingProcess
+      type: object
+      properties:
+        companyNameAndAdress:
+          $ref: '#/components/schemas/companyNameAndAdress'
+        versionData:
+          $ref: '#/components/schemas/versionData'
+        bankDetail:
+          $ref: '#/components/schemas/bankDetail'
+        courtData:
+          $ref: '#/components/schemas/courtData'
+        faxNumber:
+          $ref: '#/components/schemas/faxNumber'
+        website:
+          $ref: '#/components/schemas/website'
+        taxOfficeData:
+          $ref: '#/components/schemas/taxOfficeData'
+        contactForDatatransfer:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner Übertragungsweg / Datenaustausch
+        contactForFrameworkAgreements:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Rahmenverträge
+        contactForTerminationProcess:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Kündigungsprozesse
+        contactForChangeProcess:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Wechselprozesse
+        contactForMasterDataProcess:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Stammdatenprozesse
+        contactForProductionProcess:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Einspeiseprozesse
+        contactForBillingProcess:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Abrechnungsprozesse
+        contactForMoreLessQuantityProcess:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für MMMA-Prozesse
+        contactForMeasuredValueProcess:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Messwertprozesse
+        contactForAccountingProcess:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Bilanzierungsprozesse
+        contactForInterruptionAndRecoveryProcess:
+          $ref: '#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Bilanzierungsprozesse
+    discontinuationCommunicationInformationData:
+      required:
+        - versionData
+      type: object
+      properties:
+        versionData:
+          $ref: '#/components/schemas/versionData'
