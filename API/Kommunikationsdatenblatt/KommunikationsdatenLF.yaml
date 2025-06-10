@@ -46,7 +46,7 @@ paths:
         content:
          application/json:
            schema:
-             $ref: '../../schema/dataCommunicationInformation.yaml#/components/schemas/dataCommunicationInformation'
+             $ref: '../../schema/Kommunikationsdatenblatt/dataCommunicationInformation.yaml#/components/schemas/dataCommunicationInformation'
       responses:
         "202":
           description: accepted
@@ -96,7 +96,7 @@ paths:
         content:
          application/json:
            schema:
-             $ref: '../../schema/discontinuationCommunicationInformationData.yaml#/components/schemas/discontinuationCommunicationInformationData'
+             $ref: '../../schema/Kommunikationsdatenblatt/discontinuationCommunicationInformationData.yaml#/components/schemas/discontinuationCommunicationInformationData'
       responses:
         "202":
           description: accepted
@@ -111,18 +111,3 @@ paths:
         "500":
           description: Internal Server Error
 
-#components:
-  #schemas:
-    #transactionId:
-      #type: string
-      #description: Transaktions-ID
-      #example: "123e4567-e89b-12d3-a456-426614174000"
-    #creationDateTime:
-      #type: string
-      #format: date-time
-      #description: Zeitpunkt der Erstellung des Aufrufs
-      #example: "2025-04-24T10:00:00Z"
-    #initialTransactionId:
-      #type: string
-      #description: Idempotenz-Schlüssel für Retries
-      #example: "123e4567-e89b-12d3-a456-426614174001"

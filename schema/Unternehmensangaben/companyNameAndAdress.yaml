@@ -10,4 +10,4 @@ components:
       company:
         $ref: './company.yaml#/components/schemas/company'
       address: 
-        $ref: './addressV2.yaml#/components/schemas/addressV2'
+        $ref: '../Adresse/addressV2.yaml#/components/schemas/addressV2'

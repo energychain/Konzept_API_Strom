@@ -12,8 +12,8 @@ components:
       company:
         $ref: './company.yaml#/components/schemas/company'
       address: 
-        $ref: './addressV2.yaml#/components/schemas/addressV2'
+        $ref: '../Adresse/addressV2.yaml#/components/schemas/addressV2'
       organizationalUnit:
-        $ref: './organizationalUnit.yaml#/components/schemas/organizationalUnit'
+        $ref: '../Unternehmensangaben/organizationalUnit.yaml#/components/schemas/organizationalUnit'
       contactData: 
-        $ref: './contactData.yaml#/components/schemas/contactData'
+        $ref: '../Person/contactData.yaml#/components/schemas/contactData'

@@ -15,5 +15,5 @@ components:
         bankName:
           $ref: './bankName.yaml#/components/schemas/bankName' 
         accountHolder:
-          $ref: './company.yaml#/components/schemas/company'
+          $ref: '../Unternehmensangaben/company.yaml#/components/schemas/company'
           description: Kontoinhaber        
