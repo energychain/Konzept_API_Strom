@@ -7,13 +7,13 @@ components:
                 type: object
                 properties:
                     company:
-                        $ref: "./company.yaml#/components/schemas/company"
+                        $ref: "../Unternehmensangaben/company.yaml#/components/schemas/company"
                     address:
                         description: Adresse des Unternehmens
-                        $ref: "./address.yaml#/components/schemas/address"
+                        $ref: "../Adresse/address.yaml#/components/schemas/address"
                     dataBankDetails:
                         description: Bankinformationen des Unternehmens 
-                        $ref: "./dataBankDetails.yaml#/components/schemas/dataBankDetails"
+                        $ref: "../Bankdaten/dataBankDetails.yaml#/components/schemas/dataBankDetails"
                     website:
                         type: string
                         description: Internetseite
@@ -42,37 +42,37 @@ components:
                         example: Verfügbarkeit Donnerstag 08:00 bis 17:00 Uhr, Verfügbarkeit Freitag 08:00 bis 16:00 Uhr, Mittagspause 12:00 bis 13:00 Uhr"
                     dataContactPersonDataExchange:
                         description: Name und Anschrift des Ansprechpartners und Informationen zum Übertragungsweg/Datenaustausch
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
                     dataContactPersonFrameworkAgreements:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu Rahmenverträgen
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
                     dataContactPersonCancellationProcess:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu Kündigungsprozessen
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
                     dataContactPersonSwitchingProcess:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu Wechselprozessen
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
                     dataContactPersonMasterDataProcess:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu Stammdatenprozessen
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
                     dataContactPersonInputProcess:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu Einspeiseprozessen
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
                     dataContactPersonBillingProcess:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu Abrechnungsprozessen
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
                     dataContactPersonMMMAProcess:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu MMMA-Prozessen
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
                     dataContactPersonTransactionData:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu Bewegungsdaten
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
                     dataContactPersonInterruptionRestorationConnectionUsageProcess:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu Prozessen zur Unterbrechung und Wiederherstellung derAnschlussnutzung
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"                    
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"                    
                     dataContactPersonBalancingProcess:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu BilanzierungsprozesseN / Bilanzkreismanagement
-                        $ref: "./dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
             required:
                 - company
                 - address

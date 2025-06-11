@@ -6,10 +6,10 @@ components:
         type: object
         properties:
           company:
-            $ref: "./company.yaml#/components/schemas/company"
+            $ref: "../Unternehmensangaben/company.yaml#/components/schemas/company"
           address: 
             description: Adresse des Unternehmens
-            $ref: "./address.yaml#/components/schemas/address"
+            $ref: "../Adresse/address.yaml#/components/schemas/address"
           department:
             type: string
             description: Name der organisatorischen Einheit

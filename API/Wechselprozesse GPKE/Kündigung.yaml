@@ -23,7 +23,6 @@ paths:
           explode: false
           schema: 
             $ref: '../../schema/transactionId.yaml#/components/schemas/transactionId'
-            #Alternative: '#'/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -44,7 +43,7 @@ paths:
         content:
          application/json:
            schema:
-             $ref: '../../schema/terminationDetails.yaml#/components/schemas/terminationDetails'
+             $ref: '../../schema/Wechselprozesse_GPKE/terminationDetails.yaml#/components/schemas/terminationDetails'
       responses:
         "202":
           description: accepted
@@ -58,21 +57,3 @@ paths:
           description: Method not allowed
         "500":
           description: Internal Server Error
-  
-
-
-#components:
-  #schemas:
-    #transactionId:
-      #type: string
-      #description: Transaktions-ID
-      #example: "123e4567-e89b-12d3-a456-426614174000"
-    #creationDateTime:
-      #type: string
-      #format: date-time
-      #description: Zeitpunkt der Erstellung des Aufrufs
-      #example: "2025-04-24T10:00:00Z"
-    #initialTransactionId:
-      #type: string
-      #description: Idempotenz-Schlüssel für Retries
-      #example: "123e4567-e89b-12d3-a456-426614174001"

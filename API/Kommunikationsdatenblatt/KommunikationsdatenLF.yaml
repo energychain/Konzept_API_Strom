@@ -25,7 +25,6 @@ paths:
           explode: false
           schema: 
             $ref: '../../schema/transactionId.yaml#/components/schemas/transactionId'
-            #Alternative: '#'/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -75,7 +74,6 @@ paths:
           explode: false
           schema: 
             $ref: '../../schema/transactionId.yaml#/components/schemas/transactionId'
-            #Alternative: '#'/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -110,4 +108,3 @@ paths:
           description: Method not allowed
         "500":
           description: Internal Server Error
-
