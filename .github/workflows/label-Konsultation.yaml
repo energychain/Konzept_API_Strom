@@ -2,7 +2,7 @@ name: Label Konsultation 2025-08
 
 on:
   issues:
-    types: [opened]
+    types: opened
 
 permissions:
   issues: write
@@ -18,15 +18,15 @@ jobs:
             const issue = context.payload.issue;
             const username = issue.user.login;
             const existing = issue.labels.map(l => l.name);
-            # Wenn schon Label vergeben oder nicht relevanter Zeitraum, wird kein neues Label gesetzt
+            // Wenn schon Label vergeben oder nicht relevanter Zeitraum, wird kein neues Label gesetzt
             if (existing.length || new Date(issue.created_at) < new Date('2025-06-01T00:00:00Z') || new Date(issue.created_at) >= new Date('2025-07-01T00:00:00Z')) {
               return console.log('Kein neues Label vergeben.');
             }
-            # Secret (Liste mit freigegebenen Nutzernamen) auslesen und Datum der Issueerstellung prüfen
+            // Secret (Liste mit freigegebenen Nutzernamen) auslesen und Datum der Issueerstellung prüfen
             const raw = process.env.Freigegebene_Nutzernamen || '';
-            const allowed = raw.split(/[\r\n,]+/).map(u=>u.trim()).filter(u=>u); # Das Secret kann eine kommagetrennte Liste sein oder eine Liste pro Zeile; Leere Zeilen und Kommentare werden nicht berücksichtigt
+            const allowed = raw.split(/[\r\n,]+/).map(u=>u.trim()).filter(u=>u); // Das Secret kann eine kommagetrennte Liste sein oder eine Liste pro Zeile; Leere Zeilen und Kommentare werden nicht berücksichtigt
             const label = allowed.includes(username) ? 'Konsultation_2025_08' : 'Status zu klären';
-            await github.rest.issues.addLabels({  #Fügt neues Label hinzu
+            await github.rest.issues.addLabels({  // Fügt neues Label hinzu
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue.number,
