@@ -5,4 +5,4 @@ components:
       items:
         $ref: './landParcel.yaml#/components/schemas/landParcel'
       minItems: 1
-      maxItems: 2
+      maxItems: 3
