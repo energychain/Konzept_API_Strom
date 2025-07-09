@@ -1,37 +1,74 @@
-name: Label Konsultation 2025-08
+name: Label Konsultation 01.08.2025
 
 on:
-  issues:
-    types: opened
+  workflow_dispatch:
 
 permissions:
   issues: write
+
+env:
+  # Secret mit erlaubten Nutzernamen (kommagetrennt oder zeilenweise)
+  FREIGEGEBENE_NUTZERNAMEN: ${{ secrets.FREIGEGEBENE_NUTZERNAMEN }}
 
 jobs:
   add_consultation_label:
     runs-on: ubuntu-latest
     steps:
-      - name: Label vergeben (Konsultationsphase)
+      - name: Label vergeben (Konsultation 01.08.2025)
         uses: actions/github-script@v6
         with:
           script: |
-            const issue = context.payload.issue;
-            const username = issue.user.login;
-            const existing = issue.labels.map(l => l.name);
-            // Wenn schon Label vergeben oder nicht relevanter Zeitraum, wird kein neues Label gesetzt
-            if (existing.length || new Date(issue.created_at) < new Date('2025-06-01T00:00:00Z') || new Date(issue.created_at) >= new Date('2025-07-01T00:00:00Z')) {
-              return console.log('Kein neues Label vergeben.');
+            // Zeitraum festlegen
+            const periodStart = new Date('2025-07-01T00:00:00Z');
+            const periodEnd   = new Date('2025-08-01T00:00:00Z');
+
+            // Secret einlesen und in Kleinbuchstaben umwandeln
+            const rawSecret = process.env.FREIGEGEBENE_NUTZERNAMEN || '';
+            const allowedUsers = rawSecret
+              .split(/[\r\n,]+/)            // Komma oder Zeilenumbruch
+              .map(u => u.trim().toLowerCase()) // trim + lowercase
+              .filter(u => u);
+
+            // Alle offenen Issues seit periodStart (paginiert) abfragen
+            let allIssues = [];
+            let page = 1;
+            while (true) {
+              const resp = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                since: periodStart.toISOString(),
+                per_page: 100,
+                page
+              });
+              if (resp.data.length === 0) break;
+              allIssues = allIssues.concat(resp.data);
+              page++;
             }
-            // Secret (Liste mit freigegebenen Nutzernamen) auslesen und Datum der Issueerstellung prüfen
-            const raw = process.env.Freigegebene_Nutzernamen || '';
-            const allowed = raw.split(/[\r\n,]+/).map(u=>u.trim()).filter(u=>u); // Das Secret kann eine kommagetrennte Liste sein oder eine Liste pro Zeile; Leere Zeilen und Kommentare werden nicht berücksichtigt
-            const label = allowed.includes(username) ? 'Konsultation_2025_08' : 'Status zu klären';
-            await github.rest.issues.addLabels({  // Fügt neues Label hinzu
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issue.number,
-              labels: [label]
-            });
-            console.log(`Label "${label}" gesetzt für ${username}.`);
+
+            // Jedes Issue prüfen und ggf. labeln
+            for (const issue of allIssues) {
+              const created = new Date(issue.created_at);
+              // nur im Zeitraum und ohne existierende Labels
+              if (
+                created < periodStart ||
+                created >= periodEnd ||
+                issue.labels.length > 0
+              ) continue;
+
+              // Case-insensitive Username-Vergleich
+              const user = issue.user.login.toLowerCase();
+              const labelToAdd = allowedUsers.includes(user)
+                ? 'Konsultation_01.08.2025'
+                : 'Status zu klären';
+
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: [labelToAdd]
+              });
+              console.log(`Issue #${issue.number}: Label "${labelToAdd}" vergeben (erstellt von ${issue.user.login}).`);
+            }
         env:
-          Freigegebene_Nutzernamen: ${{ secrets.Freigegebene_Nutzernamen }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
