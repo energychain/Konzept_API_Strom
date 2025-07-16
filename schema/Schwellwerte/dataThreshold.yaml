@@ -8,7 +8,7 @@ components:
       type: object
       properties:
         threshold:
-          $ref: './threshold.yaml#/components/schemas/threshold'
+          $ref: './threshold.yaml#/components/schemas/thresholt'
         lowerValue:
           $ref: './lowerValue.yaml#/components/schemas/lowerValue'
         upperValue:
