@@ -1,0 +1,9 @@
+components:
+  schemas:
+    granularity:
+      type: string
+      description: Wertegranularität, ob es sich um die Bereitstellung eines Lastgangs im angegebenen Zeitintervall handelt oder um eine Energiemenge für das Zeitintervall.
+      example: loadProfile
+      enum:
+      - loadProfile
+      - energyAmount
