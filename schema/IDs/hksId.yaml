@@ -1,0 +1,4 @@
+    hksId:
+      type: string
+      description: Zur Angabe der HKS-ID für die die Anpassung erfolgen soll.
+      example: XX-XX-XX-XX
