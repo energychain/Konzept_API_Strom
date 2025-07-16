@@ -1,0 +1,6 @@
+components: 
+  schemas:
+    lowerValue:
+      type: integer
+      description: unterer Schwellwert
+      example: 225
