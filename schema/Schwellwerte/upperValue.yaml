@@ -1,0 +1,6 @@
+components:
+  schemas:
+    upperValue:
+      type: number
+      description: oberer Schwellwert
+      example: 234

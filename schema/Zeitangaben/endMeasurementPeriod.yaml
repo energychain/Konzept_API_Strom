@@ -1,0 +1,7 @@
+components:
+  schemas:
+    endMeasurementPeriod:
+      type: string
+      format: date-time
+      description: Ende der Messperiode (00:00 Uhr eines Tages)
+      example: "2025-04-24T00:00:00Z"

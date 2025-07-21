@@ -1,0 +1,6 @@
+components:
+  schemas:
+    bankName:
+      type: string
+      description: Name der Bank
+      example: Bank der Schönen und Reichen

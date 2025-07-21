@@ -1,0 +1,8 @@
+components:
+  schemas:
+     landParcels:
+      type: array
+      items:
+        $ref: './landParcel.yaml#/components/schemas/landParcel'
+      minItems: 1
+      maxItems: 3

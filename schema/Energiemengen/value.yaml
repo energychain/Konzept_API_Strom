@@ -1,0 +1,7 @@
+components:
+  schemas:
+    value:
+      type: string
+      description: Wert für den Zeitpunkt bzw. das Zeitintervall
+      format: float
+      example: 54,123

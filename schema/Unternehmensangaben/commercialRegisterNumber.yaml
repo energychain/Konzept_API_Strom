@@ -1,0 +1,6 @@
+components:
+  schemas:
+    commercialRegisterNumber:
+      type: string
+      description: Die Handelsregister-Nummer eines Unternehmens
+      example: xyz 123456789

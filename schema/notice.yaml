@@ -1,0 +1,5 @@
+components:
+  schemas:
+    notice:
+      type: string
+      description: Angabe eines Hinweises bzw. einer Notiz.

@@ -1,0 +1,2544 @@
+openapi: 3.0.0
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: >-
+      https://virtserver.swaggerhub.com/fellhauer.thomas/EnergyAmount/1.0.0
+info:
+  title: Austausch, Anfrage und Reklamation von Zählerständen, Lastgängen und Energiemengen 
+  description: >2
+     Publikationsdatum: 01.09.2025
+    <h2><b>Ziel</h2></b> <br> These: Die Vollständigkeit eines übermittelten Zeitintervalls ergibt sich nicht zwangsläufig exklusiv aus dem jeweiligen Aufruf, sondern auf die zum Zeitpunkt des "Fristablaufes" beim Empfänger vorliegenden Informationen. Daher ist die Übermittlung eines Lastgangs zwar zu plausibilisieren (ist es mindestens ein viertelstundenintervall zwischen 00:00-00:15, 00:15-00:30, 00:30-00:45, 00:45-00:00 gesetzlicher deutscher Zeit) ob aber alle Werte des Kalendertages vorliegen plausibilisiert der Empfänger nicht im Rahmen des Schnittstellenaufrufes sondern im Rahmen der Verarbeitung der Emfpangenen Werte (analog zu heute bei der Vollständigkeit für einen Kalendermonat). Es können unabhängig davon auch einzelne 1/4h Werte übermittelt werden. Fehlende WErte sind analog zu heute zu reklamieren. <br> These2: Informationen zu Wiederholbarkeiten und der vollständigen Übermittlung von Bewewgungsdaten (siehe heute MSCONS bei Zählerständen Loop auf "LIN-Ebene" usw.) ergibt sich zukünftig aus der Schnittstellenbeschreibung (unter der Verwendung von array). Auf eine weitere BEschreibung wird verzichtet wie z.B. die Prüfung, wenn 1.8.1 übermittelt wird, kommt dann auch 1.8.2 imselben Aufruf. Dies ergibt sich auf Basis der Vollständigkeitskontrolle aus fachlicher Sicht ebenfalls beim Empfänger). Daher können grundsätzlich auch Werte für eine Tarifstufe 1 unabhängig von Werten zu einer Tarifstufe 2 vice versa übermittelt werden. Auch hier gibt wie heute in der Fachlichkeit: Der Schnittstellenaufruf muss inhaltlich korrekt erfolgen, die Vollständigkeit der Fachlichen Anforderungen ergibt sich aus der Summe an Werten beim Empfänger. <br> These3: Zwischenfazit: In Summe geht nichts verloren, es ist nur "Anders". <br> These 4: Es wird grundsätzlich "überschrieben" und nicht mehr storniert und erneut gesendet. Ein Service zur Stornierung von WErten wird zur Verfügung gestellt.
+  version: 1.0.0
+tags:
+  - name: Anfrage von eines Wertes (Einzelanfragen)
+    externalDocs:
+      description: Find out more
+      url: https://edi-energy.de
+  - name: Anfrage von Werten (Mehrfachanfragen)
+    externalDocs:
+      description: Find out more
+      url: https://edi-energy.de
+  - name: Übermittlung eines Wertes (Einzelwert)
+    externalDocs:
+      description: Find out more
+      url: https://edi-energy.de
+  - name: Übermittlung von Werten (Mehrfach)
+    externalDocs:
+      description: Find out more
+      url: https://edi-energy.de
+  - name: Stornierung eines übermittelten Wertes
+    externalDocs:
+      description: Find out more
+      url: https://edi-energy.de
+  - name: Reklamation von fehlenden Werten
+    externalDocs:
+      description: Find out more
+      url: https://edi-energy.de
+
+
+
+
+paths:
+  /meterLocation/meterReading/request/v0.0.1:
+    post:
+      tags:
+        - Anfrage von eines Wertes (Einzelanfragen)
+      summary: Anfrage eines Zählerstandes auf Ebene Messlokation für einen Zeitpunkt
+      description: <br> Mit diesem Web-Service wird ein Zählerstand auf Ebene der Messlokation zu einem fixen Zeitpunkt angefragt. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Messlokation. <br> Es ist zusätzlich verpflichtend eine Energieflussrichtung anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. <br> Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, so ist der request je Energielussrichtung einmal auszuführen. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert benötigt wird. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.  
+      operationId: uploadFile
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeterReadingDataMeterLocation'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+  /meterLocation/meterReadings/request/v0.0.1:
+    post:
+      tags:
+        - Anfrage von Werten (Mehrfachanfragen)
+      summary: Anfrage von Zählerständen auf Ebene Messlokation.
+      description: <br> Mit diesem Web-Service können mehrere Zählerstände auf Ebene der Messlokation zu verschiedenen Zeitpunkten angefragt werden. Die Wiederholung erfolgt innerhalb des arrays im Body. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Messlokation. <br> Es ist zusätzlich verpflichtend eine Energieflussrichtung anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. <br> Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, so ist der request je Energielussrichtung einmal auszuführen. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert benötigt wird. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.  
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeterReadingDataMeterLocations'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+
+
+
+  /meterLocation/measuredData/request/v0.0.1:
+    post:
+      tags:
+        - Anfrage von eines Wertes (Einzelanfragen)
+      summary: Anfrage von Mengen (Energiemenge oder Lastgang) auf Ebene Messlokation für einen Zeitraum
+      description: <br> Mit diesem Web-Service kann eine Energiemenge oder ein Lansgang auf Ebene der Messlokation zu genau einem Zeitinvervall angefragt werden. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Messlokation. <br> Es ist zusätzlich verpflichtend eine Wertegranularität anzugeben '(granularity)' die angefragt wird. <br> Ebenso ist die Energieflussrichtung anzugeben welche für die Berechnung der Menge der Marktlokation notwendig ist. <br> Hinweis  wird von der Messlokation sowohl der Lastgang bzw. die Energiemenge  für den Bezug als auch für die Erzeugung benötigt, so ist der request je Energielussrichtung einmal auszuführen. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert benötigt wird. <br> Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzliche deutsche Zeit, angegeben in UTC.  
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeasuredDataMeterLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+  /meterLocation/measuredDatas/request/v0.0.1:
+    post:
+      tags:
+        - Anfrage von Werten (Mehrfachanfragen)
+      summary: Anfrage von Mengen (Energiemenge oder Lastgang) auf Ebene Messlokation für Zeiträume
+      description: <br> Mit diesem Web-Service können Energiemengen oder Lastgänge auf Ebene der Messlokation zu Zeitinvervallen angefragt werden. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Messlokation. <br> Es ist zusätzlich verpflichtend eine Wertegranularität anzugeben '(granularity)' die angefragt wird. <br> Ebenso ist die Energieflussrichtung anzugeben welche für die Berechnung der Menge der Marktlokation notwendig ist. <br> Hinweis  wird von der Messlokation sowohl der Lastgang bzw. die Energiemenge  für den Bezug als auch für die Erzeugung benötigt, so ist der request je Energielussrichtung einmal auszuführen. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert benötigt wird. <br> Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzliche deutsche Zeit, angegeben in UTC. <br> Die Wiederholung erfolgt innerhalb des arrays im Body.
+      
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeasuredDatasMeterLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+  /marketLocation/measuredDatas/request/v0.0.1:
+    post:
+      tags:
+        - Anfrage von Werten (Mehrfachanfragen)
+      summary: Anfrage von Mengen auf Ebene Marktlokation für Zeiträume
+      description: <br> Mit diesem Web-Service können Energiemengen oder Lastgänge auf Ebene der Marktlokation zu Zeitinvervallen angefragt werden. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Marktlokation. <br> Es ist zusätzlich verpflichtend eine Wertegranularität anzugeben '(granularity)' die angefragt wird. <br> Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzliche deutsche Zeit, angegeben in UTC. <br> Die Wiederholung erfolgt innerhalb des arrays im Body.
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeasuredDatasMarketLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+  /netLocation/measuredDatas/request/v0.0.1:
+    post:
+      tags:
+        - Anfrage von Werten (Mehrfachanfragen)
+      summary: Anfrage von Mengen auf Ebene Netzlokation für Zeiträume
+      description: <br> Mit diesem Web-Service können Energiemengen oder Lastgänge auf Ebene der Netzlokation zu Zeitinvervallen angefragt werden. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Netzlokation. <br> Es ist zusätzlich verpflichtend eine Wertegranularität anzugeben '(granularity)' die angefragt wird. <br> Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzliche deutsche Zeit, angegeben in UTC. <br> Die Wiederholung erfolgt innerhalb des arrays im Body.
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeasuredDatasNetLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+  /tranche/measuredDatas/request/v0.0.1:
+    post:
+      tags:
+        - Anfrage von Werten (Mehrfachanfragen)
+      summary: Anfrage von Mengen auf Ebene Tranche für Zeiträume
+      description: <br> Mit diesem Web-Service können Energiemengen oder Lastgänge auf Ebene der Tranche zu Zeitinvervallen angefragt werden. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Tranche. <br> Es ist zusätzlich verpflichtend eine Wertegranularität anzugeben '(granularity)' die angefragt wird. <br> Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzliche deutsche Zeit, angegeben in UTC. <br> Die Wiederholung erfolgt innerhalb des arrays im Body.
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeasuredDatasTranche'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+
+
+
+
+  /meterLocation/Reading/v0.0.1:
+    post:
+      tags:
+        - Übermittlung eines Wertes (Einzelwert)
+      summary: Übermittlung eines Zählerstandes auf Ebene Messlokation für einen Zeitpunkt
+      description: <br> Mit diesem Web-Service wird ein Zählerstand auf Ebene der Messlokation zu einem Zeitpunkt übermittelt. <br> Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen, als auch vom verantwortlichen MSB an den Messwerte-Hub. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Messlokation und mittels der Zählernummer. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  wird von der Messlokation sowohl der Zählerstand für den Bezug als auch für die Erzeugung übermittelt, so ist dieser mit einem separten Aufruf zu übermitteln. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert verwendet wird. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. 
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/meterReadingDataMeterLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+  /meterLocation/Readings/v0.0.1:
+    post:
+      tags:
+        - Übermittlung von Werten (Mehrfach)
+      summary: Übermittlung von Zählerständen auf Ebene Messlokation für Zeitpunkte
+      description: <br> Mit diesem Web-Service werden Zählerstände auf Ebene der Messlokation zu einem Zeitpunkten übermittelt. <br> Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen, als auch vom verantwortlichen MSB an den Messwerte-Hub. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Messlokation und mittels der Zählernummer. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  wird von der Messlokation sowohl der Zählerstand für den Bezug als auch für die Erzeugung übermittelt, so kann dieser mit demselben Service übermittelt werden (array). <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert verwendet wird. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. 
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/meterReadingDataMeterLocations'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+
+
+
+  /meterLocation/amounts/v0.0.1:
+    post:
+      tags:
+        - Übermittlung von Werten (Mehrfach)
+      summary: Übermittlung einer Energiemenge auf Ebene Messlokation für einen Zeitraum
+      description: <br> Mit diesem Web-Service werden Energiemengen auf Ebene der Messlokation zu Zeitintervallen übermittelt. <br> Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen, als auch vom verantwortlichen MSB an den Messwerte-Hub. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Messlokation. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  wird von der Messlokation sowohl der Zählerstand für den Bezug als auch für die Erzeugung übermittelt, so kann dieser mit demselben Service übermittelt werden (array). <br> Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr gesetzliche deutsche Zeit und um Ende 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann auch negativ sein (Stichwort - Korrekturenergiemenge)
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/energyAmountsMeterLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+  /meterLocation/loadProfiles/v0.0.1:
+    post:
+      tags:
+        - Übermittlung von Werten (Mehrfach)
+      summary: Übermittlung eines Lastgangs auf Ebene Messlokation für einen Zeitraum
+      description: <br> Mit diesem Web-Service wird ein Lastgang auf Ebene der Messlokation zu Zeitintervallen übermittelt. <br> Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen, als auch vom verantwortlichen MSB an den Messwerte-Hub. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Messlokation. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  wird von der Messlokation sowohl der Zählerstand für den Bezug als auch für die Erzeugung übermittelt, so kann dieser mit demselben Service übermittelt werden (array). <br> Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 oder 00:15, oder 00:30, oder 00:45 Uhr gesetzliche deutsche Zeit und um Ende 00:00, oder 00:15, 00:30, 00:45, sodass das Zeintervall immer genau 15 minuten umfasst. Die Angabe erfolgt in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann NICHt negativ sein 
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loadProfilesMeterLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+
+
+  /marketLocation/amounts/v0.0.1:
+    post:
+      tags:
+        - Übermittlung von Werten (Mehrfach)
+      summary: Übermittlung einer Energiemenge auf Ebene Marktlokation für einen Zeitraum
+      description: <br> Mit diesem Web-Service werden Energiemengen auf Ebene der Marktlokation zu Zeitintervallen übermittelt. <br> Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Marktlokation. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  sollen mehrere Mengen übermittelt weden,, so kann dieser mit demselben Service übermittelt werden (array). <br> Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr gesetzliche deutsche Zeit und um Ende 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann nicht negativ sein.
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/energyAmountsMarketLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+  /marketLocation/loadProfiles/v0.0.1:
+    post:
+      tags:
+        - Übermittlung von Werten (Mehrfach)
+      summary: Übermittlung eines Lastgangs auf Ebene Marktlokation für einen Zeitraum
+      description: <br> Mit diesem Web-Service wird ein Lastgang auf Ebene der Marktlokation zu Zeitintervallen übermittelt. <br> Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Marktlokation. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  werden mehrere 1/4h Werte übermittelt, so kann dieser mit demselben Service übermittelt werden (array). <br> Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 oder 00:15, oder 00:30, oder 00:45 Uhr gesetzliche deutsche Zeit und um Ende 00:00, oder 00:15, 00:30, 00:45, sodass das Zeintervall immer genau 15 minuten umfasst. Die Angabe erfolgt in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann NICHt negativ sein 
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loadProfilesMarketLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+  /netLocation/amounts/v0.0.1:
+    post:
+      tags:
+        - Übermittlung von Werten (Mehrfach)
+      summary: Übermittlung einer Energiemenge auf Ebene Netzlokation für einen Zeitraum
+      description: <br> Mit diesem Web-Service werden Energiemengen auf Ebene der Netzlokation zu Zeitintervallen übermittelt. <br> Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Netzlokation. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  sollen mehrere Mengen übermittelt weden,, so kann dieser mit demselben Service übermittelt werden (array). <br> Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr gesetzliche deutsche Zeit und um Ende 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann nicht negativ sein.
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/energyAmountsNetLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+  /netLocation/loadProfiles/v0.0.1:
+    post:
+      tags:
+        - Übermittlung von Werten (Mehrfach)
+      summary: Übermittlung eines Lastgangs auf Ebene Netzlokation für einen Zeitraum
+      description: <br> Mit diesem Web-Service wird ein Lastgang auf Ebene der Netzlokation zu Zeitintervallen übermittelt. <br> Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Netzlokation. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  werden mehrere 1/4h Werte übermittelt, so kann dieser mit demselben Service übermittelt werden (array). <br> Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 oder 00:15, oder 00:30, oder 00:45 Uhr gesetzliche deutsche Zeit und um Ende 00:00, oder 00:15, 00:30, 00:45, sodass das Zeintervall immer genau 15 minuten umfasst. Die Angabe erfolgt in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann NICHt negativ sein 
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loadProfilesNetLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+  /tranche/amounts/v0.0.1:
+    post:
+      tags:
+        - Übermittlung von Werten (Mehrfach)
+      summary: Übermittlung einer Energiemenge auf Ebene Tranche für einen Zeitraum
+      description: <br> Mit diesem Web-Service werden Energiemengen auf Ebene der Tranche zu Zeitintervallen übermittelt. <br> Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Tranche. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  sollen mehrere Mengen übermittelt weden,, so kann dieser mit demselben Service übermittelt werden (array). <br> Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr gesetzliche deutsche Zeit und um Ende 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann nicht negativ sein.
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/energyAmountsTranche'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+  /tranche/loadProfiles/v0.0.1:
+    post:
+      tags:
+        - Übermittlung von Werten (Mehrfach)
+      summary: Übermittlung eines Lastgangs auf Ebene Tranche für einen Zeitraum
+      description: <br> Mit diesem Web-Service wird ein Lastgang auf Ebene der Tranche zu Zeitintervallen übermittelt. <br> Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. <br> Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID) <br> Die Übermittlung erfolgt mittels der ID Der Tranche. Diese Parameter sind verpflichtend anzugeben. <br> Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. <br> Hinweis  werden mehrere 1/4h Werte übermittelt, so kann dieser mit demselben Service übermittelt werden (array). <br> Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 oder 00:15, oder 00:30, oder 00:45 Uhr gesetzliche deutsche Zeit und um Ende 00:00, oder 00:15, 00:30, 00:45, sodass das Zeintervall immer genau 15 minuten umfasst. Die Angabe erfolgt in UTC. <br> Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann NICHt negativ sein 
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loadProfilesTranche'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+
+
+  /cancellation/reading/v0.0.1:
+    delete:
+      tags:
+        - Stornierung eines übermittelten Wertes
+      summary: Stornierung eines übermittelten WErtes
+      description: <br> Mit diesem Web-Service können übermittelte Werte storniert werden. Die Wiederholung erfolgt innerhalb des arrays im Body. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub.
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/referenceId'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+
+
+  /meterLocation/meterReadings/complaint/v0.0.1:
+    post:
+      tags:
+        - Reklamation von fehlenden Werten
+      summary: Reklamation von fehlenden Zählerständen auf Ebene Messlokation.
+      description: <br> Mit diesem Web-Service können mehrere Zählerstände auf Ebene der Messlokation zu verschiedenen Zeitpunkten reklamiert. Die Wiederholung erfolgt innerhalb des arrays im Body. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Messlokation. <br> Es ist zusätzlich verpflichtend die betroffene OBIS-Kennzahl anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. <br> Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, und beide fehlen, so ist die Reklamation je OBIS-Kennzahl einmal auszuführen. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert gemäß vereinbarung bereitgestellt werden sollte. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.  
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeterReadingComplaintDataMeterLocations'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+  /meterLocation/amounts/complaint/v0.0.1:
+    post:
+      tags:
+        - Reklamation von fehlenden Werten
+      summary: Reklamation von fehlenden Mengen auf Ebene Messlokation.
+      description: <br> Mit diesem Web-Service können mehrere Mengen oder Lastgaänge auf Ebene der Messlokation zu verschiedenen Zeitpunkten reklamiert werden. Die Wiederholung erfolgt innerhalb des arrays im Body. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Messlokation. <br> Es ist zusätzlich verpflichtend die betroffene OBIS-Kennzahl anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. <br> Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, und beide fehlen, so ist die Reklamation je OBIS-Kennzahl einmal auszuführen. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert gemäß vereinbarung bereitgestellt werden sollte. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.  
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeasuredComplaintDatasMeterLocation'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+  /marketLocation/amounts/complaint/v0.0.1:
+    post:
+      tags:
+        - Reklamation von fehlenden Werten
+      summary: Reklamation von fehlenden Mengen auf Ebene Marktlokation.
+      description: <br> Mit diesem Web-Service können mehrere Mengen und Lastgänge auf Ebene der Marktlokation zu verschiedenen Zeitpunkten reklamiert. Die Wiederholung erfolgt innerhalb des arrays im Body. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Messlokation. <br> Es ist zusätzlich verpflichtend die betroffene OBIS-Kennzahl anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. <br> Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, und beide fehlen, so ist die Reklamation je OBIS-Kennzahl einmal auszuführen. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert gemäß vereinbarung bereitgestellt werden sollte. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.  
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeasuredComplaintDatasMarketLocation'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+  /netLocation/amounts/complaint/v0.0.1:
+    post:
+      tags:
+        - Reklamation von fehlenden Werten
+      summary: Reklamation von fehlenden Mengen auf Ebene Netzlokation.
+      description: <br> Mit diesem Web-Service können mehrere Mengen und Lastgänge auf Ebene der Netzlokation zu verschiedenen Zeitpunkten reklamiert. Die Wiederholung erfolgt innerhalb des arrays im Body. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Messlokation. <br> Es ist zusätzlich verpflichtend die betroffene OBIS-Kennzahl anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. <br> Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, und beide fehlen, so ist die Reklamation je OBIS-Kennzahl einmal auszuführen. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert gemäß vereinbarung bereitgestellt werden sollte. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.  
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeasuredComplaintDataNetLocation'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+
+  /tranche/amounts/complaint/v0.0.1:
+    post:
+      tags:
+        - Reklamation von fehlenden Werten
+      summary: Reklamation von fehlenden Mengen auf Ebene Tranche.
+      description: <br> Mit diesem Web-Service können mehrere Mengen und Lastgänge auf Ebene der Tranche zu verschiedenen Zeitpunkten reklamiert. Die Wiederholung erfolgt innerhalb des arrays im Body. <br> Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. <br> Die Anfrage erfolgt mittels der ID Der Messlokation. <br> Es ist zusätzlich verpflichtend die betroffene OBIS-Kennzahl anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. <br> Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, und beide fehlen, so ist die Reklamation je OBIS-Kennzahl einmal auszuführen. <br> Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert gemäß vereinbarung bereitgestellt werden sollte. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.  
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterMeasuredComplaintDatasTranche'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /thresholdUpdate/request/v0.0.1:
+    post:
+      tags:
+        - Ad-Hoc Änderung von Schwellwerten
+      summary: Ad-Hoc Änderung von Schwellwerten
+      description: >-
+        Inhaltsdatensicherungsebene: Der API-Aufruf mit der enthaltenen Payload
+        der hier spezifizierten API-Schnittstellen  wird signiert.
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/parameterThreshold'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
+
+
+
+
+
+
+
+
+components:
+  schemas:
+    creationDateTime:
+      pattern: >-
+        20(\d{2}(\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01])|\-02\-(0[1-9]|1\d|2[0-8])|\-(0[469]|11)\-(0[1-9]|[12]\d|30))|([02468][048]|[13579][26])\-02\-(29))T([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.[\d]{1,4})?Z
+      type: string
+      description: Zeitpunkt an dem der Aufruf erstellt wurde
+      example: '2023-08-01T12:30:00.170Z'
+
+    dateTime:
+      pattern: >-
+        20(\d{2}(\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01])|\-02\-(0[1-9]|1\d|2[0-8])|\-(0[469]|11)\-(0[1-9]|[12]\d|30))|([02468][048]|[13579][26])\-02\-(29))T([01]\d|2[0-3]):[0-5]\d:[0-5]\d(\.[\d]{1,4})?Z
+      type: string
+      description: Zeitpunkt an dem der Wert ermittelt wurde
+      example: '2023-08-01T12:30:00.170Z'
+
+
+    energyDirection:
+      type: string
+      description: Energieflussrichtung der genannten Ebene
+      example: consumption
+      enum:
+      - consumption
+      - production
+
+
+
+
+
+
+    executionTimeFrom:
+      pattern: >-
+        20(\d{2}(\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01])|\-02\-(0[1-9]|1\d|2[0-8])|\-(0[469]|11)\-(0[1-9]|[12]\d|30))|([02468][048]|[13579][26])\-02\-(29))T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ
+      type: string
+      description: Beginnzeitpunkt, Zeitpunkt zu dem die Anfrage wirken soll.
+      example: '2023-08-01T21:33:22.000Z'
+    executionTimeUntil:
+      pattern: >-
+        20(\d{2}(\-(0[13578]|1[02])\-(0[1-9]|[12]\d|3[01])|\-02\-(0[1-9]|1\d|2[0-8])|\-(0[469]|11)\-(0[1-9]|[12]\d|30))|([02468][048]|[13579][26])\-02\-(29))T([01]\d|2[0-3]):[0-5]\d:[0-5]\dZ
+      type: string
+      description: Endezeitpunkt, Zeitpunkt bis zu dem die Anfrage wirken soll.
+      example: '2023-09-01T11:22:33.000Z'
+    initialTransactionId:
+      type: string
+      description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+      format: UUID RFC4122
+      example: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+    hksId:
+      type: string
+      description: Zur Angabe der HKS-ID für die die Anpassung erfolgen soll.
+      example: XX-XX-XX-XX
+    lowerValue:
+      type: integer
+      description: unterer Schwellwert
+      example: 225
+
+
+    meterNumber:
+      type: string
+      description: Identifiziert das Gerät der Messlokation mittels Gerätenummer
+      example: 1SM-8465929523
+
+
+
+
+    tafId:
+      type: string
+      description: Zur Angabe der TAF-ID für die die Anpassung erfolgen soll.
+      example: XX-XX-XX-XX
+    threshold:
+      type: string
+      description: >-
+        Zur Angabe des eindeutigen Identifikators des Schwellwerts der geändert
+        werden soll.
+      example: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+    dataThreshold:
+      required:
+        - threshold
+        - lowerValue
+        - upperValue
+      type: object
+      properties:
+        threshold:
+          $ref: '#/components/schemas/threshold'
+        lowerValue:
+          $ref: '#/components/schemas/lowerValue'
+        upperValue:
+          $ref: '#/components/schemas/upperValue'
+    dataThresholds:
+      type: array
+      items:
+        $ref: '#/components/schemas/dataThreshold'
+    transactionId:
+      type: string
+      description: >-
+        Externe Transaktionsnummer zur eindeutigen Identifikation des Vorgangs
+        des sendenden Marktpartners
+      format: UUID RFC4122
+      example: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+    upperValue:
+      type: number
+      description: oberer Schwellwert
+      example: 234
+    parameterClsChannel:
+      required:
+        - hksId
+      type: object
+      properties:
+        hksId:
+          $ref: '#/components/schemas/hksId'
+
+    parameterMeasuredData:
+      required:
+        - tafId
+        - executionTimeFrom
+      type: object
+      properties:
+        tafId:
+          $ref: '#/components/schemas/tafId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+
+
+    parameterMeasuredDataMarketLocation:
+      required:
+        - maloId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        maloId:
+          $ref: '#/components/schemas/maloId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+
+    parameterMeasuredDatasMarketLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeasuredDataMarketLocation'
+
+
+
+    parameterMeterReadingDataMeterLocation:
+      required:
+        - meloId
+        - readingDateTime
+        - energyDirection
+      type: object
+      properties:
+        meloId:
+          $ref: '#/components/schemas/meloId'
+        energyDirection:
+         $ref: '#/components/schemas/energyDirection'  
+        readingDateTime:
+          $ref: '#/components/schemas/dateTime'
+        
+        
+    parameterMeterReadingDataMeterLocations:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeterReadingDataMeterLocation'
+
+    parameterMeterReadingComplaintDataMeterLocation:
+      required:
+        - meloId
+        - readingDateTime
+        - obisCode
+      type: object
+      properties:
+        meloId:
+          $ref: '#/components/schemas/meloId'
+        obisCode:
+         $ref: '#/components/schemas/obisCodeMeterReading'  
+        readingDateTime:
+          $ref: '#/components/schemas/dateTime'
+        
+        
+    parameterMeterReadingComplaintDataMeterLocations:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeterReadingComplaintDataMeterLocation'
+
+
+
+    parameterMeasuredDataMeterLocation:
+      required:
+        - meloId
+        - granularity
+        - energyDirection
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        meloId:
+          $ref: '#/components/schemas/meloId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        energyDirection:
+          $ref: '#/components/schemas/energyDirection'  
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+
+    parameterMeasuredDatasMeterLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeasuredDataMeterLocation'
+
+
+
+    parameterMeasuredComplaintDataMeterLocation:
+      required:
+        - meloId
+        - granularity
+        - obisCode
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        meloId:
+          $ref: '#/components/schemas/meloId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeComplaint'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+
+    parameterMeasuredComplaintDatasMeterLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeasuredComplaintDataMeterLocation'
+
+
+    parameterMeasuredComplaintDataMarketLocation:
+      required:
+        - maloId
+        - granularity
+        - obisCode
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        maloId:
+          $ref: '#/components/schemas/maloId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeComplaint'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+
+    parameterMeasuredComplaintDatasMarketLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeasuredComplaintDataMarketLocation'
+
+
+    parameterMeasuredComplaintDataNetLocation:
+      required:
+        - neloId
+        - granularity
+        - obisCode
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        neloId:
+          $ref: '#/components/schemas/neloId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeComplaint'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+
+    parameterMeasuredComplaintDatasNetLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeasuredComplaintDataNetLocation'
+
+    parameterMeasuredComplaintDataTranche:
+      required:
+        - tranchenId
+        - granularity
+        - obisCode
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        tranchenId:
+          $ref: '#/components/schemas/tranchenId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeComplaint'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+
+    parameterMeasuredComplaintDatasTranche:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeasuredComplaintDataTranche'
+
+
+  
+    parameterMeasuredDataNetLocation:
+      required:
+        - neloId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        neloId:
+          $ref: '#/components/schemas/neloId'
+        granularity:
+          $ref: '#/components/schemas/granularity' 
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+
+    parameterMeasuredDatasNetLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeasuredDataNetLocation'
+
+
+
+  
+    parameterMeasuredDataTranche:
+      required:
+        - tranchenId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        tranchenId:
+          $ref: '#/components/schemas/tranchenId'
+        value:
+          $ref: '#/components/schemas/granularity' 
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+  
+    parameterMeasuredDatasTranche:
+      type: array
+      items:
+        $ref: '#/components/schemas/parameterMeasuredDataTranche'
+  
+  
+  
+  
+    parameterThreshold:
+      required:
+        - tafId
+        - executionTimeFrom
+      type: object
+      properties:
+        tafId:
+          $ref: '#/components/schemas/tafId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        thresholds:
+          $ref: '#/components/schemas/dataThresholds'
+    meloId:
+      pattern: "DE\\d{11}[A-Z,\\d]{20}"
+      type: string
+      description: Identifiziert die Messlokation mittels einer eindeutigen ID
+      example: DE00014545768S0000000000000003054
+
+    maloId:
+      pattern: "\\d{11}"
+      type: string
+      description: Identifiziert die Marktlokation mittels einer eindeutigen ID
+      example: "57685676748"
+
+
+    tranchenId:
+      pattern: "\\d{11}"
+      type: string
+      description: Identifiziert die Tranche mittels einer eindeutigen ID
+      example: "57685676742"
+
+    neloId:
+      pattern: "E[A-Z\\d]{9}\\d"
+      type: string
+      description: Identifiziert die Netzlokation mittels einer eindeutigen ID
+      example: E1234848431
+
+    referenceId:
+      type: string
+      description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+      format: UUID RFC4122
+      example: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+
+
+
+
+    granularity:
+      type: string
+      description: Wertegranularität, ob es sich um die Bereitstellung eines Lastgangs im angegebenen Zeitintervall handelt oder um eine Energiemenge für das Zeitintervall.
+      example: loadProfile
+      enum:
+      - loadProfile
+      - energyAmount
+
+
+    value:
+      type: string
+      description: Wert für den Zeitpunkt bzw. das Zeitintervall
+      format: float
+      example: 54,123
+
+
+
+    valueQuality:
+      type: string
+      description: Wertequalität des übermittelten Wertes
+      example: read
+      enum:
+      - read
+      - estimated_interpolation
+      - estimated_statistical
+      - estimated_comparsionMeterCalibrated
+      - estimated_comparsionMeter
+      - forecast
+      - suggested
+      - sum
+      - junk
+    
+    obisCode:
+      type: string
+      description: Angabe der OBIS-Kennzahl für die der WErt übermittelt wird (PLATZHALTER)
+      example: 1-25:1.29.0
+      enum:
+      - 1-0:1.8.0
+      - 1-1:1.29.0
+
+    obisCodeComplaint:
+      type: string
+      description: Angabe der OBIS-Kennzahl für die Reklamation.
+      example: 1-25:1.29.0
+      enum:
+      - 1-0:1.29.0
+      - 1-1:1.29.0
+      - 1-2:1.29.0
+      - 1-3:1.29.0
+      - 1-4:1.29.0
+      - 1-5:1.29.0
+      - 1-6:1.29.0
+      - 1-7:1.29.0
+      - 1-8:1.29.0
+      - 1-9:1.29.0
+      - 1-10:1.29.0
+      - 1-11:1.29.0
+      - 1-0:2.29.0
+      - 1-1:2.29.0
+      - 1-2:2.29.0
+      - 1-3:2.29.0
+      - 1-4:2.29.0
+      - 1-5:2.29.0
+      - 1-6:2.29.0
+      - 1-7:2.29.0
+      - 1-8:2.29.0
+      - 1-9:2.29.0
+      - 1-10:2.29.0
+      - 1-11:2.29.0
+      - 1-0:1.9.0
+      - 1-1:1.9.0
+      - 1-2:1.9.0
+      - 1-3:1.9.0
+      - 1-4:1.9.0
+      - 1-5:1.9.0
+      - 1-6:1.9.0
+      - 1-7:1.9.0
+      - 1-8:1.9.0
+      - 1-9:1.9.0
+      - 1-10:1.9.0
+      - 1-11:1.9.0
+      - 1-0:2.9.0
+      - 1-1:2.9.0
+      - 1-2:2.9.0
+      - 1-3:2.9.0
+      - 1-4:2.9.0
+      - 1-5:2.9.0
+      - 1-6:2.9.0
+      - 1-7:2.9.0
+      - 1-8:2.9.0
+      - 1-9:2.9.0
+      - 1-10:2.9.0
+      - 1-11:2.9.0
+      - 1-0:1.9.1
+      - 1-1:1.9.1
+      - 1-2:1.9.1
+      - 1-3:1.9.1
+      - 1-4:1.9.1
+      - 1-5:1.9.1
+      - 1-6:1.9.1
+      - 1-7:1.9.1
+      - 1-8:1.9.1
+      - 1-9:1.9.1
+      - 1-10:1.9.1
+      - 1-11:1.9.1
+      - 1-0:2.9.1
+      - 1-1:2.9.1
+      - 1-2:2.9.1
+      - 1-3:2.9.1
+      - 1-4:2.9.1
+      - 1-5:2.9.1
+      - 1-6:2.9.1
+      - 1-7:2.9.1
+      - 1-8:2.9.1
+      - 1-9:2.9.1
+      - 1-10:2.9.1
+      - 1-11:2.9.1
+      - 1-0:1.9.2
+      - 1-1:1.9.2
+      - 1-2:1.9.2
+      - 1-3:1.9.2
+      - 1-4:1.9.2
+      - 1-5:1.9.2
+      - 1-6:1.9.2
+      - 1-7:1.9.2
+      - 1-8:1.9.2
+      - 1-9:1.9.2
+      - 1-10:1.9.2
+      - 1-11:1.9.2
+      - 1-0:2.9.2
+      - 1-1:2.9.2
+      - 1-2:2.9.2
+      - 1-3:2.9.2
+      - 1-4:2.9.2
+      - 1-5:2.9.2
+      - 1-6:2.9.2
+      - 1-7:2.9.2
+      - 1-8:2.9.2
+      - 1-9:2.9.2
+      - 1-10:2.9.2
+      - 1-11:2.9.2
+
+
+    obisCodeEnergyAmount:
+      type: string
+      description: Angabe der OBIS-Kennzahl für die eine Energiemenge übermittelt wird.
+      example: 1-7:1.9.0
+      enum:
+      - 1-0:1.9.0
+      - 1-1:1.9.0
+      - 1-2:1.9.0
+      - 1-3:1.9.0
+      - 1-4:1.9.0
+      - 1-5:1.9.0
+      - 1-6:1.9.0
+      - 1-7:1.9.0
+      - 1-8:1.9.0
+      - 1-9:1.9.0
+      - 1-10:1.9.0
+      - 1-11:1.9.0
+      - 1-0:2.9.0
+      - 1-1:2.9.0
+      - 1-2:2.9.0
+      - 1-3:2.9.0
+      - 1-4:2.9.0
+      - 1-5:2.9.0
+      - 1-6:2.9.0
+      - 1-7:2.9.0
+      - 1-8:2.9.0
+      - 1-9:2.9.0
+      - 1-10:2.9.0
+      - 1-11:2.9.0
+      - 1-0:1.9.1
+      - 1-1:1.9.1
+      - 1-2:1.9.1
+      - 1-3:1.9.1
+      - 1-4:1.9.1
+      - 1-5:1.9.1
+      - 1-6:1.9.1
+      - 1-7:1.9.1
+      - 1-8:1.9.1
+      - 1-9:1.9.1
+      - 1-10:1.9.1
+      - 1-11:1.9.1
+      - 1-0:2.9.1
+      - 1-1:2.9.1
+      - 1-2:2.9.1
+      - 1-3:2.9.1
+      - 1-4:2.9.1
+      - 1-5:2.9.1
+      - 1-6:2.9.1
+      - 1-7:2.9.1
+      - 1-8:2.9.1
+      - 1-9:2.9.1
+      - 1-10:2.9.1
+      - 1-11:2.9.1
+      - 1-0:1.9.2
+      - 1-1:1.9.2
+      - 1-2:1.9.2
+      - 1-3:1.9.2
+      - 1-4:1.9.2
+      - 1-5:1.9.2
+      - 1-6:1.9.2
+      - 1-7:1.9.2
+      - 1-8:1.9.2
+      - 1-9:1.9.2
+      - 1-10:1.9.2
+      - 1-11:1.9.2
+      - 1-0:2.9.2
+      - 1-1:2.9.2
+      - 1-2:2.9.2
+      - 1-3:2.9.2
+      - 1-4:2.9.2
+      - 1-5:2.9.2
+      - 1-6:2.9.2
+      - 1-7:2.9.2
+      - 1-8:2.9.2
+      - 1-9:2.9.2
+      - 1-10:2.9.2
+      - 1-11:2.9.2
+      
+    obisCodeLoadProfile:
+      type: string
+      description: Angabe der OBIS-Kennzahl für die ein Lastgang übermittelt wird.
+      example: 1-25:1.29.0
+      enum:
+      - 1-0:1.29.0
+      - 1-1:1.29.0
+      - 1-2:1.29.0
+      - 1-3:1.29.0
+      - 1-4:1.29.0
+      - 1-5:1.29.0
+      - 1-6:1.29.0
+      - 1-7:1.29.0
+      - 1-8:1.29.0
+      - 1-9:1.29.0
+      - 1-10:1.29.0
+      - 1-11:1.29.0
+      - 1-0:2.29.0
+      - 1-1:2.29.0
+      - 1-2:2.29.0
+      - 1-3:2.29.0
+      - 1-4:2.29.0
+      - 1-5:2.29.0
+      - 1-6:2.29.0
+      - 1-7:2.29.0
+      - 1-8:2.29.0
+      - 1-9:2.29.0
+      - 1-10:2.29.0
+      - 1-11:2.29.0
+
+
+      
+    obisCodeMeterReading:
+      type: string
+      description: Angabe der OBIS-Kennzahl für die der Wert der Messlokation der Übermittelt wird.
+      example: 1-7:1.8.1
+      enum:
+      - 1-0:1.8.0
+      - 1-1:1.8.0
+      - 1-2:1.8.0
+      - 1-3:1.8.0
+      - 1-4:1.8.0
+      - 1-5:1.8.0
+      - 1-6:1.8.0
+      - 1-7:1.8.0
+      - 1-8:1.8.0
+      - 1-9:1.8.0
+      - 1-10:1.8.0
+      - 1-11:1.8.0
+      - 1-0:2.8.0
+      - 1-1:2.8.0
+      - 1-2:2.8.0
+      - 1-3:2.8.0
+      - 1-4:2.8.0
+      - 1-5:2.8.0
+      - 1-6:2.8.0
+      - 1-7:2.8.0
+      - 1-8:2.8.0
+      - 1-9:2.8.0
+      - 1-10:2.8.0
+      - 1-11:2.8.0
+      - 1-0:1.8.1
+      - 1-1:1.8.1
+      - 1-2:1.8.1
+      - 1-3:1.8.1
+      - 1-4:1.8.1
+      - 1-5:1.8.1
+      - 1-6:1.8.1
+      - 1-7:1.8.1
+      - 1-8:1.8.1
+      - 1-9:1.8.1
+      - 1-10:1.8.1
+      - 1-11:1.8.1
+      - 1-0:2.8.1
+      - 1-1:2.8.1
+      - 1-2:2.8.1
+      - 1-3:2.8.1
+      - 1-4:2.8.1
+      - 1-5:2.8.1
+      - 1-6:2.8.1
+      - 1-7:2.8.1
+      - 1-8:2.8.1
+      - 1-9:2.8.1
+      - 1-10:2.8.1
+      - 1-11:2.8.1
+      - 1-0:1.8.2
+      - 1-1:1.8.2
+      - 1-2:1.8.2
+      - 1-3:1.8.2
+      - 1-4:1.8.2
+      - 1-5:1.8.2
+      - 1-6:1.8.2
+      - 1-7:1.8.2
+      - 1-8:1.8.2
+      - 1-9:1.8.2
+      - 1-10:1.8.2
+      - 1-11:1.8.2
+      - 1-0:2.8.2
+      - 1-1:2.8.2
+      - 1-2:2.8.2
+      - 1-3:2.8.2
+      - 1-4:2.8.2
+      - 1-5:2.8.2
+      - 1-6:2.8.2
+      - 1-7:2.8.2
+      - 1-8:2.8.2
+      - 1-9:2.8.2
+      - 1-10:2.8.2
+      - 1-11:2.8.2
+    
+    
+    meterReadingDataMeterLocation:
+      required:
+        - meloId
+        - readingDateTime
+        - obisCode
+        - value
+        - valueQuality
+        - meterNumber
+      type: object
+      properties:
+        meloId:
+          $ref: '#/components/schemas/meloId'
+        meterNumber:
+          $ref: '#/components/schemas/meterNumber'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeMeterReading'
+        readingDateTime:
+          $ref: '#/components/schemas/dateTime'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    meterReadingDataMeterLocations:
+      type: array
+      items:
+        $ref: '#/components/schemas/meterReadingDataMeterLocation'
+
+    energyAmountMeterLocation:
+      required:
+        - meloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        meloId:
+          $ref: '#/components/schemas/meloId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeEnergyAmount'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    energyAmountsMeterLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/energyAmountMeterLocation'
+
+
+    energyAmountMarketLocation:
+      required:
+        - maloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        maloId:
+          $ref: '#/components/schemas/maloId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeEnergyAmount'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    energyAmountsMarketLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/energyAmountMarketLocation'
+
+    energyAmountNetLocation:
+      required:
+        - neloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        neloId:
+          $ref: '#/components/schemas/neloId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeEnergyAmount'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    energyAmountsNetLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/energyAmountNetLocation'
+
+    energyAmountTranche:
+      required:
+        - tranchenId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        tranchenId:
+          $ref: '#/components/schemas/tranchenId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeEnergyAmount'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    energyAmountsTranche:
+      type: array
+      items:
+        $ref: '#/components/schemas/energyAmountNetLocation'
+
+
+    loadProfileMeterLocation:
+      required:
+        - meloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        meloId:
+          $ref: '#/components/schemas/meloId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeLoadProfile'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    loadProfilesMeterLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/loadProfileMeterLocation'
+
+    loadProfileMarketLocation:
+      required:
+        - maloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        maloId:
+          $ref: '#/components/schemas/maloId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeLoadProfile'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    loadProfilesMarketLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/loadProfileMarketLocation'
+
+    loadProfileNetLocation:
+      required:
+        - neloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        neloId:
+          $ref: '#/components/schemas/neloId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeLoadProfile'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    loadProfilesNetLocation:
+      type: array
+      items:
+        $ref: '#/components/schemas/loadProfileNetLocation'
+
+    loadProfileTranche:
+      required:
+        - tranchenId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        tranchenId:
+          $ref: '#/components/schemas/tranchenId'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCodeLoadProfile'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    loadProfilesTranche:
+      type: array
+      items:
+        $ref: '#/components/schemas/loadProfileTranche'
+
+          
+
+    readingDataMeterLocation:
+      required:
+        - meloId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+        - energyDirection
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        meloId:
+          $ref: '#/components/schemas/meloId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        energyDirection:
+         $ref: '#/components/schemas/energyDirection'  
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCode'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    readingDataMeterLocations:
+      type: array
+      items:
+        $ref: '#/components/schemas/readingDataMeterLocation'
+
+    readingDataMarketLocation:
+      required:
+        - maloId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        maloId:
+          $ref: '#/components/schemas/maloId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCode'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    readingDataMarketLocations:
+      type: array
+      items:
+        $ref: '#/components/schemas/readingDataMarketLocation'
+
+
+    readingDataNetLocation:
+      required:
+        - neloId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        neloId:
+          $ref: '#/components/schemas/neloId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCode'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    readingDataNetLocations:
+      type: array
+      items:
+        $ref: '#/components/schemas/readingDataNetLocation'
+
+    readingDataTranche:
+      required:
+        - tranchenId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        tranchenId:
+          $ref: '#/components/schemas/tranchenId'
+        granularity:
+          $ref: '#/components/schemas/granularity'
+        executionTimeFrom:
+          $ref: '#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '#/components/schemas/obisCode'
+        value:
+          $ref: '#/components/schemas/value'
+        valueQuality:
+          $ref: '#/components/schemas/valueQuality'
+
+    readingDataTranches:
+      type: array
+      items:
+        $ref: '#/components/schemas/readingDataTranche'

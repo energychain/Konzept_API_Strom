@@ -1,0 +1,16 @@
+components:
+  schemas:
+   versionData:
+     description: Versionsangabe eines Objektes, einer Liste oder eines Datensatzes
+     required:
+      - versionsNumber
+      - validFromTime
+     type: object
+     properties:
+      versionsNumber:
+        $ref: './versionNumber.yaml#/components/schemas/versionNumber'
+      validFromTime:
+        $ref: './validFromTime.yaml#/components/schemas/validFromTime'
+      previousVersion:
+        $ref: './versionNumber.yaml#/components/schemas/versionNumber'
+        description: Angabe der Vorgängerversion

@@ -1,0 +1,7 @@
+components:
+  schemas:
+    versionNumber:
+      type: int
+      format: int32
+      description: Die Versionsnummer des Objektes, eines Datensatzes oder einer Liste
+      example: 1

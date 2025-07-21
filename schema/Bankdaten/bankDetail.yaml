@@ -1,0 +1,19 @@
+components:
+  schemas:
+    bankDetail:
+      type: object
+      required:
+        - ibanNumber
+        - bic
+        - bankName
+        - accountHolder
+      properties:
+        ibanNumber:
+          $ref: './ibanNumber.yaml#/components/schemas/ibanNumber'
+        bic:
+          $ref: './bic.yaml#/components/schemas/bic'
+        bankName:
+          $ref: './bankName.yaml#/components/schemas/bankName' 
+        accountHolder:
+          $ref: '../Unternehmensangaben/company.yaml#/components/schemas/company'
+          description: Kontoinhaber        

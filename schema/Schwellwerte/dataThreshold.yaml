@@ -1,0 +1,15 @@
+components:
+  schemas:
+    dataThreshold:
+      required:
+        - threshold
+        - lowerValue
+        - upperValue
+      type: object
+      properties:
+        threshold:
+          $ref: './threshold.yaml#/components/schemas/threshold'
+        lowerValue:
+          $ref: './lowerValue.yaml#/components/schemas/lowerValue'
+        upperValue:
+          $ref: './upperValue.yaml#/components/schemas/upperValue'

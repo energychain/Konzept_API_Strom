@@ -1,0 +1,6 @@
+components:
+  schemas:
+    bic:
+      type: string
+      description: Angabe einer BIC
+      example: WALEDDE3TER

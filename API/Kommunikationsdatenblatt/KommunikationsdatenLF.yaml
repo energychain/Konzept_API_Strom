@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: EDI@Energy API-Webdienst zur Übermittlung der Kommunikationsdaten eines Lieferanten
+  version: v1.0.0
+  description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die Marktrollen LF, NB, ÜNB und MSB.
+tags:
+  - name: Übermittlung der Kommunikationsdaten
+    description: Find out more
+  - name: Abkündigung von Kommunikationsdaten
+    description: Find out more
+    
+paths:
+  /CommunicationInformation/v1:
+    post: 
+      tags: 
+       - Übermittlung der Kommunikationsdaten
+      description: 'Dieser POST wird aufgerufen, wenn der LF ein Kommunikationsdatenblatt an die Empfänger sendet'
+      summary: Übermittlung der Kommunikationsdaten
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Übermittlung der Kommunikationsdaten.
+          required: true
+          style: simple 
+          explode: false
+          schema: 
+            $ref: '../../schema/transactionId.yaml#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../schema/creationDateTime.yaml#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+         application/json:
+           schema:
+             $ref: '../../schema/Kommunikationsdatenblatt/dataCommunicationInformation.yaml#/components/schemas/dataCommunicationInformation'
+      responses:
+        "202":
+          description: accepted
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "405":
+          description: Method not allowed
+        "500":
+          description: Internal Server Error
+  
+  /discontinuationCommunicationInformation/v1:
+    post:
+      tags: 
+       - Abkündigung von Kommunikationsdaten
+      description: 'Dieser POST wird aufgerufen, wenn der LF ein leeres Kommunikationsdatenblatt an die Empfänger sendet'
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Übermittlung der Kommunikationsdaten.
+          required: true
+          style: simple 
+          explode: false
+          schema: 
+            $ref: '../../schema/transactionId.yaml#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../schema/creationDateTime.yaml#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+         application/json:
+           schema:
+             $ref: '../../schema/Kommunikationsdatenblatt/discontinuationCommunicationInformationData.yaml#/components/schemas/discontinuationCommunicationInformationData'
+      responses:
+        "202":
+          description: accepted
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "405":
+          description: Method not allowed
+        "500":
+          description: Internal Server Error

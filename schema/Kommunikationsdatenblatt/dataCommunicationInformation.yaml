@@ -1,0 +1,67 @@
+components:
+  schemas:
+    dataCommunicationInformation:
+      required:
+        - companyNameAndAdress
+        - bankDetail
+        - courtData
+        - faxNumber
+        - versionData
+        - website
+        - taxOfficeData
+        - contactForDatatransfer
+        - contactForMasterDataProcess
+        - contactForMeasuredValueProcess
+        - contactForAccountingProcess
+      type: object
+      properties:
+        companyNameAndAdress:
+          $ref: '../Unternehmensangaben/companyNameAndAdress.yaml#/components/schemas/companyNameAndAdress'
+        versionData:
+         $ref: '../versionData.yaml#/components/schemas/versionData'
+        bankDetail:
+          $ref: '../Bankdaten/bankDetail.yaml#/components/schemas/bankDetail'
+        courtData:
+          $ref: '../courtData.yaml#/components/schemas/courtData'
+        faxNumber:
+          $ref: '../Person/faxNumber.yaml#/components/schemas/faxNumber'
+        website:
+          $ref: '../Unternehmensangaben/website.yaml#/components/schemas/website'
+        taxOfficeData:
+          $ref: '../taxOfficeData.yaml#/components/schemas/taxOfficeData'
+        contactForDatatransfer:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner Übertragungsweg / Datenaustausch
+        contactForFrameworkAgreements:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Rahmenverträge
+        contactForTerminationProcess:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Kündigungsprozesse
+        contactForChangeProcess:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Wechselprozesse
+        contactForMasterDataProcess:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Stammdatenprozesse
+        contactForProductionProcess:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Einspeiseprozesse
+        contactForBillingProcess:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Abrechnungsprozesse
+        contactForMoreLessQuantityProcess:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für MMMA-Prozesse
+        contactForMeasuredValueProcess:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Messwertprozesse
+        contactForAccountingProcess:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Bilanzierungsprozesse
+        contactForInterruptionAndRecoveryProcess:
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          description: Name und Anschrift Ansprechpartner für Bilanzierungsprozesse
+
+        
+          
