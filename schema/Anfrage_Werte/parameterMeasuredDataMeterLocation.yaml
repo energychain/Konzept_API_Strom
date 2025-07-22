@@ -1,0 +1,21 @@
+components:
+  schemas:
+    parameterMeasuredDataMeterLocation:
+      required:
+        - meloId
+        - granularity
+        - energyDirection
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        meloId:
+          $ref: './meloId.yaml#/components/schemas/meloId'
+        granularity:
+          $ref: './granularity.yaml#/components/schemas/granularity'
+        energyDirection:
+          $ref: './energyDirection.yaml#/components/schemas/energyDirection'  
+        executionTimeFrom:
+          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '.executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

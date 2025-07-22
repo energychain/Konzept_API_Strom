@@ -1,0 +1,16 @@
+components:
+  schemas:
+    parameterMeterReadingComplaintDataMeterLocation:
+      required:
+        - meloId
+        - readingDateTime
+        - obisCode
+      type: object
+      properties:
+        meloId:
+          $ref: './meloId.yaml#/components/schemas/meloId'
+        obisCode:
+         $ref: './obisCodeMeterReading.yaml#/components/schemas/obisCodeMeterReading'  
+        readingDateTime:
+          $ref: '/readingDateTime.yaml#/components/schemas/dateTime'
+

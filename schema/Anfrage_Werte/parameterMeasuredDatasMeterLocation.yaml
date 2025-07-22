@@ -1,0 +1,7 @@
+components:
+  schemas:
+    parameterMeasuredDatasMeterLocation:
+      type: array
+      items:
+        $ref: './parameterMeasuredDataMeterLocation.yaml#/components/schemas/parameterMeasuredDataMeterLocation'
+
