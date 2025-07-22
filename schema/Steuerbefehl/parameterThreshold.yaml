@@ -1,0 +1,14 @@
+components:
+  schema:
+    parameterThreshold:
+      required:
+        - tafId
+        - executionTimeFrom
+      type: object
+      properties:
+        tafId:
+          $ref: './tafId.yaml#/components/schemas/tafId'
+        executionTimeFrom:
+          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        thresholds:
+          $ref: './dataThresholds.yaml#/components/schemas/dataThresholds
