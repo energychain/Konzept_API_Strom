@@ -1,9 +1,4 @@
 openapi: 3.0.0
-info:
-  title: Anfrage von Werten (Mehrfachanfragen) auf Ebene der Messlokation
-  version: 1.0.0
-  description: API zum Übermitteln von Energiemengen auf Ebene der Marktlokation.
-
 paths:
   /meterLocation/measuredDatas/request/v0.0.1:
     post:
