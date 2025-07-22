@@ -7,6 +7,6 @@ components:
       type: object
       properties:
         srId:
-          $ref: './srId.yaml#/components/schemas/srId'
+          $ref: '../IDs/srId.yaml#/components/schemas/srId'
         dataControllableResourceMeasuringPointOperators:
           $ref: './dataControllableResourceMeasuringPointOperators.yaml#/components/schemas/dataControllableResourceMeasuringPointOperators'

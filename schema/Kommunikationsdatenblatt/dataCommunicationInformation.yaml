@@ -18,7 +18,7 @@ components:
         companyNameAndAdress:
           $ref: '../Unternehmensangaben/companyNameAndAdress.yaml#/components/schemas/companyNameAndAdress'
         versionData:
-         $ref: '../versionData.yaml#/components/schemas/versionData'
+         $ref: '../Versionen/versionData.yaml#/components/schemas/versionData'
         bankDetail:
           $ref: '../Bankdaten/bankDetail.yaml#/components/schemas/bankDetail'
         courtData:

@@ -11,7 +11,7 @@ components:
       type: object
       properties:
         maloId:
-          $ref: './maloId.yaml#/components/schemas/maloId'
+          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
         executionTimeFrom:
           $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:

@@ -10,7 +10,7 @@ components:
         identificationDateTime:
           $ref: './identificationDateTime.yaml#/components/schemas/identificationDateTime'
         energyDirection:
-          $ref: './energyDirection.yaml#/components/schemas/energyDirection'
+          $ref: '../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'
         identificationParameterId:
           $ref: './identificationParameter_identificationParameterId.yaml#/components/schemas/identificationParameter_identificationParameterId'
         identificationParameterAddress:

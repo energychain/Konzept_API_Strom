@@ -8,8 +8,8 @@ components:
       type: object
       properties:
         threshold:
-          $ref: './threshold.yaml#/components/schemas/threshold'
+          $ref: '../Schwellwerte/threshold.yaml#/components/schemas/threshold'
         lowerValue:
-          $ref: './lowerValue.yaml#/components/schemas/lowerValue'
+          $ref: '../Schwellwerte/lowerValue.yaml#/components/schemas/lowerValue'
         upperValue:
-          $ref: './upperValue.yaml#/components/schemas/upperValue'
+          $ref: '../Schwellwerte/upperValue.yaml#/components/schemas/upperValue'

@@ -10,6 +10,6 @@ components:
         meloId:
           $ref: './meloId.yaml#/components/schemas/meloId'
         energyDirection:
-         $ref: './energyDirection.yaml#/components/schemas/energyDirection'  
+         $ref: '../../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'  
         readingDateTime:
           $ref: './readingDateTime.yaml#/components/schemas/dateTime'

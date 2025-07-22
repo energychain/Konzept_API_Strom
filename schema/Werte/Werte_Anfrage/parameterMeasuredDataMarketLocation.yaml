@@ -9,7 +9,7 @@ components:
       type: object
       properties:
         maloId:
-          $ref: './maloId.yaml#/components/schemas/maloId'
+          $ref: '../../IDs/maloId.yaml#/components/schemas/maloId'
         granularity:
           $ref: './granularity.yaml#/components/schemas/granularity'
         executionTimeFrom:

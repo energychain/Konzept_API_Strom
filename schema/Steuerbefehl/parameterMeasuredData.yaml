@@ -7,8 +7,8 @@ components:
       type: object
       properties:
         tafId:
-          $ref: './tafId.yaml#/components/schemas/tafId'
+          $ref: '../IDs/tafId.yaml#/components/schemas/tafId'
         executionTimeFrom:
-          $ref: './executionTimeFrom#/components/schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: './executionTimeUntil#/components/schemas/executionTimeUntil'
+          $ref: '../Zeitangaben/executionTimeUntil#/components/schemas/executionTimeUntil'

@@ -6,4 +6,4 @@ components:
       type: object
       properties:
         executionTimeFrom:
-          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../Zeitangaben//executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
