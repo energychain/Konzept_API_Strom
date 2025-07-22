@@ -1,6 +1,6 @@
 components:
   schemas:
-    dataThreshold:
+     dataThreshold:
       required:
         - threshold
         - lowerValue

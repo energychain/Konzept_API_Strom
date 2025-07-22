@@ -1,0 +1,6 @@
+components:
+  schemas:
+    dataThresholds:
+      type: array
+      items:
+        $ref: './dataThreshold.yaml#/components/schemas/dataThreshold'
