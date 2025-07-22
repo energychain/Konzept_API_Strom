@@ -10,12 +10,12 @@ components:
       type: object
       properties:
         maloId:
-          $ref: './meloId.yaml#/components/schemas/maloId'
+          $ref: '../../IDs/meloId.yaml#/components/schemas/maloId'
         granularity:
-          $ref: './granularity.yaml#/components/schemas/granularity'
+          $ref: '../../Energiemengen/granularity.yaml#/components/schemas/granularity'
         obisCode:
-          $ref: './obisCodeComplaint.yaml#/components/schemas/obisCodeComplaint'
+          $ref: '../../Energiemengen/OBIS/obisCodeComplaint.yaml#/components/schemas/obisCodeComplaint'
         executionTimeFrom:
-          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

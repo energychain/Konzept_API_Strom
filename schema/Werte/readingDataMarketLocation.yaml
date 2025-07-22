@@ -14,14 +14,14 @@ components:
         maloId:
           $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
         granularity:
-          $ref: './granularity.yaml#/components/schemas/granularity'
+          $ref: '../Energiemengen/granularity.yaml#/components/schemas/granularity'
         executionTimeFrom:
-          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../ZeitangabenexecutionTimeUntil.yaml#/components/schemas/executionTimeUntil'
         obisCode:
-          $ref: './obisCode.yaml#/components/schemas/obisCode'
+          $ref: '../Energiemengen/OBIS/obisCode.yaml#/components/schemas/obisCode'
         value:
-          $ref: ./value.yaml#/components/schemas/value'
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:
-          $ref: './valueQuality.yaml#/components/schemas/valueQuality'
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

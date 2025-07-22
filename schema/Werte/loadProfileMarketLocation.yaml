@@ -13,12 +13,12 @@ components:
         maloId:
           $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
         executionTimeFrom:
-          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
         obisCode:
-          $ref: './obisCodeLoadProfile.yaml#/components/schemas/obisCodeLoadProfile'
+          $ref: '../Energiemengen/OBIS/obisCodeLoadProfile.yaml#/components/schemas/obisCodeLoadProfile'
         value:
-          $ref: './value.yaml#/components/schemas/value'
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:
-          $ref: './valueQuality.yaml#/components/schemas/valueQuality'
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

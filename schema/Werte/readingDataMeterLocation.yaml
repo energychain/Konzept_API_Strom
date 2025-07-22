@@ -13,18 +13,18 @@ components:
       type: object
       properties:
         meloId:
-          $ref: './meloId.yaml#/components/schemas/meloId'
+          $ref: '../IDs/meloId.yaml#/components/schemas/meloId'
         granularity:
-          $ref: './granularity.yaml#/components/schemas/granularity'
+          $ref: '../Energiemengen/granularity.yaml#/components/schemas/granularity'
         energyDirection:
          $ref: '../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'  
         executionTimeFrom:
-          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
         obisCode:
-          $ref: './obisCode.yaml#/components/schemas/obisCode'
+          $ref: '../Energiemengen/OBIS/obisCode.yaml#/components/schemas/obisCode'
         value:
-          $ref: './value.yaml#/components/schemas/value'
+          $ref: '../Energiemengenvalue.yaml#/components/schemas/value'
         valueQuality:
-          $ref: './valueQuality.yaml#/components/schemas/valueQuality'
+          $ref: '../EnergiemengenvalueQuality.yaml#/components/schemas/valueQuality'

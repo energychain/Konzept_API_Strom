@@ -7,14 +7,14 @@ components:
       type: object
       properties:
         dataMarketLocation:
-          $ref: './dataMarketLocation.yaml#/components/schemas/dataMarketLocation'
+          $ref: './MaLo-Daten/dataMarketLocation.yaml#/components/schemas/dataMarketLocation'
         dataTranches:
-          $ref: './dataTranches.yaml#/components/schemas/dataTranches'
+          $ref: './Tranchen-Daten/dataTranches.yaml#/components/schemas/dataTranches'
         dataMeterLocations:
-          $ref: './dataMeterLocations.yaml#/components/schemas/dataMeterLocations'
+          $ref: './MeLo-Daten/dataMeterLocations.yaml#/components/schemas/dataMeterLocations'
         dataTechnicalResources:
-          $ref: './dataTechnicalResources.yaml#/components/schemas/dataTechnicalResources'
+          $ref: './TR-Daten/dataTechnicalResources.yaml#/components/schemas/dataTechnicalResources'
         dataControllableResources:
-          $ref: './dataControllableResources.yaml#/components/schemas/dataControllableResources'
+          $ref: './SR-Daten/dataControllableResources.yaml#/components/schemas/dataControllableResources'
         dataNetworkLocations:
-          $ref: './dataNetworkLocations.yaml#/components/schemas/dataNetworkLocations'
+          $ref: './NeLo-Daten/dataNetworkLocations.yaml#/components/schemas/dataNetworkLocations'

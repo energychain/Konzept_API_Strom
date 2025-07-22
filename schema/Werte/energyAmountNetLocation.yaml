@@ -11,14 +11,14 @@ components:
       type: object
       properties:
         neloId:
-          $ref: './neloId.yaml#/components/schemas/neloId'
+          $ref: '../IDs/neloId.yaml#/components/schemas/neloId'
         executionTimeFrom:
-          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
         obisCode:
-          $ref: './obisCodeEnergyAmount.yaml#/components/schemas/obisCodeEnergyAmount'
+          $ref: '../Energiemengen/OBIS/obisCodeEnergyAmount.yaml#/components/schemas/obisCodeEnergyAmount'
         value:
-          $ref: './value.yaml#/components/schemas/value'
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:
-          $ref: './valueQuality.yaml#/components/schemas/valueQuality'
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

@@ -11,8 +11,8 @@ components:
         maloId:
           $ref: '../../IDs/maloId.yaml#/components/schemas/maloId'
         granularity:
-          $ref: './granularity.yaml#/components/schemas/granularity'
+          $ref: '../../Energiemengen/granularity.yaml#/components/schemas/granularity'
         executionTimeFrom:
-          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
