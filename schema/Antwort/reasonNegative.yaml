@@ -2,7 +2,7 @@ components:
   schemas:
     reasonNegative:
       type: string
-      description: Grund
+      description: Grund des Scheiterns.
       example: communicationFailure
       enum:
       - communicationFailure
