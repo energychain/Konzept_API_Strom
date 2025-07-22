@@ -1,0 +1,18 @@
+components:
+  schemas:
+    parameterMeasuredDataTranche:
+      required:
+        - tranchenId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        tranchenId:
+          $ref: './tranchenId.yaml#/components/schemas/tranchenId'
+        value:
+          $ref: './granularity.yaml#/components/schemas/granularity' 
+        executionTimeFrom:
+          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

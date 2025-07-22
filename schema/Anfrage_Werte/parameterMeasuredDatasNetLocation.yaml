@@ -1,0 +1,6 @@
+components:
+  schemas:
+    parameterMeasuredDatasNetLocation:
+      type: array
+      items:
+        $ref: './parameterMeasuredDataNetLocation.yaml#/components/schemas/parameterMeasuredDataNetLocation'

@@ -1,0 +1,6 @@
+components:
+  schemas:
+    parameterMeasuredDatasTranche:
+      type: array
+      items:
+        $ref: './parameterMeasuredDataTranche.yaml#/components/schemas/parameterMeasuredDataTranche'

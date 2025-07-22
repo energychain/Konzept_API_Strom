@@ -1,0 +1,21 @@
+components:
+  schemas:
+    parameterMeasuredComplaintDataMeterLocation:
+      required:
+        - meloId
+        - granularity
+        - obisCode
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        meloId:
+          $ref: './.meloId.yaml#/components/schemas/meloId'
+        granularity:
+          $ref: './granularity.yaml#/components/schemas/granularity'
+        obisCode:
+          $ref: './obisCodeComplaint.yaml#/components/schemas/obisCodeComplaint'
+        executionTimeFrom:
+          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '.executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

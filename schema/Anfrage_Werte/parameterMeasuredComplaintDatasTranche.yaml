@@ -1,0 +1,6 @@
+components:
+  schemas:
+    parameterMeasuredComplaintDatasTranche:
+      type: array
+      items:
+        $ref: './parameterMeasuredComplaintDataTranche.yaml#/components/schemas/parameterMeasuredComplaintDataTranche'
