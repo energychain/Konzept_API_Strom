@@ -1,0 +1,24 @@
+components:
+  schemas:
+    loadProfileMeterLocation:
+      required:
+        - meloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        meloId:
+          $ref: './meloId.yaml#/components/schemas/meloId'
+        executionTimeFrom:
+          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: './obisCodeLoadProfile#/components/schemas/obisCodeLoadProfile'
+        value:
+          $ref: './value.yaml#/components/schemas/value'
+        valueQuality:
+          $ref: './valueQuality.yaml#/components/schemas/valueQuality'

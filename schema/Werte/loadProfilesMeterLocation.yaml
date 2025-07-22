@@ -1,0 +1,7 @@
+components:
+  schemas:
+    loadProfilesMeterLocation:
+      type: array
+      items:
+        $ref: './loadProfileMeterLocation.yaml#/components/schemas/loadProfileMeterLocation'
+ 

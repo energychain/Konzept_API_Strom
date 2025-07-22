@@ -1,0 +1,6 @@
+components:
+  schemas:
+    readingDataMarketLocations:
+      type: array
+      items:
+        $ref: './readingDataMarketLocation.yaml#/components/schemas/readingDataMarketLocation'

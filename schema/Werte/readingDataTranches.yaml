@@ -1,0 +1,6 @@
+components:
+  schemas:
+    readingDataTranches:
+      type: array
+      items:
+        $ref: './readingDataTranche.yaml#/components/schemas/readingDataTranche'

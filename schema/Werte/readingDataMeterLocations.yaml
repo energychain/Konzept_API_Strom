@@ -1,0 +1,6 @@
+components:
+  schemas:
+    readingDataMeterLocations:
+      type: array
+      items:
+        $ref: './readingDataMeterLocation.yaml#/components/schemas/readingDataMeterLocation'

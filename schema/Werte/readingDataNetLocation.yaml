@@ -1,0 +1,27 @@
+components:
+  schemas:
+    readingDataNetLocation:
+      required:
+        - neloId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        neloId:
+          $ref: './neloId.yaml#/components/schemas/neloId'
+        granularity:
+          $ref: './granularity.yaml#/components/schemas/granularity'
+        executionTimeFrom:
+          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: './obisCode.yaml#/components/schemas/obisCode'
+        value:
+          $ref: './value.yaml#/components/schemas/value'
+        valueQuality:
+          $ref: './valueQuality.yaml#/components/schemas/valueQuality'

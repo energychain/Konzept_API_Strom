@@ -1,0 +1,27 @@
+components:
+  schemas:
+    readingDataTranche:
+      required:
+        - tranchenId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        tranchenId:
+          $ref: './tranchenId.yaml#/components/schemas/tranchenId'
+        granularity:
+          $ref: './granularity.yaml#/components/schemas/granularity'
+        executionTimeFrom:
+          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: './obisCode.yaml#/components/schemas/obisCode'
+        value:
+          $ref: './value.yaml#/components/schemas/value'
+        valueQuality:
+          $ref: './valueQuality.yaml#/components/schemas/valueQuality'

@@ -1,0 +1,24 @@
+components:
+  schemas:
+    loadProfileTranche:
+      required:
+        - tranchenId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        tranchenId:
+          $ref: './tranchenId.yaml#/components/schemas/tranchenId'
+        executionTimeFrom:
+          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: './obisCodeLoadProfile.yaml#/components/schemas/obisCodeLoadProfile'
+        value:
+          $ref: './value.yaml#/components/schemas/value'
+        valueQuality:
+          $ref: './valueQuality.yaml#/components/schemas/valueQuality'

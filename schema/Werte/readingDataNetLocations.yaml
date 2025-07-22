@@ -1,0 +1,6 @@
+components:
+  schemas:
+    readingDataNetLocations:
+      type: array
+      items:
+        $ref: './readingDataNetLocation.yaml#/components/schemas/readingDataNetLocation'
