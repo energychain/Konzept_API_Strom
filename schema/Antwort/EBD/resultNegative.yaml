@@ -12,6 +12,6 @@ components:
         responseCode:
           $ref: './responseCode.yaml#/components/schemas/responseCode'
         reason:
-          $ref: './reason.yaml#/components/schemas/reason'
+          $ref: '../reason.yaml#/components/schemas/reason'
         networkOperator:
-          $ref: './marketPartnerId.yaml#/components/schemas/marketPartnerId'
+          $ref: '../../IDs/marketPartnerId.yaml#/components/schemas/marketPartnerId'
