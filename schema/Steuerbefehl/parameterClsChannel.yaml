@@ -1,0 +1,9 @@
+components:
+  schemas:
+      parameterClsChannel:
+      required:
+        - hksId
+      type: object
+      properties:
+        hksId:
+          $ref: './hksId.yaml#/components/schemas/hksId'

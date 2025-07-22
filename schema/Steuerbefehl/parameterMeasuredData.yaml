@@ -1,0 +1,14 @@
+components:
+  schema:
+    parameterMeasuredData:
+      required:
+        - tafId
+        - executionTimeFrom
+      type: object
+      properties:
+        tafId:
+          $ref: './tafId.yaml#/components/schemas/tafId'
+        executionTimeFrom:
+          $ref: './executionTimeFrom#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: './executionTimeUntil#/components/schemas/executionTimeUntil'

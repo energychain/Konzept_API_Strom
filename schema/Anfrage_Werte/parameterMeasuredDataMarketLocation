@@ -1,0 +1,18 @@
+components:
+  schemas:
+     parameterMeasuredDataMarketLocation:
+      required:
+        - maloId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        maloId:
+          $ref: './maloId.yaml#/components/schemas/maloId'
+        granularity:
+          $ref: './granularity.yaml#/components/schemas/granularity'
+        executionTimeFrom:
+          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
