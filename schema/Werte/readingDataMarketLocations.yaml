@@ -3,4 +3,4 @@ components:
     readingDataMarketLocations:
       type: array
       items:
-        $ref: './readingDataMarketLocation.yaml#/components/schemas/readingDataMarketLocation'
+        $ref: './readingDataMarketLocation.yaml#/components/Schemas/readingDataMarketLocation'

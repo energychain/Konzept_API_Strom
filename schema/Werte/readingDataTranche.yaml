@@ -12,16 +12,16 @@ components:
       type: object
       properties:
         tranchenId:
-          $ref: '../IDs/tranchenId.yaml#/components/schemas/tranchenId'
+          $ref: '../IDs/tranchenId.yaml#/components/Schemas/tranchenId'
         granularity:
-          $ref: '../Energiemengen/granularity.yaml#/components/schemas/granularity'
+          $ref: '../Energiemengen/granularity.yaml#/components/Schemas/granularity'
         executionTimeFrom:
-          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/Schemas/executionTimeUntil'
         obisCode:
-          $ref: '../Energiemengen/OBIS/obisCode.yaml#/components/schemas/obisCode'
+          $ref: '../Energiemengen/OBIS/obisCode.yaml#/components/Schemas/obisCode'
         value:
-          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
+          $ref: '../Energiemengen/value.yaml#/components/Schemas/value'
         valueQuality:
-          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'
+          $ref: '../Energiemengen/valueQuality.yaml#/components/Schemas/valueQuality'

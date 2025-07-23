@@ -4,10 +4,10 @@ components:
       type: object
       properties:
         name:
-          $ref: '../Person/name.yaml#/components/schemas/name'
+          $ref: '../Person/name.yaml#/components/Schemas/name'
         address:
-          $ref: '../Adresse/address.yaml#/components/schemas/address'
+          $ref: '../Adresse/address.yaml#/components/Schemas/address'
         landParcels:
-          $ref: '../Adresse/landParcels.yaml#/components/schemas/landParcels'
+          $ref: '../Adresse/landParcels.yaml#/components/Schemas/landParcels'
         geographicCoordinates:
-          $ref: '../Adresse/geographicCoordinates.yaml#/components/schemas/geographicCoordinates'
+          $ref: '../Adresse/geographicCoordinates.yaml#/components/Schemas/geographicCoordinates'

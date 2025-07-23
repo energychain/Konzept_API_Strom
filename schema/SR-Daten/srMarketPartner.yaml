@@ -8,8 +8,8 @@ components:
       type: object
       properties:
         marketPartnerId:
-          $ref: './IDs/marketPartnerId.yaml#/components/schemas/marketPartnerId'
+          $ref: './IDs/marketPartnerId.yaml#/components/Schemas/marketPartnerId'
         executionTimeFrom:
-          $ref: './executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: './executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: './executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: './executionTimeUntil.yaml#/components/Schemas/executionTimeUntil'

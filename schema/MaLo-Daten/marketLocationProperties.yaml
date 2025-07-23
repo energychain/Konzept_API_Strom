@@ -7,8 +7,8 @@ components:
       type: object
       properties:
         marketLocationProperty:
-          $ref: './marketLocationProperty.yaml#/components/schemas/marketLocationProperty'
+          $ref: './marketLocationProperty.yaml#/components/Schemas/marketLocationProperty'
         executionTimeFrom:
-          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/Schemas/executionTimeUntil'

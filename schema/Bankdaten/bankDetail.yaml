@@ -9,11 +9,11 @@ components:
         - accountHolder
       properties:
         ibanNumber:
-          $ref: './ibanNumber.yaml#/components/schemas/ibanNumber'
+          $ref: './ibanNumber.yaml#/components/Schemas/ibanNumber'
         bic:
-          $ref: './bic.yaml#/components/schemas/bic'
+          $ref: './bic.yaml#/components/Schemas/bic'
         bankName:
-          $ref: './bankName.yaml#/components/schemas/bankName' 
+          $ref: './bankName.yaml#/components/Schemas/bankName' 
         accountHolder:
-          $ref: '../Unternehmensangaben/company.yaml#/components/schemas/company'
+          $ref: '../Unternehmensangaben/company.yaml#/components/Schemas/company'
           description: Kontoinhaber        

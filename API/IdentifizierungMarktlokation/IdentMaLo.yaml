@@ -34,7 +34,7 @@ paths:
         style: simple
         explode: false
         schema:
-          $ref: '#/components/schemas/transactionId'
+          $ref: '#/components/Schemas/transactionId'
       - name: creationDateTime
         in: header
         description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -42,7 +42,7 @@ paths:
         style: simple
         explode: false
         schema:
-          $ref: '#/components/schemas/creationDateTime'
+          $ref: '#/components/Schemas/creationDateTime'
       - name: initialTransactionId
         in: header
         description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -50,12 +50,12 @@ paths:
         style: simple
         explode: false
         schema:
-          $ref: '#/components/schemas/initialTransactionId'
+          $ref: '#/components/Schemas/initialTransactionId'
       requestBody:
         content:
          application/json:
            schema:
-             $ref: '#/components/schemas/identificationParameter'
+             $ref: '#/components/Schemas/identificationParameter'
       responses:
         "202":
           description: accepted
@@ -83,7 +83,7 @@ paths:
         style: simple
         explode: false
         schema:
-          $ref: '#/components/schemas/transactionId'
+          $ref: '#/components/Schemas/transactionId'
       - name: creationDateTime
         in: header
         description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -91,7 +91,7 @@ paths:
         style: simple
         explode: false
         schema:
-          $ref: '#/components/schemas/creationDateTime'
+          $ref: '#/components/Schemas/creationDateTime'
       - name: initialTransactionId
         in: header
         description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -99,7 +99,7 @@ paths:
         style: simple
         explode: false
         schema:
-          $ref: '#/components/schemas/initialTransactionId'
+          $ref: '#/components/Schemas/initialTransactionId'
       - name: referenceId
         in: query
         description: "Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Aufrufs (Wert aus transactionId, Schritt1 des UC Ermittlung der MaLo-ID der Marktlokation)."
@@ -107,12 +107,12 @@ paths:
         style: form
         explode: false
         schema:
-          $ref: '#/components/schemas/referenceId'
+          $ref: '#/components/Schemas/referenceId'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/resultNegative'
+              $ref: '#/components/Schemas/resultNegative'
             
             
       responses:
@@ -143,7 +143,7 @@ paths:
         style: simple
         explode: false
         schema:
-          $ref: '#/components/schemas/transactionId'
+          $ref: '#/components/Schemas/transactionId'
       - name: creationDateTime
         in: header
         description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -151,7 +151,7 @@ paths:
         style: simple
         explode: false
         schema:
-          $ref: '#/components/schemas/creationDateTime'
+          $ref: '#/components/Schemas/creationDateTime'
       - name: initialTransactionId
         in: header
         description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -159,7 +159,7 @@ paths:
         style: simple
         explode: false
         schema:
-          $ref: '#/components/schemas/initialTransactionId'
+          $ref: '#/components/Schemas/initialTransactionId'
       - name: referenceId
         in: query
         description: "Externe Vorgangsreferenz zur eindeutigen Identifikation der ursprünglichen Anfrage (Wert aus transactionId, Schritt1 des UC Ermittlung der MaLo-ID der Marktlokation)."
@@ -167,12 +167,12 @@ paths:
         style: form
         explode: false
         schema:
-          $ref: '#/components/schemas/referenceId'
+          $ref: '#/components/Schemas/referenceId'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/resultPositive'
+              $ref: '#/components/Schemas/resultPositive'
       responses:
         "202":
           description: accepted
@@ -192,17 +192,17 @@ components:
       type: object
       properties:
         countryCode:
-          $ref: '#/components/schemas/countryCode'
+          $ref: '#/components/Schemas/countryCode'
         zipCode:
-          $ref: '#/components/schemas/zipCode'
+          $ref: '#/components/Schemas/zipCode'
         city:
-          $ref: '#/components/schemas/city'
+          $ref: '#/components/Schemas/city'
         street:
-          $ref: '#/components/schemas/street'
+          $ref: '#/components/Schemas/street'
         houseNumber:
-          $ref: '#/components/schemas/houseNumber'
+          $ref: '#/components/Schemas/houseNumber'
         houseNumberAddition:
-          $ref: '#/components/schemas/houseNumberAddition'
+          $ref: '#/components/Schemas/houseNumberAddition'
     city:
       type: string
       description: Angabe des Ortes der Marktlokationsadresse
@@ -232,17 +232,17 @@ components:
       type: object
       properties:
         srId:
-          $ref: '#/components/schemas/srId'
+          $ref: '#/components/Schemas/srId'
         dataControllableResourceMeasuringPointOperators:
-          $ref: '#/components/schemas/dataControllableResourceMeasuringPointOperators'
+          $ref: '#/components/Schemas/dataControllableResourceMeasuringPointOperators'
     dataControllableResources:
       type: array
       items:
-        $ref: '#/components/schemas/dataControllableResource'
+        $ref: '#/components/Schemas/dataControllableResource'
     dataControllableResourceMeasuringPointOperators:
       type: array
       items:
-        $ref: '#/components/schemas/srMarketPartner'
+        $ref: '#/components/Schemas/srMarketPartner'
     dataMarketLocation:
       required:
       - dataMarketLocationNetworkOperators
@@ -255,51 +255,51 @@ components:
       type: object
       properties:
         maloId:
-          $ref: '#/components/schemas/maloId'
+          $ref: '#/components/Schemas/maloId'
         energyDirection:
-          $ref: '#/components/schemas/energyDirection'
+          $ref: '#/components/Schemas/energyDirection'
         measurementTechnologyClassification:
-          $ref: '#/components/schemas/measurementTechnologyClassification'
+          $ref: '#/components/Schemas/measurementTechnologyClassification'
         optionalChangeForecastBasis:
-          $ref: '#/components/schemas/optionalChangeForecastBasis'
+          $ref: '#/components/Schemas/optionalChangeForecastBasis'
         dataMarketLocationProperties:
-          $ref: '#/components/schemas/dataMarketLocationProperties'        
+          $ref: '#/components/Schemas/dataMarketLocationProperties'        
         dataMarketLocationNetworkOperators:
-          $ref: '#/components/schemas/dataMarketLocationNetworkOperators'
+          $ref: '#/components/Schemas/dataMarketLocationNetworkOperators'
         dataMarketLocationMeasuringPointOperators:
-          $ref: '#/components/schemas/dataMarketLocationMeasuringPointOperators'
+          $ref: '#/components/Schemas/dataMarketLocationMeasuringPointOperators'
         dataMarketLocationTransmissionSystemOperators:
-          $ref: '#/components/schemas/dataMarketLocationTransmissionSystemOperators'
+          $ref: '#/components/Schemas/dataMarketLocationTransmissionSystemOperators'
         dataMarketLocationSuppliers:
-          $ref: '#/components/schemas/dataMarketLocationSuppliers'
+          $ref: '#/components/Schemas/dataMarketLocationSuppliers'
         dataMarketLocationName:
-          $ref: '#/components/schemas/name'
+          $ref: '#/components/Schemas/name'
         dataMarketLocationAddress:
-          $ref: '#/components/schemas/address'
+          $ref: '#/components/Schemas/address'
         dataMarketLocationLandParcels:
-          $ref: '#/components/schemas/landParcels'
+          $ref: '#/components/Schemas/landParcels'
         dataMarketLocationGeographicCoordinates:
-          $ref: '#/components/schemas/geographicCoordinates'
+          $ref: '#/components/Schemas/geographicCoordinates'
     dataMarketLocationMeasuringPointOperators:
       type: array
       items:
-        $ref: '#/components/schemas/marketLocationMeasuringPointOperator'
+        $ref: '#/components/Schemas/marketLocationMeasuringPointOperator'
     dataMarketLocationProperties:
       type: array
       items:
-        $ref: '#/components/schemas/marketLocationProperties'
+        $ref: '#/components/Schemas/marketLocationProperties'
     dataMarketLocationNetworkOperators:
       type: array
       items:
-        $ref: '#/components/schemas/marketLocationNetworkOperator'
+        $ref: '#/components/Schemas/marketLocationNetworkOperator'
     dataMarketLocationSuppliers:
       type: array
       items:
-        $ref: '#/components/schemas/marketLocationSupplier'
+        $ref: '#/components/Schemas/marketLocationSupplier'
     dataMarketLocationTransmissionSystemOperators:
       type: array
       items:
-        $ref: '#/components/schemas/marketLocationTransmissionSystemOperator'
+        $ref: '#/components/Schemas/marketLocationTransmissionSystemOperator'
     dataMeterLocation:
       required:
       - dataMeterLocationMeasuringPointOperators
@@ -308,19 +308,19 @@ components:
       type: object
       properties:
         meloId:
-          $ref: '#/components/schemas/meloId'
+          $ref: '#/components/Schemas/meloId'
         meterNumber:
-          $ref: '#/components/schemas/meterNumber'
+          $ref: '#/components/Schemas/meterNumber'
         dataMeterLocationMeasuringPointOperators:
-          $ref: '#/components/schemas/dataMeterLocationMeasuringPointOperators'
+          $ref: '#/components/Schemas/dataMeterLocationMeasuringPointOperators'
     dataMeterLocations:
       type: array
       items:
-        $ref: '#/components/schemas/dataMeterLocation'
+        $ref: '#/components/Schemas/dataMeterLocation'
     dataMeterLocationMeasuringPointOperators:
       type: array
       items:
-        $ref: '#/components/schemas/meterLocationMeasuringPointOperator'
+        $ref: '#/components/Schemas/meterLocationMeasuringPointOperator'
     dataNetworkLocation:
       required:
       - dataNetworkLocationMeasuringPointOperators
@@ -328,28 +328,28 @@ components:
       type: object
       properties:
         neloId:
-          $ref: '#/components/schemas/neloId'
+          $ref: '#/components/Schemas/neloId'
         dataNetworkLocationMeasuringPointOperators:
-          $ref: '#/components/schemas/dataNetworkLocationMeasuringPointOperators'
+          $ref: '#/components/Schemas/dataNetworkLocationMeasuringPointOperators'
     dataNetworkLocations:
       type: array
       items:
-        $ref: '#/components/schemas/dataNetworkLocation'
+        $ref: '#/components/Schemas/dataNetworkLocation'
     dataNetworkLocationMeasuringPointOperators:
       type: array
       items:
-        $ref: '#/components/schemas/networkLocationMeasuringPointOperator'
+        $ref: '#/components/Schemas/networkLocationMeasuringPointOperator'
     dataTechnicalResource:
       required:
       - trId
       type: object
       properties:
         trId:
-          $ref: '#/components/schemas/trId'
+          $ref: '#/components/Schemas/trId'
     dataTechnicalResources:
       type: array
       items:
-        $ref: '#/components/schemas/dataTechnicalResource'
+        $ref: '#/components/Schemas/dataTechnicalResource'
     dataTranche:
       required:
       - dataTrancheSuppliers
@@ -358,21 +358,21 @@ components:
       type: object
       properties:
         tranchenId:
-          $ref: '#/components/schemas/tranchenId'
+          $ref: '#/components/Schemas/tranchenId'
         proportion:
-          $ref: '#/components/schemas/proportion'
+          $ref: '#/components/Schemas/proportion'
         percent:
-          $ref: '#/components/schemas/percent'
+          $ref: '#/components/Schemas/percent'
         dataTrancheSuppliers:
-          $ref: '#/components/schemas/dataTrancheSuppliers'
+          $ref: '#/components/Schemas/dataTrancheSuppliers'
     dataTranches:
       type: array
       items:
-        $ref: '#/components/schemas/dataTranche'
+        $ref: '#/components/Schemas/dataTranche'
     dataTrancheSuppliers:
       type: array
       items:
-        $ref: '#/components/schemas/trancheSupplier'
+        $ref: '#/components/Schemas/trancheSupplier'
     districtName:
       type: string
       description: Angabe des Gemarkungsnamens (des Flurstücks) der Marktlokationsadresse
@@ -411,19 +411,19 @@ components:
       type: object
       properties:
         latitude:
-          $ref: '#/components/schemas/latitude'
+          $ref: '#/components/Schemas/latitude'
         longitude:
-          $ref: '#/components/schemas/longitude'
+          $ref: '#/components/Schemas/longitude'
         east:
-          $ref: '#/components/schemas/east'
+          $ref: '#/components/Schemas/east'
         north:
-          $ref: '#/components/schemas/north'
+          $ref: '#/components/Schemas/north'
         zone:
-          $ref: '#/components/schemas/zone'
+          $ref: '#/components/Schemas/zone'
         northing:
-          $ref: '#/components/schemas/northing'
+          $ref: '#/components/Schemas/northing'
         easting:
-          $ref: '#/components/schemas/easting'
+          $ref: '#/components/Schemas/easting'
     houseNumber:
       type: integer
       description: Angabe der Hausnummer der Marktlokationsadresse
@@ -445,13 +445,13 @@ components:
       type: object
       properties:
         identificationDateTime:
-          $ref: '#/components/schemas/identificationDateTime'
+          $ref: '#/components/Schemas/identificationDateTime'
         energyDirection:
-          $ref: '#/components/schemas/energyDirection'
+          $ref: '#/components/Schemas/energyDirection'
         identificationParameterId:
-          $ref: '#/components/schemas/identificationParameter_identificationParameterId'
+          $ref: '#/components/Schemas/identificationParameter_identificationParameterId'
         identificationParameterAddress:
-          $ref: '#/components/schemas/identificationParameter_identificationParameterAddress'
+          $ref: '#/components/Schemas/identificationParameter_identificationParameterAddress'
     initialTransactionId:
       type: string
       description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -468,15 +468,15 @@ components:
       type: object
       properties:
         districtName:
-          $ref: '#/components/schemas/districtName'
+          $ref: '#/components/Schemas/districtName'
         lotNumber:
-          $ref: '#/components/schemas/lotNumber'
+          $ref: '#/components/Schemas/lotNumber'
         subLotNumber:
-          $ref: '#/components/schemas/subLotNumber'
+          $ref: '#/components/Schemas/subLotNumber'
     landParcels:
       type: array
       items:
-        $ref: '#/components/schemas/landParcel'
+        $ref: '#/components/Schemas/landParcel'
     latitude:
       type: string
       description: Angabe der Breite (Breitengrad) nach WGS84. 46 <= X <= 59. °N
@@ -495,15 +495,15 @@ components:
       type: object
       properties:
         maloId:
-          $ref: '#/components/schemas/maloId'
+          $ref: '#/components/Schemas/maloId'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     marketLocationDateTimes:
       type: array
       items:
-        $ref: '#/components/schemas/marketLocationDateTime'
+        $ref: '#/components/Schemas/marketLocationDateTime'
     marketLocationMeasuringPointOperator:
       required:
       - executionTimeFrom
@@ -511,11 +511,11 @@ components:
       type: object
       properties:
         marketPartnerId:
-          $ref: '#/components/schemas/marketPartnerId'
+          $ref: '#/components/Schemas/marketPartnerId'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     marketLocationNetworkOperator:
       required:
       - executionTimeFrom
@@ -523,11 +523,11 @@ components:
       type: object
       properties:
         marketPartnerId:
-          $ref: '#/components/schemas/marketPartnerId'
+          $ref: '#/components/Schemas/marketPartnerId'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     marketLocationProperties:
       required:
       - executionTimeFrom
@@ -535,11 +535,11 @@ components:
       type: object
       properties:
         marketLocationProperty:
-          $ref: '#/components/schemas/marketLocationProperty'
+          $ref: '#/components/Schemas/marketLocationProperty'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     marketLocationProperty:
       type: string
       description: Eigenschaft der Marktlokation. nonActice=ruhende Marktlokation, customerFacility=Marktlokation ist eine Kundenanlage, standard=alle "Standard" Marktlokationen die nicht unter die Eigenschaft "ruhende Marktlokation" und "Kundenanlage" fallen.
@@ -555,11 +555,11 @@ components:
       type: object
       properties:
         marketPartnerId:
-          $ref: '#/components/schemas/marketPartnerId'
+          $ref: '#/components/Schemas/marketPartnerId'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     marketLocationTransmissionSystemOperator:
       required:
       - executionTimeFrom
@@ -567,11 +567,11 @@ components:
       type: object
       properties:
         marketPartnerId:
-          $ref: '#/components/schemas/marketPartnerId'
+          $ref: '#/components/Schemas/marketPartnerId'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     marketPartnerId:
       pattern: "\\d{13}"
       type: integer
@@ -593,7 +593,7 @@ components:
     meloIds:
       type: array
       items:
-        $ref: '#/components/schemas/meloId'
+        $ref: '#/components/Schemas/meloId'
 
     meterLocationMeasuringPointOperator:
       required:
@@ -602,11 +602,11 @@ components:
       type: object
       properties:
         marketPartnerId:
-          $ref: '#/components/schemas/marketPartnerId'
+          $ref: '#/components/Schemas/marketPartnerId'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     meterNumber:
       type: string
       description: Identifiziert das Gerät der Messlokation mittels Gerätenummer
@@ -614,18 +614,18 @@ components:
     meterNumbers:
       type: array
       items:
-        $ref: '#/components/schemas/meterNumber'
+        $ref: '#/components/Schemas/meterNumber'
     name:
       type: object
       properties:
         surnames:
-          $ref: '#/components/schemas/surnames'
+          $ref: '#/components/Schemas/surnames'
         firstnames:
-          $ref: '#/components/schemas/firstnames'
+          $ref: '#/components/Schemas/firstnames'
         title:
-          $ref: '#/components/schemas/title'
+          $ref: '#/components/Schemas/title'
         company:
-          $ref: '#/components/schemas/company'
+          $ref: '#/components/Schemas/company'
     neloId:
       pattern: "E[A-Z\\d]{9}\\d"
       type: string
@@ -638,11 +638,11 @@ components:
       type: object
       properties:
         marketPartnerId:
-          $ref: '#/components/schemas/marketPartnerId'
+          $ref: '#/components/Schemas/marketPartnerId'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     north:
       type: string
       description: Angabe des UTM Nordwert nach WGS84. Umgerechneter Wert muss Min/Max für Länge/Breite entsprechen
@@ -689,13 +689,13 @@ components:
       type: object
       properties:
         decisionTree:
-          $ref: '#/components/schemas/decisionTree'
+          $ref: '#/components/Schemas/decisionTree'
         responseCode:
-          $ref: '#/components/schemas/responseCode'
+          $ref: '#/components/Schemas/responseCode'
         reason:
-          $ref: '#/components/schemas/reason'
+          $ref: '#/components/Schemas/reason'
         networkOperator:
-          $ref: '#/components/schemas/marketPartnerId'
+          $ref: '#/components/Schemas/marketPartnerId'
     resultPositive:
       description: Hier wird bei einer positiven Antwort die identifizierte Marktlokation und alle dazugehörigen Parameter angegeben. Hierzu gehören die Marktpartner an der jeweiligen Lokation, die Kunden- und Adressdaten, die Lokationen, welche zu dieser Marktlokation gehören, etc. Die Informationen sind ab dem Anfragezeitpunkt "identificationDateTime" aus der Anfrage bis in die Zukunft mit allen beim NB zum Bearbeitungszeitpunkt vorliegenden Informationen ab dem Anfragezeitpunkt zu übermitteln.Hierzu gehören auch Informationen, welche nicht als "required" gekennzeichnet sind. So müssen alle vorliegenden Informationen zur Messlokation übermittelt werden. In der Schnittstellenbeschreibung sind diese jedoch nicht als "required" gekennzeichnet, da es sich auch um eine pauschale Marktlokation handeln kann, in welcher es keine Messlokation gibt. Dies gilt ebenfalls für alle weiteren Informationen die nicht als "required" gekennzeichnet sind. Wie der Lieferant "Supplier" an der Marktlokation. Da eine Marktlokation auch tranchiert sein kann, wechselt zu diesem Zeitpunkt der LF von der Zuordnung der Marktlokation zur Tranche, weshalb dieser in diesem Szenario als nicht "required" definiert wurde.
       required:
@@ -703,17 +703,17 @@ components:
       type: object
       properties:
         dataMarketLocation:
-          $ref: '#/components/schemas/dataMarketLocation'
+          $ref: '#/components/Schemas/dataMarketLocation'
         dataTranches:
-          $ref: '#/components/schemas/dataTranches'
+          $ref: '#/components/Schemas/dataTranches'
         dataMeterLocations:
-          $ref: '#/components/schemas/dataMeterLocations'
+          $ref: '#/components/Schemas/dataMeterLocations'
         dataTechnicalResources:
-          $ref: '#/components/schemas/dataTechnicalResources'
+          $ref: '#/components/Schemas/dataTechnicalResources'
         dataControllableResources:
-          $ref: '#/components/schemas/dataControllableResources'
+          $ref: '#/components/Schemas/dataControllableResources'
         dataNetworkLocations:
-          $ref: '#/components/schemas/dataNetworkLocations'
+          $ref: '#/components/Schemas/dataNetworkLocations'
     srId:
       pattern: "C[A-Z\\d]{9}\\d"
       type: string
@@ -727,11 +727,11 @@ components:
       type: object
       properties:
         marketPartnerId:
-          $ref: '#/components/schemas/marketPartnerId'
+          $ref: '#/components/Schemas/marketPartnerId'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     decisionTree:
       pattern: "E_\\d{4}"
       type: string
@@ -757,7 +757,7 @@ components:
     tranchenIds:
       type: array
       items:
-        $ref: '#/components/schemas/tranchenId'
+        $ref: '#/components/Schemas/tranchenId'
     trancheSupplier:
       required:
       - executionTimeFrom
@@ -765,11 +765,11 @@ components:
       type: object
       properties:
         marketPartnerId:
-          $ref: '#/components/schemas/marketPartnerId'
+          $ref: '#/components/Schemas/marketPartnerId'
         executionTimeFrom:
-          $ref: '#/components/schemas/executionTimeFrom'
+          $ref: '#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '#/components/schemas/executionTimeUntil'
+          $ref: '#/components/Schemas/executionTimeUntil'
     transactionId:
       type: string
       description: Externe Transaktionsnummer zur eindeutigen Identifikation des Vorgangs des sendenden Marktpartners
@@ -795,23 +795,23 @@ components:
       type: object
       properties:
         maloId:
-          $ref: '#/components/schemas/maloId'
+          $ref: '#/components/Schemas/maloId'
         tranchenIds:
-          $ref: '#/components/schemas/tranchenIds'
+          $ref: '#/components/Schemas/tranchenIds'
         meloIds:
-          $ref: '#/components/schemas/meloIds'
+          $ref: '#/components/Schemas/meloIds'
         meterNumbers:
-          $ref: '#/components/schemas/meterNumbers'
+          $ref: '#/components/Schemas/meterNumbers'
         customerNumber:
-          $ref: '#/components/schemas/customerNumber'
+          $ref: '#/components/Schemas/customerNumber'
     identificationParameter_identificationParameterAddress:
       type: object
       properties:
         name:
-          $ref: '#/components/schemas/name'
+          $ref: '#/components/Schemas/name'
         address:
-          $ref: '#/components/schemas/address'
+          $ref: '#/components/Schemas/address'
         landParcels:
-          $ref: '#/components/schemas/landParcels'
+          $ref: '#/components/Schemas/landParcels'
         geographicCoordinates:
-          $ref: '#/components/schemas/geographicCoordinates'
+          $ref: '#/components/Schemas/geographicCoordinates'

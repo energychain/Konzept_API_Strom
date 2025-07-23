@@ -3,4 +3,4 @@ components:
     readingDataNetLocations:
       type: array
       items:
-        $ref: './readingDataNetLocation.yaml#/components/schemas/readingDataNetLocation'
+        $ref: './readingDataNetLocation.yaml#/components/Schemas/readingDataNetLocation'

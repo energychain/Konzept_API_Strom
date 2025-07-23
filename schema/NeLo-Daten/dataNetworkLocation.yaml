@@ -7,6 +7,6 @@ components:
       type: object
       properties:
         neloId:
-          $ref: '../IDs/neloId.yaml#/components/schemas/neloId'
+          $ref: '../IDs/neloId.yaml#/components/Schemas/neloId'
         dataNetworkLocationMeasuringPointOperators:
-          $ref: './dataNetworkLocationMeasuringPointOperators.yaml#/components/schemas/dataNetworkLocationMeasuringPointOperators'
+          $ref: './dataNetworkLocationMeasuringPointOperators.yaml#/components/Schemas/dataNetworkLocationMeasuringPointOperators'

@@ -3,4 +3,4 @@ components:
     energyAmountsTranche:
       type: array
       items:
-        $ref: './energyAmountNetLocation.yaml#/components/schemas/energyAmountNetLocation'
+        $ref: './energyAmountNetLocation.yaml#/components/Schemas/energyAmountNetLocation'

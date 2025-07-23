@@ -8,8 +8,8 @@ components:
       type: object
       properties:
         meloId:
-          $ref: '../IDs/meloId.yaml#/components/schemas/meloId'
+          $ref: '../IDs/meloId.yaml#/components/Schemas/meloId'
         meterNumber:
-          $ref: './meterNumber.yaml#/components/schemas/meterNumber'
+          $ref: './meterNumber.yaml#/components/Schemas/meterNumber'
         dataMeterLocationMeasuringPointOperators:
-          $ref: './dataMeterLocationMeasuringPointOperators.yaml#/components/schemas/dataMeterLocationMeasuringPointOperators'
+          $ref: './dataMeterLocationMeasuringPointOperators.yaml#/components/Schemas/dataMeterLocationMeasuringPointOperators'

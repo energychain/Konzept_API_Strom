@@ -8,6 +8,6 @@ components:
      type: object
      properties:
       company:
-        $ref: './company.yaml#/components/schemas/company'
+        $ref: './company.yaml#/components/Schemas/company'
       address: 
-        $ref: '../Adresse/addressV2.yaml#/components/schemas/addressV2'
+        $ref: '../Adresse/addressV2.yaml#/components/Schemas/addressV2'

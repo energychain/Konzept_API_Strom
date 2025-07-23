@@ -9,14 +9,14 @@ components:
      type: object
      properties:
       countryCode:
-        $ref: './countryCode.yaml#/components/schemas/countryCode'
+        $ref: './countryCode.yaml#/components/Schemas/countryCode'
       zipCode:
-        $ref: './zipCode.yaml#/components/schemas/zipCode'
+        $ref: './zipCode.yaml#/components/Schemas/zipCode'
       city:
-        $ref: './city.yaml#/components/schemas/city'
+        $ref: './city.yaml#/components/Schemas/city'
       street:
-        $ref: './street.yaml#/components/schemas/street'
+        $ref: './street.yaml#/components/Schemas/street'
       houseNumber:
-        $ref: './houseNumber.yaml#/components/schemas/houseNumber'
+        $ref: './houseNumber.yaml#/components/Schemas/houseNumber'
       houseNumberAddition:
-        $ref: './houseNumberAddition.yaml#/components/schemas/houseNumberAddition'
+        $ref: './houseNumberAddition.yaml#/components/Schemas/houseNumberAddition'

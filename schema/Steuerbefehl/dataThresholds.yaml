@@ -3,4 +3,4 @@ components:
     dataThresholds:
       type: array
       items:
-        $ref: './dataThreshold.yaml#/components/schemas/dataThreshold'
+        $ref: './dataThreshold.yaml#/components/Schemas/dataThreshold'

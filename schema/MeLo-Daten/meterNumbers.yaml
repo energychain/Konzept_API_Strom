@@ -3,4 +3,4 @@ components:
     meterNumbers:
       type: array
       items:
-        $ref: './meterNumber.yaml#/components/schemas/meterNumber'
+        $ref: './meterNumber.yaml#/components/Schemas/meterNumber'

@@ -12,28 +12,28 @@ components:
       type: object
       properties:
         maloId:
-          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
+          $ref: '../IDs/maloId.yaml#/components/Schemas/maloId'
         energyDirection:
-          $ref: './energyDirection.yaml#/components/schemas/energyDirection'
+          $ref: './energyDirection.yaml#/components/Schemas/energyDirection'
         measurementTechnologyClassification:
-          $ref: './measurementTechnologyClassification.yaml#/components/schemas/measurementTechnologyClassification'
+          $ref: './measurementTechnologyClassification.yaml#/components/Schemas/measurementTechnologyClassification'
         optionalChangeForecastBasis:
-          $ref: './optionalChangeForecastBasis.yaml#/components/schemas/optionalChangeForecastBasis'
+          $ref: './optionalChangeForecastBasis.yaml#/components/Schemas/optionalChangeForecastBasis'
         dataMarketLocationProperties:
-          $ref: './dataMarketLocationProperties.yaml#/components/schemas/dataMarketLocationProperties'        
+          $ref: './dataMarketLocationProperties.yaml#/components/Schemas/dataMarketLocationProperties'        
         dataMarketLocationNetworkOperators:
-          $ref: './dataMarketLocationNetworkOperators.yaml#/components/schemas/dataMarketLocationNetworkOperators'
+          $ref: './dataMarketLocationNetworkOperators.yaml#/components/Schemas/dataMarketLocationNetworkOperators'
         dataMarketLocationMeasuringPointOperators:
-          $ref: './dataMarketLocationMeasuringPointOperators.yaml#/components/schemas/dataMarketLocationMeasuringPointOperators'
+          $ref: './dataMarketLocationMeasuringPointOperators.yaml#/components/Schemas/dataMarketLocationMeasuringPointOperators'
         dataMarketLocationTransmissionSystemOperators:
-          $ref: './dataMarketLocationTransmissionSystemOperators.yaml#/components/schemas/dataMarketLocationTransmissionSystemOperators'
+          $ref: './dataMarketLocationTransmissionSystemOperators.yaml#/components/Schemas/dataMarketLocationTransmissionSystemOperators'
         dataMarketLocationSuppliers:
-          $ref: './dataMarketLocationSuppliers.yaml#/components/schemas/dataMarketLocationSuppliers'
+          $ref: './dataMarketLocationSuppliers.yaml#/components/Schemas/dataMarketLocationSuppliers'
         dataMarketLocationName:
-          $ref: '../Person/name.yaml#/components/schemas/name'
+          $ref: '../Person/name.yaml#/components/Schemas/name'
         dataMarketLocationAddress:
-          $ref: '../Adresse/address.yaml#/components/schemas/address'
+          $ref: '../Adresse/address.yaml#/components/Schemas/address'
         dataMarketLocationLandParcels:
-          $ref: '../Adresse/landParcels.yaml#/components/schemas/landParcels'
+          $ref: '../Adresse/landParcels.yaml#/components/Schemas/landParcels'
         dataMarketLocationGeographicCoordinates:
-          $ref: '../Adresse/geographicCoordinates.yaml#/components/schemas/geographicCoordinates'
+          $ref: '../Adresse/geographicCoordinates.yaml#/components/Schemas/geographicCoordinates'

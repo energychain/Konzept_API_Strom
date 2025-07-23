@@ -8,10 +8,10 @@ components:
       type: object
       properties:
         decisionTree:
-          $ref: './decisionTree.yaml#/components/schemas/decisionTree'
+          $ref: './decisionTree.yaml#/components/Schemas/decisionTree'
         responseCode:
-          $ref: './responseCode.yaml#/components/schemas/responseCode'
+          $ref: './responseCode.yaml#/components/Schemas/responseCode'
         reason:
-          $ref: '../reason.yaml#/components/schemas/reason'
+          $ref: '../reason.yaml#/components/Schemas/reason'
         networkOperator:
-          $ref: '../../IDs/marketPartnerId.yaml#/components/schemas/marketPartnerId'
+          $ref: '../../IDs/marketPartnerId.yaml#/components/Schemas/marketPartnerId'

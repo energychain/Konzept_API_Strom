@@ -7,8 +7,8 @@ components:
       type: object
       properties:
         maximumPowerValue:
-          $ref: '../Energiemengen/maximumPowerValue.yaml#/components/schemas/maximumPowerValue'
+          $ref: '../Energiemengen/maximumPowerValue.yaml#/components/Schemas/maximumPowerValue'
         executionTimeFrom:
-          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/Schemas/executionTimeUntil'

@@ -7,13 +7,13 @@ components:
         type: object
         properties:
           startMeasurementPeriod:
-            $ref: "./startMeasurementPeriod.yaml#/components/schemas/startMeasurementPeriod"
+            $ref: "./startMeasurementPeriod.yaml#/components/Schemas/startMeasurementPeriod"
           endMeasurementPeriod:
-            $ref: "./endMeasurementPeriod.yaml#/components/schemas/endMeasurementPeriod"
+            $ref: "./endMeasurementPeriod.yaml#/components/Schemas/endMeasurementPeriod"
           energyQuantityMeasurement:
             type: array
             items:
-              $ref: "./energyQuantityMeasurement.yaml#/components/schemas/energyQuantityMeasurement"
+              $ref: "./energyQuantityMeasurement.yaml#/components/Schemas/energyQuantityMeasurement"
       required:
        - startMeasurementPeriod
        - endMeasurementPeriod

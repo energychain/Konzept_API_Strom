@@ -10,12 +10,12 @@ components:
       type: object
       properties:
         meloId:
-          $ref: '../../IDs/meloId.yaml#/components/schemas/meloId'
+          $ref: '../../IDs/meloId.yaml#/components/Schemas/meloId'
         granularity:
-          $ref: '../../Energiemengen/granularity.yaml#/components/schemas/granularity'
+          $ref: '../../Energiemengen/granularity.yaml#/components/Schemas/granularity'
         energyDirection:
-          $ref: '../../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'  
+          $ref: '../../MaLo-Daten/energyDirection.yaml#/components/Schemas/energyDirection'  
         executionTimeFrom:
-          $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+          $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '../../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+          $ref: '../../Zeitangaben/executionTimeUntil.yaml#/components/Schemas/executionTimeUntil'

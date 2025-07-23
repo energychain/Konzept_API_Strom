@@ -3,5 +3,5 @@ components:
     loadProfilesMeterLocation:
       type: array
       items:
-        $ref: './loadProfileMeterLocation.yaml#/components/schemas/loadProfileMeterLocation'
+        $ref: './loadProfileMeterLocation.yaml#/components/Schemas/loadProfileMeterLocation'
  

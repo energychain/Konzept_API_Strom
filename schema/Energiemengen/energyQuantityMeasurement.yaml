@@ -5,19 +5,19 @@ components:
       description: Parameter, die einer bestimmten Messperiode zugeordnet werden können.
       properties:
         obisCode:
-          $ref: './obisCode.yaml#/components/schemas/obisCode'
+          $ref: './obisCode.yaml#/components/Schemas/obisCode'
         qualityMeasuredValue:
-          $ref: './qualityMeasuredValue.yaml#/components/schemas/qualityMeasuredValue'
+          $ref: './qualityMeasuredValue.yaml#/components/Schemas/qualityMeasuredValue'
         energyQuantity:
-          $ref: "./energyQuantity.yaml#/components/schemas/energyQuantity"
+          $ref: "./energyQuantity.yaml#/components/Schemas/energyQuantity"
         plausibilityCheck:
-          $ref: "./plausibilityCheck.yaml#/components/schemas/plausibilityCheck"
+          $ref: "./plausibilityCheck.yaml#/components/Schemas/plausibilityCheck"
         substituteValueFormationMethod:
-          $ref: "./substituteValueFormationMethod.yaml#/components/schemas/substituteValueFormationMethod"
+          $ref: "./substituteValueFormationMethod.yaml#/components/Schemas/substituteValueFormationMethod"
         reasonOfCorrection:
-          $ref: "./reasonOfCorrection.yaml#/components/schemas/reasonOfCorrection"
+          $ref: "./reasonOfCorrection.yaml#/components/Schemas/reasonOfCorrection"
         reasonOfSubstituteValueFormation:
-          $ref: "./reasonOfSubstituteValueFormation.yaml#/components/schemas/reasonOfSubstituteValueFormation"
+          $ref: "./reasonOfSubstituteValueFormation.yaml#/components/Schemas/reasonOfSubstituteValueFormation"
       required:
         - obisCode
         - qualityMeasuredValue

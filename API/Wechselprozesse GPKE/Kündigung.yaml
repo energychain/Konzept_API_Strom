@@ -22,7 +22,7 @@ paths:
           style: simple 
           explode: false
           schema: 
-            $ref: '../../schema/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../schema/transactionId.yaml#/components/Schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -30,7 +30,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../schema/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../schema/creationDateTime.yaml#/components/Schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
@@ -38,12 +38,12 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../schema/initialTransactionId.yaml#/components/Schemas/initialTransactionId'
       requestBody:
         content:
          application/json:
            schema:
-             $ref: '../../schema/Wechselprozesse_GPKE/terminationDetails.yaml#/components/schemas/terminationDetails'
+             $ref: '../../schema/Wechselprozesse_GPKE/terminationDetails.yaml#/components/Schemas/terminationDetails'
       responses:
         "202":
           description: accepted

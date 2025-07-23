@@ -5,8 +5,8 @@ components:
      type: object
      properties:
       taxNumber:
-        $ref: './taxNumber.yaml#/components/schemas/taxNumber'
+        $ref: './taxNumber.yaml#/components/Schemas/taxNumber'
         dexcritption: Angabe der Steuernummer
       vatNumber:
-        $ref: './vatNumber.yaml#/components/schemas/vatNumber'
+        $ref: './vatNumber.yaml#/components/Schemas/vatNumber'
         description: Angabe der Umsatzsteuernummer

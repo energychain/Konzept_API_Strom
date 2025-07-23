@@ -3,4 +3,4 @@ components:
     energyAmountsMarketLocation:
       type: array
       items:
-        $ref: './energyAmountMarketLocation.yaml#/components/schemas/energyAmountMarketLocation'
+        $ref: './energyAmountMarketLocation.yaml#/components/Schemas/energyAmountMarketLocation'

@@ -8,10 +8,10 @@ components:
       type: object
       properties:
         identificationDateTime:
-          $ref: './identificationDateTime.yaml#/components/schemas/identificationDateTime'
+          $ref: './identificationDateTime.yaml#/components/Schemas/identificationDateTime'
         energyDirection:
-          $ref: '../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'
+          $ref: '../MaLo-Daten/energyDirection.yaml#/components/Schemas/energyDirection'
         identificationParameterId:
-          $ref: './identificationParameter_identificationParameterId.yaml#/components/schemas/identificationParameter_identificationParameterId'
+          $ref: './identificationParameter_identificationParameterId.yaml#/components/Schemas/identificationParameter_identificationParameterId'
         identificationParameterAddress:
-          $ref: './identificationParameter_identificationParameterAddress.yaml#/components/schemas/identificationParameter_identificationParameterAddress'
+          $ref: './identificationParameter_identificationParameterAddress.yaml#/components/Schemas/identificationParameter_identificationParameterAddress'

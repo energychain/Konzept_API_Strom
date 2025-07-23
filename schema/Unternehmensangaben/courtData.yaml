@@ -8,7 +8,7 @@ components:
         - commercialRegisterNumber
       properties:
         courtName:
-          $ref: './Unternehmensangaben/courtName.yaml#/components/schemas/courtName'
+          $ref: './Unternehmensangaben/courtName.yaml#/components/Schemas/courtName'
         commercialRegisterNumber:
-          $ref: './Unternehmensangaben/commercialRegisterNumber.yaml#/components/schemas/commercialRegisterNumber'
+          $ref: './Unternehmensangaben/commercialRegisterNumber.yaml#/components/Schemas/commercialRegisterNumber'
         

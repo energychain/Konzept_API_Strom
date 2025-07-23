@@ -3,4 +3,4 @@ components:
     loadProfilesMarketLocation:
       type: array
       items:
-        $ref: './loadProfileMarketLocation.yaml#/components/schemas/loadProfileMarketLocation'
+        $ref: './loadProfileMarketLocation.yaml#/components/Schemas/loadProfileMarketLocation'

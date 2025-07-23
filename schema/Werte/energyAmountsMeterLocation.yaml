@@ -3,4 +3,4 @@ components:
     energyAmountsMeterLocation:
       type: array
       items:
-        $ref: './energyAmountMeterLocation.yaml#/components/schemas/energyAmountMeterLocation'
+        $ref: './energyAmountMeterLocation.yaml#/components/Schemas/energyAmountMeterLocation'

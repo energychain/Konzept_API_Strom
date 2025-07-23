@@ -8,9 +8,9 @@ components:
       type: object
       properties:
         meloId:
-          $ref: '../../IDs/meloId.yaml#/components/schemas/meloId'
+          $ref: '../../IDs/meloId.yaml#/components/Schemas/meloId'
         obisCode:
-         $ref: '../../Energiemengen/OBIS/obisCodeMeterReading.yaml#/components/schemas/obisCodeMeterReading'  
+         $ref: '../../Energiemengen/OBIS/obisCodeMeterReading.yaml#/components/Schemas/obisCodeMeterReading'  
         readingDateTime:
-          $ref: '../../Zeitangaben/dateTime.yaml#/components/schemas/dateTime'
+          $ref: '../../Zeitangaben/dateTime.yaml#/components/Schemas/dateTime'
 

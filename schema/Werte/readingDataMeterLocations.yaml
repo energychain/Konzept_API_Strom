@@ -3,4 +3,4 @@ components:
     readingDataMeterLocations:
       type: array
       items:
-        $ref: './readingDataMeterLocation.yaml#/components/schemas/readingDataMeterLocation'
+        $ref: './readingDataMeterLocation.yaml#/components/Schemas/readingDataMeterLocation'

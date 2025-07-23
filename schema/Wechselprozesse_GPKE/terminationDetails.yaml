@@ -9,17 +9,17 @@
       type: object
       properties:
         maloId:
-          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'        
+          $ref: '../IDs/maloId.yaml#/components/Schemas/maloId'        
           description: Angabe der Marktloaktion-ID
         typeOfMaloId:
-          $ref: '../IDs/typeOfMaloId.yaml#/components/schemas/typeOfMaloId' 
+          $ref: '../IDs/typeOfMaloId.yaml#/components/Schemas/typeOfMaloId' 
         endOf:
-          $ref: '../Zeitangaben/dateTime.yaml#/components/schemas/dateTime'
+          $ref: '../Zeitangaben/dateTime.yaml#/components/Schemas/dateTime'
           description: Ende zum
         typeOfTerminationDateTime:
-          $ref: '../typeOfTerminationDateTime.yaml#/components/schemas/typeOfTerminationDateTime'
+          $ref: '../typeOfTerminationDateTime.yaml#/components/Schemas/typeOfTerminationDateTime'
           description: Angabe eines Hinweises.
         notice:
-          $ref: '../notice.yaml#/components/schemas/notice'
+          $ref: '../notice.yaml#/components/Schemas/notice'
           description: Angabe eines Hinweises.
           

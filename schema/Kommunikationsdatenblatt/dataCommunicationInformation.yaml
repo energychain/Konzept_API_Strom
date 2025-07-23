@@ -16,51 +16,51 @@ components:
       type: object
       properties:
         companyNameAndAdress:
-          $ref: '../Unternehmensangaben/companyNameAndAdress.yaml#/components/schemas/companyNameAndAdress'
+          $ref: '../Unternehmensangaben/companyNameAndAdress.yaml#/components/Schemas/companyNameAndAdress'
         versionData:
-         $ref: '../Versionen/versionData.yaml#/components/schemas/versionData'
+         $ref: '../Versionen/versionData.yaml#/components/Schemas/versionData'
         bankDetail:
-          $ref: '../Bankdaten/bankDetail.yaml#/components/schemas/bankDetail'
+          $ref: '../Bankdaten/bankDetail.yaml#/components/Schemas/bankDetail'
         courtData:
-          $ref: '../courtData.yaml#/components/schemas/courtData'
+          $ref: '../courtData.yaml#/components/Schemas/courtData'
         faxNumber:
-          $ref: '../Person/faxNumber.yaml#/components/schemas/faxNumber'
+          $ref: '../Person/faxNumber.yaml#/components/Schemas/faxNumber'
         website:
-          $ref: '../Unternehmensangaben/website.yaml#/components/schemas/website'
+          $ref: '../Unternehmensangaben/website.yaml#/components/Schemas/website'
         taxOfficeData:
-          $ref: '../taxOfficeData.yaml#/components/schemas/taxOfficeData'
+          $ref: '../taxOfficeData.yaml#/components/Schemas/taxOfficeData'
         contactForDatatransfer:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner Übertragungsweg / Datenaustausch
         contactForFrameworkAgreements:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für Rahmenverträge
         contactForTerminationProcess:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für Kündigungsprozesse
         contactForChangeProcess:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für Wechselprozesse
         contactForMasterDataProcess:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für Stammdatenprozesse
         contactForProductionProcess:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für Einspeiseprozesse
         contactForBillingProcess:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für Abrechnungsprozesse
         contactForMoreLessQuantityProcess:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für MMMA-Prozesse
         contactForMeasuredValueProcess:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für Messwertprozesse
         contactForAccountingProcess:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für Bilanzierungsprozesse
         contactForInterruptionAndRecoveryProcess:
-          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
+          $ref: '../Unternehmensangaben/contactCompany.yaml#/components/Schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner für Bilanzierungsprozesse
 
         

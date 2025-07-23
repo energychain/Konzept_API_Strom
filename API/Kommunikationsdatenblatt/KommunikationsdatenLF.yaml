@@ -24,7 +24,7 @@ paths:
           style: simple 
           explode: false
           schema: 
-            $ref: '../../schema/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../schema/transactionId.yaml#/components/Schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -32,7 +32,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../schema/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../schema/creationDateTime.yaml#/components/Schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
@@ -40,12 +40,12 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../schema/initialTransactionId.yaml#/components/Schemas/initialTransactionId'
       requestBody:
         content:
          application/json:
            schema:
-             $ref: '../../schema/Kommunikationsdatenblatt/dataCommunicationInformation.yaml#/components/schemas/dataCommunicationInformation'
+             $ref: '../../schema/Kommunikationsdatenblatt/dataCommunicationInformation.yaml#/components/Schemas/dataCommunicationInformation'
       responses:
         "202":
           description: accepted
@@ -73,7 +73,7 @@ paths:
           style: simple 
           explode: false
           schema: 
-            $ref: '../../schema/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../schema/transactionId.yaml#/components/Schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -81,7 +81,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../schema/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../schema/creationDateTime.yaml#/components/Schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
@@ -89,12 +89,12 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../schema/initialTransactionId.yaml#/components/Schemas/initialTransactionId'
       requestBody:
         content:
          application/json:
            schema:
-             $ref: '../../schema/Kommunikationsdatenblatt/discontinuationCommunicationInformationData.yaml#/components/schemas/discontinuationCommunicationInformationData'
+             $ref: '../../schema/Kommunikationsdatenblatt/discontinuationCommunicationInformationData.yaml#/components/Schemas/discontinuationCommunicationInformationData'
       responses:
         "202":
           description: accepted

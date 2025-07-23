@@ -4,16 +4,16 @@ components:
       type: object
       properties:
         latitude:
-          $ref: './latitude.yaml#/components/schemas/latitude'
+          $ref: './latitude.yaml#/components/Schemas/latitude'
         longitude:
-          $ref: './longitude.yaml#/components/schemas/longitude'
+          $ref: './longitude.yaml#/components/Schemas/longitude'
         east:
-          $ref: './east.yaml#/components/schemas/east'
+          $ref: './east.yaml#/components/Schemas/east'
         north:
-          $ref: './north.yaml#/components/schemas/north'
+          $ref: './north.yaml#/components/Schemas/north'
         zone:
-          $ref: './zone.yaml#/components/schemas/zone'
+          $ref: './zone.yaml#/components/Schemas/zone'
         northing:
-          $ref: './northing.yaml#/components/schemas/northing'
+          $ref: './northing.yaml#/components/Schemas/northing'
         easting:
-          $ref: './easting.yaml#/components/schemas/easting'
+          $ref: './easting.yaml#/components/Schemas/easting'
