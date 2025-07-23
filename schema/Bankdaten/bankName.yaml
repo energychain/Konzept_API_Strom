@@ -2,5 +2,5 @@ components:
   schemas:
     bankName:
       type: string
-      description: Name der Bank
+      description: Name der Bank als Freitext
       example: Bank der Schönen und Reichen
