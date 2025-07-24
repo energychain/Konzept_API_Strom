@@ -1,0 +1,67 @@
+openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
+
+info: # Allgemeine Infos zur Schnittstelle
+  title: EDI@Energy API-Webdienst zur Stornierung von übermittelten Lastgängen
+  version: 1.0.0
+  description: Mit diesem Web-Service können übermittelte Werte storniert werden. Es sind die ursprünglichen Parameter, welcher übermittelt wurden und nun storniert werden sollen azugeben.
+servers: # URLs unter der die API bereitsteht
+  - url: https://github.com/EDI-Energy/
+    description: GitHub-Server der EDI@Energy.
+
+
+paths:
+  /cancellation/loadProfile/v0.0.1:
+    delete:
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../../../Schema/Werte/Werte_Reklamation/parameterMeasuredComplaintDatasTranche.yaml#/components/schemas/parameterMeasuredComplaintDatasTranche'
+
+
+
+
+
+
+
+
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
