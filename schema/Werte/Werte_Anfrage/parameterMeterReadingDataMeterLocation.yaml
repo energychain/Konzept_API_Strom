@@ -8,8 +8,8 @@ components:
       type: object
       properties:
         meloId:
-          $ref: '../../IDs/meloId.yaml#/components/Schemas/meloId'
+          $ref: '../../IDs/meloId.yaml#/components/schemas/meloId'
         energyDirection:
-         $ref: '../../MaLo-Daten/energyDirection.yaml#/components/Schemas/energyDirection'  
+         $ref: '../../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'  
         readingDateTime:
-          $ref: './readingDateTime.yaml#/components/Schemas/dateTime'
+          $ref: './readingDateTime.yaml#/components/schemas/dateTime'

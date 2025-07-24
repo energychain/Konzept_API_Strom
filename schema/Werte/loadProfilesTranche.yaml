@@ -3,4 +3,4 @@ components:
     loadProfilesTranche:
       type: array
       items:
-        $ref: './loadProfileTranche.yaml#/components/Schemas/loadProfileTranche'
+        $ref: './loadProfileTranche.yaml#/components/schemas/loadProfileTranche'

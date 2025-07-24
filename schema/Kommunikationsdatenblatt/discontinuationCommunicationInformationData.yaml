@@ -6,5 +6,5 @@ components:
       type: object
       properties:
         versionData:
-         $ref: '../Versionen/versionData.yaml#/components/Schemas/versionData'
+         $ref: '../Versionen/versionData.yaml#/components/schemas/versionData'
         

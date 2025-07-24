@@ -3,4 +3,4 @@ components:
     dataControllableResources:
       type: array
       items:
-        $ref: './dataControllableResource.yaml#/components/Schemas/dataControllableResource'
+        $ref: './dataControllableResource.yaml#/components/schemas/dataControllableResource'

@@ -3,4 +3,4 @@ components:
     dataMeterLocationMeasuringPointOperators:
       type: array
       items:
-        $ref: './meterLocationMeasuringPointOperator.yaml#/components/Schemas/meterLocationMeasuringPointOperator'
+        $ref: './meterLocationMeasuringPointOperator.yaml#/components/schemas/meterLocationMeasuringPointOperator'

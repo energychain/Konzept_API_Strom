@@ -3,4 +3,4 @@ components:
     parameterMeasuredDatasNetLocation:
       type: array
       items:
-        $ref: './parameterMeasuredDataNetLocation.yaml#/components/Schemas/parameterMeasuredDataNetLocation'
+        $ref: './parameterMeasuredDataNetLocation.yaml#/components/schemas/parameterMeasuredDataNetLocation'

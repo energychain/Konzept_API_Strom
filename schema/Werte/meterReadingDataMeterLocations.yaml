@@ -2,6 +2,6 @@ components:
   schemas:
       type: array
       items:
-        $ref: './meterReadingDataMeterLocation.yaml#/components/Schemas/meterReadingDataMeterLocation'
+        $ref: './meterReadingDataMeterLocation.yaml#/components/schemas/meterReadingDataMeterLocation'
       minItems: 1
       maxItems:  96

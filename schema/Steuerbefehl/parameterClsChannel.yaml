@@ -6,4 +6,4 @@ components:
       type: object
       properties:
         hksId:
-          $ref: '../IDs/hksId.yaml#/components/Schemas/hksId'
+          $ref: '../IDs/hksId.yaml#/components/schemas/hksId'

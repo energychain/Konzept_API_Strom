@@ -3,4 +3,4 @@ components:
     dataTechnicalResources:
       type: array
       items:
-        $ref: './dataTechnicalResource.yaml#/components/Schemas/dataTechnicalResource'
+        $ref: './dataTechnicalResource.yaml#/components/schemas/dataTechnicalResource'

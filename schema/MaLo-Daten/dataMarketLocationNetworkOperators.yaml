@@ -3,4 +3,4 @@ components:
     dataMarketLocationNetworkOperators:
       type: array
       items:
-        $ref: './marketLocationNetworkOperators.yaml#/components/Schemas/marketLocationNetworkOperators'
+        $ref: './marketLocationNetworkOperators.yaml#/components/schemas/marketLocationNetworkOperators'

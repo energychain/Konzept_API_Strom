@@ -3,4 +3,4 @@ components:
     dataNetworkLocations:
       type: array
       items:
-        $ref: './dataNetworkLocation.yaml#/components/Schemas/dataNetworkLocation'
+        $ref: './dataNetworkLocation.yaml#/components/schemas/dataNetworkLocation'

@@ -10,12 +10,12 @@ components:
       type: object
       properties:
         tranchenId:
-          $ref: '../../IDs/tranchenId.yaml#/components/Schemas/tranchenId'
+          $ref: '../../IDs/tranchenId.yaml#/components/schemas/tranchenId'
         granularity:
-          $ref: '../../Energiemengen/granularity.yaml#/components/Schemas/granularity'
+          $ref: '../../Energiemengen/granularity.yaml#/components/schemas/granularity'
         obisCode:
-          $ref: '../../Energiemengen/OBIS/obisCodeComplaint.yaml#/components/Schemas/obisCodeComplaint'
+          $ref: '../../Energiemengen/OBIS/obisCodeComplaint.yaml#/components/schemas/obisCodeComplaint'
         executionTimeFrom:
-          $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
+          $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '../../Zeitangaben/executionTimeUntil.yaml#/components/Schemas/executionTimeUntil'
+          $ref: '../../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

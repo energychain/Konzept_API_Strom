@@ -3,4 +3,4 @@ components:
     parameterMeasuredDatasTranche:
       type: array
       items:
-        $ref: './parameterMeasuredDataTranche.yaml#/components/Schemas/parameterMeasuredDataTranche'
+        $ref: './parameterMeasuredDataTranche.yaml#/components/schemas/parameterMeasuredDataTranche'

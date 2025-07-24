@@ -8,9 +8,9 @@ components:
      type: object
      properties:
       versionsNumber:
-        $ref: './versionNumber.yaml#/components/Schemas/versionNumber'
+        $ref: './versionNumber.yaml#/components/schemas/versionNumber'
       validFromTime:
-        $ref: './validFromTime.yaml#/components/Schemas/validFromTime'
+        $ref: './validFromTime.yaml#/components/schemas/validFromTime'
       previousVersion:
-        $ref: './versionNumber.yaml#/components/Schemas/versionNumber'
+        $ref: './versionNumber.yaml#/components/schemas/versionNumber'
         description: Angabe der Vorgängerversion

@@ -3,4 +3,4 @@ components:
     dataTrancheSuppliers:
       type: array
       items:
-        $ref: './trancheSupplier.yaml#/components/Schemas/trancheSupplier'
+        $ref: './trancheSupplier.yaml#/components/schemas/trancheSupplier'

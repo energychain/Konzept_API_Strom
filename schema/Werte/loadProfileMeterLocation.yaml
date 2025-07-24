@@ -11,14 +11,14 @@ components:
       type: object
       properties:
         meloId:
-          $ref: '../IDs/meloId.yaml#/components/Schemas/meloId'
+          $ref: '../IDs/meloId.yaml#/components/schemas/meloId'
         executionTimeFrom:
-          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/Schemas/executionTimeUntil'
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
         obisCode:
-          $ref: '../Energiemengen/OBIS/obisCodeLoadProfile#/components/Schemas/obisCodeLoadProfile'
+          $ref: '../Energiemengen/OBIS/obisCodeLoadProfile#/components/schemas/obisCodeLoadProfile'
         value:
-          $ref: '../Energiemengen/value.yaml#/components/Schemas/value'
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:
-          $ref: '../Energiemengen/valueQuality.yaml#/components/Schemas/valueQuality'
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

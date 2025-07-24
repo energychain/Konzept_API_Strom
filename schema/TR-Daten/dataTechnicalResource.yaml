@@ -6,4 +6,4 @@ components:
       type: object
       properties:
         trId:
-          $ref: '../IDs/trId.yaml#/components/Schemas/trId'
+          $ref: '../IDs/trId.yaml#/components/schemas/trId'

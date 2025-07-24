@@ -8,8 +8,8 @@ components:
      type: object
      properties:
       email:
-        $ref: './email.yaml#/components/Schemas/email'
+        $ref: './email.yaml#/components/schemas/email'
       phoneNumber:
-        $ref: './phoneNumber.yaml#/components/Schemas/phoneNumber'
+        $ref: './phoneNumber.yaml#/components/schemas/phoneNumber'
       faxNumber:
-        $ref: './faxNumber.yaml#/components/Schemas/faxNumber'
+        $ref: './faxNumber.yaml#/components/schemas/faxNumber'

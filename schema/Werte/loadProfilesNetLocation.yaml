@@ -3,4 +3,4 @@ components:
     loadProfilesNetLocation:
       type: array
       items:
-        $ref: './loadProfileNetLocation.yaml#/components/Schemas/loadProfileNetLocation'
+        $ref: './loadProfileNetLocation.yaml#/components/schemas/loadProfileNetLocation'

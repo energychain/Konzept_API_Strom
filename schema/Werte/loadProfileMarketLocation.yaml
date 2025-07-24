@@ -11,14 +11,14 @@ components:
       type: object
       properties:
         maloId:
-          $ref: '../IDs/maloId.yaml#/components/Schemas/maloId'
+          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
         executionTimeFrom:
-          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/Schemas/executionTimeUntil'
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
         obisCode:
-          $ref: '../Energiemengen/OBIS/obisCodeLoadProfile.yaml#/components/Schemas/obisCodeLoadProfile'
+          $ref: '../Energiemengen/OBIS/obisCodeLoadProfile.yaml#/components/schemas/obisCodeLoadProfile'
         value:
-          $ref: '../Energiemengen/value.yaml#/components/Schemas/value'
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:
-          $ref: '../Energiemengen/valueQuality.yaml#/components/Schemas/valueQuality'
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

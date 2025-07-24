@@ -3,4 +3,4 @@ components:
     dataControllableResourceMeasuringPointOperators:
       type: array
       items:
-        $ref: './srMarketPartner.yaml#/components/Schemas/srMarketPartner'
+        $ref: './srMarketPartner.yaml#/components/schemas/srMarketPartner'

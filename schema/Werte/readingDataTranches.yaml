@@ -3,4 +3,4 @@ components:
     readingDataTranches:
       type: array
       items:
-        $ref: './readingDataTranche.yaml#/components/Schemas/readingDataTranche'
+        $ref: './readingDataTranche.yaml#/components/schemas/readingDataTranche'

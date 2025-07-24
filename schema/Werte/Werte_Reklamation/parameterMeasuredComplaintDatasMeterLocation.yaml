@@ -3,4 +3,4 @@ components:
     parameterMeasuredComplaintDatasMeterLocation:
       type: array
       items:
-        $ref: './parameterMeasuredComplaintDataMeterLocation.yaml#/components/Schemas/parameterMeasuredComplaintDataMeterLocation'
+        $ref: './parameterMeasuredComplaintDataMeterLocation.yaml#/components/schemas/parameterMeasuredComplaintDataMeterLocation'

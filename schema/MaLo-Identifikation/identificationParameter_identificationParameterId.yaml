@@ -4,12 +4,12 @@ components:
       type: object
       properties:
         maloId:
-          $ref: '../IDs/maloId.yaml#/components/Schemas/maloId'
+          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
         tranchenIds:
-          $ref: '../IDs/tranchenIds.yaml#/components/Schemas/tranchenIds'
+          $ref: '../IDs/tranchenIds.yaml#/components/schemas/tranchenIds'
         meloIds:
-          $ref: '../IDs/meloIds.yaml#/components/Schemas/meloIds'
+          $ref: '../IDs/meloIds.yaml#/components/schemas/meloIds'
         meterNumbers:
-          $ref: '../MeLo-Daten/meterNumbers.yaml#/components/Schemas/meterNumbers'
+          $ref: '../MeLo-Daten/meterNumbers.yaml#/components/schemas/meterNumbers'
         customerNumber:
-          $ref: '../IDs/customerNumber.yaml#/components/Schemas/customerNumber'
+          $ref: '../IDs/customerNumber.yaml#/components/schemas/customerNumber'

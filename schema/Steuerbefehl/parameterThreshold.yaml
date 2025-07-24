@@ -7,8 +7,8 @@ components:
       type: object
       properties:
         tafId:
-          $ref: '../IDs/tafId.yaml#/components/Schemas/tafId'
+          $ref: '../IDs/tafId.yaml#/components/schemas/tafId'
         executionTimeFrom:
-          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         thresholds:
-          $ref: './dataThresholds.yaml#/components/Schemas/dataThresholds
+          $ref: './dataThresholds.yaml#/components/schemas/dataThresholds

@@ -3,4 +3,4 @@ components:
     dataTranches:
       type: array
       items:
-        $ref: './dataTranche.yaml#/components/Schemas/dataTranche'
+        $ref: './dataTranche.yaml#/components/schemas/dataTranche'

@@ -8,10 +8,10 @@ components:
       type: object
       properties:
         tranchenId:
-          $ref: '../IDs/tranchenId.yaml#/components/Schemas/tranchenId'
+          $ref: '../IDs/tranchenId.yaml#/components/schemas/tranchenId'
         proportion:
-          $ref: './proportion.yaml#/components/Schemas/proportion'
+          $ref: './proportion.yaml#/components/schemas/proportion'
         percent:
-          $ref: '../Mengen/percent.yaml#/components/Schemas/percent'
+          $ref: '../Mengen/percent.yaml#/components/schemas/percent'
         dataTrancheSuppliers:
-          $ref: './dataTrancheSuppliers.yaml#/components/Schemas/dataTrancheSuppliers'
+          $ref: './dataTrancheSuppliers.yaml#/components/schemas/dataTrancheSuppliers'

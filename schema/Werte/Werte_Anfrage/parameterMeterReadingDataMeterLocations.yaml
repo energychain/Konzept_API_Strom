@@ -3,4 +3,4 @@ components:
     parameterMeterReadingDataMeterLocations:
       type: array
       items:
-        $ref: './parameterMeterReadingDataMeterLocation.yaml#/components/Schemas/parameterMeterReadingDataMeterLocation'
+        $ref: './parameterMeterReadingDataMeterLocation.yaml#/components/schemas/parameterMeterReadingDataMeterLocation'

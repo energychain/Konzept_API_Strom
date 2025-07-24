@@ -27,7 +27,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '#/components/schemas/transactionId'
+            $ref: '../../../Schema/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -35,7 +35,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '#/components/schemas/creationDateTime'
+            $ref: '../../../Schema/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -43,12 +43,12 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '#/components/schemas/initialTransactionId'
+            $ref: '../../../Schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/parameterMeasuredDatasTranche'
+              $ref: '../../../Schema/parameterMeasuredDatasTranche.yaml#/components/schemas/parameterMeasuredDatasTranche'
 
       responses:
         '202':

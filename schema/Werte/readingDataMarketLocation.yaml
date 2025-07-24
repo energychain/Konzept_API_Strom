@@ -12,16 +12,16 @@ components:
       type: object
       properties:
         maloId:
-          $ref: '../IDs/maloId.yaml#/components/Schemas/maloId'
+          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
         granularity:
-          $ref: '../Energiemengen/granularity.yaml#/components/Schemas/granularity'
+          $ref: '../Energiemengen/granularity.yaml#/components/schemas/granularity'
         executionTimeFrom:
-          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/Schemas/executionTimeFrom'
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
-          $ref: '../ZeitangabenexecutionTimeUntil.yaml#/components/Schemas/executionTimeUntil'
+          $ref: '../ZeitangabenexecutionTimeUntil.yaml#/components/schemas/executionTimeUntil'
         obisCode:
-          $ref: '../Energiemengen/OBIS/obisCode.yaml#/components/Schemas/obisCode'
+          $ref: '../Energiemengen/OBIS/obisCode.yaml#/components/schemas/obisCode'
         value:
-          $ref: '../Energiemengen/value.yaml#/components/Schemas/value'
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:
-          $ref: '../Energiemengen/valueQuality.yaml#/components/Schemas/valueQuality'
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

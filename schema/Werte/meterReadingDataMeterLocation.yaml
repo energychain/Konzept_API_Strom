@@ -11,14 +11,14 @@ components:
       type: object
       properties:
         meloId:
-          $ref: '../IDs/meloId.yaml#/components/Schemas/meloId'
+          $ref: '../IDs/meloId.yaml#/components/schemas/meloId'
         meterNumber:
-          $ref: '../MeLo-Daten/meterNumber.yaml#/components/Schemas/meterNumber'
+          $ref: '../MeLo-Daten/meterNumber.yaml#/components/schemas/meterNumber'
         obisCode:
-          $ref: '../Energiemengen/OBIS/obisCodeMeterReading.yaml#/components/Schemas/obisCodeMeterReading'
+          $ref: '../Energiemengen/OBIS/obisCodeMeterReading.yaml#/components/schemas/obisCodeMeterReading'
         readingDateTime:
-          $ref: '../Zeitangaben/dateTime.yaml#/components/Schemas/dateTime'
+          $ref: '../Zeitangaben/dateTime.yaml#/components/schemas/dateTime'
         value:
-          $ref: '../Energiemengen/value.yaml#/components/Schemas/value'
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:
-          $ref: '../Energiemengen/valueQuality.yaml#/components/Schemas/valueQuality'
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

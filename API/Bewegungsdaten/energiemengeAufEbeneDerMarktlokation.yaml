@@ -22,7 +22,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '#/components/Schemas/transactionId'
+            $ref: '#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt, an dem der Aufruf erstellt wurde
@@ -30,7 +30,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '#/components/Schemas/creationDateTime'
+            $ref: '#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempotenzschlüssels im Falle eines Retry.
@@ -38,13 +38,13 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '#/components/Schemas/initialTransactionId'
+            $ref: '#/components/schemas/initialTransactionId'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/Schemas/dataTransferEnergyQuantities'
+              $ref: '#/components/schemas/dataTransferEnergyQuantities'
 
       responses:
         "202":
@@ -192,19 +192,19 @@ components:
       description: Parameter, die einer bestimmten Messperiode zugeordnet werden können.
       properties:
         obisCode:
-          $ref: '#/components/Schemas/obisCode'
+          $ref: '#/components/schemas/obisCode'
         qualityMeasuredValue:
-          $ref: '#/components/Schemas/qualityMeasuredValue'
+          $ref: '#/components/schemas/qualityMeasuredValue'
         energyQuantity:
-          $ref: "#/components/Schemas/energyQuantity"
+          $ref: "#/components/schemas/energyQuantity"
         plausibilityCheck:
-          $ref: "#/components/Schemas/plausibilityCheck"
+          $ref: "#/components/schemas/plausibilityCheck"
         substituteValueFormationMethod:
-          $ref: "#/components/Schemas/substituteValueFormationMethod"
+          $ref: "#/components/schemas/substituteValueFormationMethod"
         reasonOfCorrection:
-          $ref: '#/components/Schemas/reasonOfCorrection'
+          $ref: '#/components/schemas/reasonOfCorrection'
         reasonOfSubstituteValueFormation:
-          $ref: '#/components/Schemas/reasonOfSubstituteValueFormation'
+          $ref: '#/components/schemas/reasonOfSubstituteValueFormation'
       required:
         - obisCode
         - qualityMeasuredValue
@@ -216,13 +216,13 @@ components:
         type: object
         properties:
           startMeasurementPeriod:
-            $ref: "#/components/Schemas/startMeasurementPeriod"
+            $ref: "#/components/schemas/startMeasurementPeriod"
           endMeasurementPeriod:
-            $ref: "#/components/Schemas/endMeasurementPeriod"
+            $ref: "#/components/schemas/endMeasurementPeriod"
           energyQuantityMeasurement:
             type: array
             items:
-              $ref: "#/components/Schemas/energyQuantityMeasurement"
+              $ref: "#/components/schemas/energyQuantityMeasurement"
       required:
        - startMeasurementPeriod
        - endMeasurementPeriod

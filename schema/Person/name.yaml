@@ -4,10 +4,10 @@ components:
       type: object
       properties:
         surnames:
-          $ref: './surnames.yaml#/components/Schemas/surnames'
+          $ref: './surnames.yaml#/components/schemas/surnames'
         firstnames:
-          $ref: './firstnames.yaml#/components/Schemas/firstnames'
+          $ref: './firstnames.yaml#/components/schemas/firstnames'
         title:
-          $ref: './title.yaml#/components/Schemas/title'
+          $ref: './title.yaml#/components/schemas/title'
         company:
-          $ref: './company.yaml#/components/Schemas/company'
+          $ref: './company.yaml#/components/schemas/company'

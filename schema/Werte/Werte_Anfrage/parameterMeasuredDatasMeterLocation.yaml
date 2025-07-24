@@ -3,5 +3,5 @@ components:
     parameterMeasuredDatasMeterLocation:
       type: array
       items:
-        $ref: './parameterMeasuredDataMeterLocation.yaml#/components/Schemas/parameterMeasuredDataMeterLocation'
+        $ref: './parameterMeasuredDataMeterLocation.yaml#/components/schemas/parameterMeasuredDataMeterLocation'
 

@@ -8,8 +8,8 @@ components:
       type: object
       properties:
         districtName:
-          $ref: './districtName.yaml#/components/Schemas/districtName'
+          $ref: './districtName.yaml#/components/schemas/districtName'
         lotNumber:
-          $ref: './lotNumber.yaml#/components/Schemas/lotNumber'
+          $ref: './lotNumber.yaml#/components/schemas/lotNumber'
         subLotNumber:
-          $ref: './subLotNumber.yaml#/components/Schemas/subLotNumber'
+          $ref: './subLotNumber.yaml#/components/schemas/subLotNumber'

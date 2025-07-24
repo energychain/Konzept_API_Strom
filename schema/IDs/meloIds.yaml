@@ -3,4 +3,4 @@ components:
     meloIds:
       type: array
       items:
-        $ref: './meloId.yaml#/components/Schemas/meloId'
+        $ref: './meloId.yaml#/components/schemas/meloId'
