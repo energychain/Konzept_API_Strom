@@ -3,12 +3,10 @@ openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 info: # Allgemeine Infos zur Schnittstelle
   title: EDI@Energy API-Webdienst zur Anfrage von Werten auf Ebene der Messlokation.
   version: 1.0.0
-  description: Mit diesem Web-Service können Energiemengen oder Lastgänge auf Ebene der Messlokation zu Zeitinvervallen angefragt werden.
-    Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. 
-    Die Anfrage erfolgt mittels der ID Der Messlokation. Es ist zusätzlich verpflichtend eine Wertegranularität anzugeben '(granularity)' die angefragt wird. 
-    Ebenso ist die Energieflussrichtung anzugeben welche für die Berechnung der Menge der Marktlokation notwendig ist. 
-    Hinweis  wird von der Messlokation sowohl der Lastgang bzw. die Energiemenge  für den Bezug als auch für die Erzeugung benötigt, so ist der request je Energielussrichtung einmal auszuführen. 
-    Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert benötigt wird. 
+  description: Mit diesem Web-Service können Energiemengen oder Lastgänge auf Ebene der Netzlokation zu 
+    Zeitinvervallen angefragt werden. Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, 
+    welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. Die Anfrage erfolgt mittels der ID Der Netzlokation. 
+    Es ist zusätzlich verpflichtend eine Wertegranularität anzugeben '(granularity)' die angefragt wird. 
     Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzliche deutsche Zeit, angegeben in UTC. 
     Die Wiederholung erfolgt innerhalb des arrays im Body.
       
@@ -18,13 +16,8 @@ servers: # URLs unter der die API bereitsteht
 
 
 paths:
-  /meterLocation/measuredDatas/request/v0.0.1:
+  /netLocation/measuredDatas/request/v0.0.1:
     post:
-      tags:
-        - Anfrage von Werten (Mehrfachanfragen)
-      summary: Anfrage von Mengen (Energiemenge oder Lastgang) auf Ebene Messlokation für Zeiträume
-      description: --
-      
       parameters:
         - name: transactionId
           in: header
@@ -33,7 +26,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../schema/transactionId.yaml#/components/Schemas/transactionId'
+            $ref: '../../../schema/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -41,7 +34,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../schema/creationDateTime.yaml#/components/Schemas/creationDateTime'
+            $ref: '../../../schema/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -49,12 +42,12 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../schema/initialTransactionId.yaml#/components/Schemas/initialTransactionId'
+            $ref: '../../../schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '../../../schema/parameterMeasuredDatasMeterLocation.yaml#/components/Schemas/parameterMeasuredDatasMeterLocation'
+              $ref: '../../../schema/parameterMeasuredDatasNetLocationyaml#/components/schemas/parameterMeasuredDatasNetLocation'
 
       responses:
         '202':
@@ -69,5 +62,4 @@ paths:
           description: Method not allowed
         '500':
           description: Internal Server Error
-
 

@@ -15,7 +15,7 @@ info: # Allgemeine Infos zur Schnittstelle
   Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.
       
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/Konzept_API_Strom/blob/2c05a79b8ac591411b73be4d0501b3d5941fb5fb/API/Bewegungsdaten/AnfrageWerte/meterLocation_measuredDatas_request_v0.0.1.yaml
+  - url: https://github.com/EDI-Energy/
     description: GitHub-Server der EDI@Energy.
 
 
