@@ -1,0 +1,68 @@
+openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
+
+info: # Allgemeine Infos zur Schnittstelle
+  title: EDI@Energy API-Webdienst zur Anfrage von Zählerständen auf Ebene der Messlokation.
+  version: 1.0.0
+  description: Mit diesem Web-Service können mehrere Zählerstände auf Ebene der Messlokation zu verschiedenen 
+  Zeitpunkten angefragt werden. Die Wiederholung erfolgt innerhalb des arrays im Body. 
+  Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, 
+  welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. 
+  Die Anfrage erfolgt mittels der ID Der Messlokation. 
+  Es ist zusätzlich verpflichtend eine Energieflussrichtung anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. 
+  Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, 
+  so ist der request je Energielussrichtung einmal auszuführen. 
+  Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert benötigt wird. 
+  Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.
+      
+servers: # URLs unter der die API bereitsteht
+  - url: https://github.com/EDI-Energy/Konzept_API_Strom/blob/2c05a79b8ac591411b73be4d0501b3d5941fb5fb/API/Bewegungsdaten/AnfrageWerte/meterLocation_measuredDatas_request_v0.0.1.yaml
+    description: GitHub-Server der EDI@Energy.
+
+
+paths:
+  /meterLocation/meterReadings/request/v0.0.1:
+    post:
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../schema/transactionId.yaml#/components/Schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../schema/creationDateTime.yaml#/components/Schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../schema/initialTransactionId.yaml#/components/Schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../../../schema/parameterMeterReadingDataMeterLocations.yaml#/components/Schemas/parameterMeterReadingDataMeterLocations'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
+
