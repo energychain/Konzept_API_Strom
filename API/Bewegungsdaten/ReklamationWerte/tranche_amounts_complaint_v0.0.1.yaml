@@ -1,0 +1,60 @@
+openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
+
+info: # Allgemeine Infos zur Schnittstelle
+  title: EDI@Energy API-Webdienst zur Reklamation von fehlenden Mengen auf Ebene Tranche
+  version: 1.0.0
+  description: Mit diesem Web-Service können mehrere Mengen und Lastgänge auf Ebene der Tranche zu verschiedenen 
+    Zeitintervallen reklamiert werden. Die Wiederholung erfolgt innerhalb des arrays im Body. Die Anfrage erfolgt mittels der ID Der Tranche. 
+    Es ist zusätzlich verpflichtend die betroffene OBIS-Kennzahl anzugeben, Es handelt sich hierbei um die Zeitangabe in gesetzliche deutsche Zeit angegeben in UTC.  
+      
+servers: # URLs unter der die API bereitsteht
+  - url: https://github.com/EDI-Energy/
+    description: GitHub-Server der EDI@Energy.
+
+
+paths:
+  /tranche/amounts/complaint/v0.0.1:
+    post:
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../../../Schema/Werte/Werte_Reklamation/parameterMeasuredComplaintDatasTranche.yaml#/components/schemas/parameterMeasuredComplaintDatasTranche'
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
