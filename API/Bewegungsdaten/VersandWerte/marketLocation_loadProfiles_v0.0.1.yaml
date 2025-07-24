@@ -1,17 +1,16 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Übermittlung von Energiemengen auf Ebene Messlokation für Zeitintervalle.
+  title: EDI@Energy API-Webdienst zur Übermittlung von 1/4 Werten auf Ebene Marktlokation für Zeitintervalle.
   version: 1.0.0
-  description: Mit diesem Web-Service werden Energiemengen auf Ebene der Messlokation zu Zeitintervallen übermittelt. 
-    Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen, als auch vom verantwortlichen MSB 
-    an den Messwerte-Hub. Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) 
-    so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). Die Übermittlung erfolgt mittels der ID Der Messlokation. 
-    Diese Parameter sind verpflichtend anzugeben. Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine 
-    eindeutige Zuordnung des Messwertes zu ermöglichen. Hinweis  wird von der Messlokation sowohl der Zählerstand für den Bezug als auch für die Erzeugung übermittelt, 
-    so kann dieser mit demselben Service übermittelt werden (array). 
-    Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr gesetzliche deutsche Zeit und um Ende 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. 
-    Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann auch negativ sein (Korrekturenergiemenge)
+  description: Mit diesem Web-Service wird ein Lastgang auf Ebene der Marktlokation zu Zeitintervallen übermittelt. 
+    Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. Handelt es sich bei der Übermittlung 
+    des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). 
+    Die Übermittlung erfolgt mittels der ID Der Marktlokation. Diese Parameter sind verpflichtend anzugeben. 
+    Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. 
+    Hinweis  werden mehrere 1/4h Werte übermittelt, so kann dieser mit demselben Service übermittelt werden (array). Als Zeitraum ist immer ein Zeintintervall anzugeben, 
+    zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 oder 00:15, oder 00:30, oder 00:45 Uhr gesetzliche deutsche Zeit und um Ende 00:00, oder 00:15, 00:30, 00:45, sodass das Zeintervall immer genau 15 minuten umfasst. 
+    Die Angabe erfolgt in UTC. Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann NICHT negativ sein 
       
 servers: # URLs unter der die API bereitsteht
   - url: https://github.com/EDI-Energy/
@@ -19,7 +18,7 @@ servers: # URLs unter der die API bereitsteht
 
 
 paths:
-  /meterLocation/amounts/v0.0.1:
+  /marketLocation/loadProfiles/v0.0.1:
     post:
       parameters:
         - name: transactionId
@@ -59,7 +58,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../../../Schema/Werte/energyAmountsMeterLocation.yaml#/components/schemas/energyAmountsMeterLocation'
+              $ref: '../../../Schema/Werte/loadProfilesMarketLocation.yaml#/components/schemas/loadProfilesMarketLocation'
 
       responses:
         '202':
