@@ -12,7 +12,7 @@ info: # Allgemeine Infos zur Schnittstelle
     Die Wiederholung erfolgt innerhalb des arrays im Body.
       
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/Konzept_API_Strom/blob/2c05a79b8ac591411b73be4d0501b3d5941fb5fb/API/Bewegungsdaten/AnfrageWerte/meterLocation_measuredDatas_request_v0.0.1.yaml
+  - url: https://github.com/EDI-Energy/
     description: GitHub-Server der EDI@Energy.
 
 
@@ -27,7 +27,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/transactionId.yaml#/components/schemas/transactionId''
+            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId''
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -35,7 +35,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -43,12 +43,12 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '../../../Schema/parameterMeasuredDatasMarketLocation.yaml#/components/schemas/parameterMeasuredDatasMarketLocation'
+              $ref: '../../../Schema/Werte/Werte_Anfrage/parameterMeasuredDatasMarketLocation.yaml#/components/schemas/parameterMeasuredDatasMarketLocation'
 
       responses:
         '202':

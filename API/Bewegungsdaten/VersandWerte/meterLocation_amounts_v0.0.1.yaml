@@ -1,0 +1,76 @@
+openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
+
+info: # Allgemeine Infos zur Schnittstelle
+  title: EDI@Energy API-Webdienst zur Übermittlung von Zählerständen auf Ebene Messlokation für Zeitpunkte.
+  version: 1.0.0
+  description: Mit diesem Web-Service werden Energiemengen auf Ebene der Messlokation zu Zeitintervallen übermittelt. 
+    Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen, als auch vom verantwortlichen MSB 
+    an den Messwerte-Hub. Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) 
+    so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). Die Übermittlung erfolgt mittels der ID Der Messlokation. 
+    Diese Parameter sind verpflichtend anzugeben. Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine 
+    eindeutige Zuordnung des Messwertes zu ermöglichen. Hinweis  wird von der Messlokation sowohl der Zählerstand für den Bezug als auch für die Erzeugung übermittelt, 
+    so kann dieser mit demselben Service übermittelt werden (array). 
+    Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr gesetzliche deutsche Zeit und um Ende 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. 
+    Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann auch negativ sein (Korrekturenergiemenge)
+      
+servers: # URLs unter der die API bereitsteht
+  - url: https://github.com/EDI-Energy/
+    description: GitHub-Server der EDI@Energy.
+
+
+paths:
+  /meterLocation/amounts/v0.0.1:
+    post:
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/header/referenceId.yaml#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../../../Schema/Werte/energyAmountsMeterLocation.yaml#/components/schemas/energyAmountsMeterLocation'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
