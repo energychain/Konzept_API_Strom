@@ -27,7 +27,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -35,7 +35,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -43,7 +43,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
         - name: referenceId
           in: header
           description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
@@ -51,7 +51,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/referenceId.yaml#/components/schemas/referenceId'
+            $ref: '../../../Schema/Header/referenceId.yaml#/components/schemas/referenceId'
 
       requestBody:
         content:

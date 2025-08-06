@@ -20,7 +20,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -28,7 +28,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -36,21 +36,12 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '../../../Schema/Werte/Werte_Reklamation/parameterMeasuredComplaintDatasTranche.yaml#/components/schemas/parameterMeasuredComplaintDatasTranche'
-
-
-
-
-
-
-
-
-
 
       responses:
         '202':

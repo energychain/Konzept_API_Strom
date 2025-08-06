@@ -73,24 +73,24 @@ components:
                     dataContactPersonBalancingProcess:
                         description: Name und Anschrift des Ansprechpartners und Informationen zu BilanzierungsprozesseN / Bilanzkreismanagement
                         $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
-            required:
-                - company
-                - address
-                - dataBankDetails
-                - website
-                - court
-                - commercialRegister
-                - taxId
-                - faxNumber
-                - availability
-                - dataContactPersonDataExchange
-                - dataContactPersonFrameworkAgreements
-                - dataContactPersonCancellationProcess
-                - dataContactPersonSwitchingProcess
-                - dataContactPersonMasterDataProcess
-                - dataContactPersonInputProcess
-                - dataContactPersonBillingProcess
-                - dataContactPersonMMMAProcess
-                - dataContactPersonTransactionData
-                - dataContactPersonInterruptionRestorationConnectionUsageProcess
-                - dataContactPersonBalancingProcess
+                required:
+                    - company
+                    - address
+                    - dataBankDetails
+                    - website
+                    - court
+                    - commercialRegister
+                    - taxId
+                    - faxNumber
+                    - availability
+                    - dataContactPersonDataExchange
+                    - dataContactPersonFrameworkAgreements
+                    - dataContactPersonCancellationProcess
+                    - dataContactPersonSwitchingProcess
+                    - dataContactPersonMasterDataProcess
+                    - dataContactPersonInputProcess
+                    - dataContactPersonBillingProcess
+                    - dataContactPersonMMMAProcess
+                    - dataContactPersonTransactionData
+                    - dataContactPersonInterruptionRestorationConnectionUsageProcess
+                    - dataContactPersonBalancingProcess
