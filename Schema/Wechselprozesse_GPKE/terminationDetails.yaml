@@ -17,7 +17,7 @@
           $ref: '../Zeitangaben/dateTime.yaml#/components/schemas/dateTime'
           description: Ende zum
         typeOfTerminationDateTime:
-          $ref: '../typeOfTerminationDateTime.yaml#/components/schemas/typeOfTerminationDateTime'
+          $ref: '../Wechselprozesse_GPKE/typeOfTerminationDateTime.yaml#/components/schemas/typeOfTerminationDateTime'
           description: Angabe eines Hinweises.
         notice:
           $ref: '../notice.yaml#/components/schemas/notice'

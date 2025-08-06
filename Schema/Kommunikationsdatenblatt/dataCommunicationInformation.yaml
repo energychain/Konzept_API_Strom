@@ -22,13 +22,13 @@ components:
         bankDetail:
           $ref: '../Bankdaten/bankDetail.yaml#/components/schemas/bankDetail'
         courtData:
-          $ref: '../courtData.yaml#/components/schemas/courtData'
+          $ref: '../Unternehmensangaben/courtData.yaml#/components/schemas/courtData'
         faxNumber:
           $ref: '../Person/faxNumber.yaml#/components/schemas/faxNumber'
         website:
           $ref: '../Unternehmensangaben/website.yaml#/components/schemas/website'
         taxOfficeData:
-          $ref: '../taxOfficeData.yaml#/components/schemas/taxOfficeData'
+          $ref: '../Unternehmensangaben/taxOfficeData.yaml#/components/schemas/taxOfficeData'
         contactForDatatransfer:
           $ref: '../Unternehmensangaben/contactCompany.yaml#/components/schemas/contactCompany'
           description: Name und Anschrift Ansprechpartner Übertragungsweg / Datenaustausch

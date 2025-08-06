@@ -13,7 +13,7 @@ info: # Allgemeine Infos zur Schnittstelle
     Die Wiederholung erfolgt innerhalb des arrays im Body.
       
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/
+  - url: https://github.com/EDI-Energy
     description: GitHub-Server der EDI@Energy.
 
 

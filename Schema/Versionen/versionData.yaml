@@ -10,7 +10,7 @@ components:
       versionsNumber:
         $ref: './versionNumber.yaml#/components/schemas/versionNumber'
       validFromTime:
-        $ref: './validFromTime.yaml#/components/schemas/validFromTime'
+        $ref: '../Zeitangaben/validFromTime.yaml#/components/schemas/validFromTime'
       previousVersion:
         $ref: './versionNumber.yaml#/components/schemas/versionNumber'
         description: Angabe der Vorgängerversion
