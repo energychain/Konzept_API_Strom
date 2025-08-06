@@ -29,12 +29,12 @@ paths:
           schema:
             $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId''
         - name: creationDateTime
-          in: header
-          description: Zeitpunkt an dem der Aufruf erstellt wurde
-          required: true
-          style: simple
-          explode: false
-          schema:
+           in: header
+           description: Zeitpunkt an dem der Aufruf erstellt wurde
+           required: true
+           style: simple
+           explode: false
+           schema:
             $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
