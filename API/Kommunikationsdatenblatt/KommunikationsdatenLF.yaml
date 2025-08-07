@@ -10,7 +10,7 @@ tags:
     description: Find out more
     
 paths:
-  /CommunicationInformation/v1:
+  /communicationInformation/v1:
     post: 
       tags: 
        - Übermittlung der Kommunikationsdaten
