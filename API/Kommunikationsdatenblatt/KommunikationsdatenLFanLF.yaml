@@ -7,7 +7,7 @@ servers:
   - url: https://github.com/EDI-Energy/Konzept_API_Strom/blob/2025_08_01_Konsultation/API/Kommunikationsdatenblatt/KommunikationsdatenLFanLF.yaml
     description: GitHub-Server der EDI@Energy.
 paths:
-  /kommunikationsparameterLFanLF/v1:
+  /communicationParameters/v1:
     post:
       tags:
         - Kommunikationsparamter LF an LF
