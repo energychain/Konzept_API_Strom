@@ -12,7 +12,7 @@ info: # Allgemeine Infos zur Schnittstelle
      Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.  
       
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/
+  - url: https://github.com/EDI-Energy
     description: GitHub-Server der EDI@Energy.
 
 

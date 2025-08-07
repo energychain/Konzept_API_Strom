@@ -15,7 +15,7 @@ info: # Allgemeine Infos zur Schnittstelle
     Es ist die Wertequalität des übermittelten Wertes anzugeben. 
       
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/
+  - url: https://github.com/EDI-Energy
     description: GitHub-Server der EDI@Energy.
 
 

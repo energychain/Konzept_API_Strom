@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API zum Übermitteln von Energiemengen auf Ebene der Marktlokation.
 servers:
-  - url: https://github.com/EDI-Energy/apis-demo/blob/main/api/energiemengeAufEbeneDerMarktlokation.yaml
+  - url: https://github.com/EDI-Energy
     description: GitHub-Server der EDI@Energy.
   
 paths:

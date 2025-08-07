@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die Marktrollen LF
 servers:
-  - url: https://github.com/EDI-Energy/Konzept_API_Strom/blob/2025_08_01_Konsultation/API/Kommunikationsdatenblatt/KommunikationsdatenLFanLF.yaml
+  - url: https://github.com/EDI-Energy
     description: GitHub-Server der EDI@Energy.
 paths:
   /communicationParameters/v1:

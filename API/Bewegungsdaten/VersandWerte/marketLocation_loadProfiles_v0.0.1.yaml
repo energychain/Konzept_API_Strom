@@ -13,7 +13,7 @@ info: # Allgemeine Infos zur Schnittstelle
     Die Angabe erfolgt in UTC. Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann NICHT negativ sein 
       
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/
+  - url: https://github.com/EDI-Energy
     description: GitHub-Server der EDI@Energy.
 
 

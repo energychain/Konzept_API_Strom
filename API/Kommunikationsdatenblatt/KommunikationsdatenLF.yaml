@@ -8,6 +8,9 @@ tags:
     description: Find out more
   - name: Abkündigung von Kommunikationsdaten
     description: Find out more
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy.
     
 paths:
   /communicationInformation/v1:

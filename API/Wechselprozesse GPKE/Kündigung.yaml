@@ -6,6 +6,9 @@ info:
 tags:
   - name: Kündigungsanfrage
     description: Find out more
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy.
     
 paths:
   /terminationRequest/v1:

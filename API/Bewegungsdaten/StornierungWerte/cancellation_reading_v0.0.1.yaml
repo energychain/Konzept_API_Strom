@@ -5,7 +5,7 @@ info: # Allgemeine Infos zur Schnittstelle
   version: 1.0.0
   description: Mit diesem Web-Service können übermittelte Werte storniert werden. Es sind die ursprünglichen Parameter, welcher übermittelt wurden und nun storniert werden sollen azugeben.
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/
+  - url: https://github.com/EDI-Energy
     description: GitHub-Server der EDI@Energy.
 
 
