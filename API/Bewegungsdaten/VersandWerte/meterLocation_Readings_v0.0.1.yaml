@@ -54,7 +54,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/Header/referenceID.yaml#/components/schemas/referenceId'
+            $ref: '../../../Schema/Header/referenceId.yaml#/components/schemas/referenceId'
 
       requestBody:
         content:
