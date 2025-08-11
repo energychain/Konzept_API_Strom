@@ -4,15 +4,15 @@ info: # Allgemeine Infos zur Schnittstelle
   title: EDI@Energy API-Webdienst zur Anfrage von Zählerständen auf Ebene der Messlokation.
   version: 1.0.0
   description: Mit diesem Web-Service können mehrere Zählerstände auf Ebene der Messlokation zu verschiedenen 
-  Zeitpunkten angefragt werden. Die Wiederholung erfolgt innerhalb des arrays im Body. 
-  Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, 
-  welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. 
-  Die Anfrage erfolgt mittels der ID Der Messlokation. 
-  Es ist zusätzlich verpflichtend eine Energieflussrichtung anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. 
-  Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, 
-  so ist der request je Energielussrichtung einmal auszuführen. 
-  Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert benötigt wird. 
-  Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.
+    Zeitpunkten angefragt werden. Die Wiederholung erfolgt innerhalb des arrays im Body. 
+    Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, 
+    welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. 
+    Die Anfrage erfolgt mittels der ID Der Messlokation. 
+    Es ist zusätzlich verpflichtend eine Energieflussrichtung anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. 
+    Hinweis  wird von der Messlokation sowohl die der Zählerstand für den Bezug als auch für die Erzeugung benötigt, 
+    so ist der request je Energielussrichtung einmal auszuführen. 
+    Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert benötigt wird. 
+    Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC.
       
 servers: # URLs unter der die API bereitsteht
   - url: https://github.com/EDI-Energy
