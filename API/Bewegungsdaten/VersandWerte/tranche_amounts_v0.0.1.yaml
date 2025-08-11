@@ -1,7 +1,7 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Übermittlung von Energiemengen auf Ebene Tranche für Zeitintervalle.
+  title: EDI@Energy API-Webdienst zur Übermittlung von Energiemengen auf Ebene Tranche für Zeitintervalle
   version: 1.0.0
   description: Mit diesem Web-Service werden Energiemengen auf Ebene der Tranche zu Zeitintervallen übermittelt.
     Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. Handelt es sich bei der Übermittlung des 

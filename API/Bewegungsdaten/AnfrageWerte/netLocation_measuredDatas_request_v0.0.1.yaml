@@ -1,7 +1,7 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Anfrage von Werten auf Ebene der Messlokation.
+  title: EDI@Energy API-Webdienst zur Anfrage von Werten auf Ebene der Messlokation
   version: 1.0.0
   description: Mit diesem Web-Service können Energiemengen oder Lastgänge auf Ebene der Netzlokation zu 
     Zeitinvervallen angefragt werden. Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, 

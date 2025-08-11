@@ -1,7 +1,7 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Anfrage von Zählerständen auf Ebene der Messlokation.
+  title: EDI@Energy API-Webdienst zur Anfrage von Zählerständen auf Ebene der Messlokation
   version: 1.0.0
   description: Mit diesem Web-Service können mehrere Zählerstände auf Ebene der Messlokation zu verschiedenen 
     Zeitpunkten angefragt werden. Die Wiederholung erfolgt innerhalb des arrays im Body. 
