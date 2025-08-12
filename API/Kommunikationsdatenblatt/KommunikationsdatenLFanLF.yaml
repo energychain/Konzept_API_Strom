@@ -5,7 +5,7 @@ info:
   description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die Marktrollen LF
 servers:
   - url: https://github.com/EDI-Energy
-    description: GitHub-Server der EDI@Energy.
+    description: GitHub-Server der EDI@Energy
 paths:
   /communicationParameters/v1:
     post:

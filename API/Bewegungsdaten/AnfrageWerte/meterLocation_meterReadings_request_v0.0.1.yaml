@@ -16,7 +16,7 @@ info: # Allgemeine Infos zur Schnittstelle
       
 servers: # URLs unter der die API bereitsteht
   - url: https://github.com/EDI-Energy
-    description: GitHub-Server der EDI@Energy.
+    description: GitHub-Server der EDI@Energy
 
 
 paths:
