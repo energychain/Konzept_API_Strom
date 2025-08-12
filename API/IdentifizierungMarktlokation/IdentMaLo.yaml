@@ -8,7 +8,7 @@ info:
   description: "Publikationsdatum: 03.07.2024\n<h2><b>Ziel</h2></b> \n\n Gemäß Festlegung für einen beschleunigten werktäglichen Lieferantenwechsel in 24 Stunden (LFW24) der Bundesnetzagentur vom 21. März 2024 [BNetzA-Beschluss BK6-22-024](https://www.bundesnetzagentur.de/DE/Beschlusskammern/1_GZ/BK6-GZ/2022/BK6-22-024/BK6-22-024_Verfahren.html?nn=660086), ist der Use-Case GPKE Teil 2 - Fokus Zuordnungsprozesse, Kapitel 1.1. Ermittlung der MaLo-ID der Marktlokation, über API-Webdienste zu realisieren. 
                 Hinweis: IT-Systeme zur Umsetzung der API müssen grundsätzlich in der Lage sein, gleichzeitig allen berechtigten Kommunikationspartnern einen Verbindungausbau (TCP-Connenct) zu ermöglichen."
 
-  version: v1.0.0
+  version: 1.0.0
 tags:
 - name: Anfrage MaLo-ID der Marktlokation
   externalDocs:

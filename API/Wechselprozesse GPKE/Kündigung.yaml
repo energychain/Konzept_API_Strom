@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: EDI@Energy API-Webdienst zur Übermittlung der Kündigungsnachrichten zwischen zwei Lieferanten
-  version: v1.0.0
+  version: 1.0.0
   description: Diese Schnittstelle nutzen zwei Lieferanten zur Übermittlung der Nachrichten für den GPKE-Prozess der Kündigung.
 tags:
   - name: Kündigungsanfrage
