@@ -1,18 +1,21 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Übermittlung von 1/4 Werten auf Ebene Messlokation für Zeitintervalle
+  title: EDI@Energy API-Webdienst zur Übermittlung von 1/4h-Werten auf Ebene der Messlokation für Zeitintervalle
   version: 1.0.0
-  description: Mit diesem Web-Service wird ein Lastgang auf Ebene der Messlokation zu Zeitintervallen übermittelt. 
-    Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen, als auch vom verantwortlichen MSB an den Messwerte-Hub. 
-    Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die 
-    Referenz des ursprünglichen Services anzugeben (referenceID) Die Übermittlung erfolgt mittels der ID Der Messlokation. 
+  description: Mit diesem API-Webdienst wird ein Lastgang auf Ebene der Messlokation für Zeitintervalle übermittelt. 
+    Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen als auch vom verantwortlichen MSB an den Messwerte-Hub. 
+    Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage/Reklamation (Request), so ist entsprechend die 
+    Referenz des ursprünglichen Services anzugeben (referenceID). Die Übermittlung erfolgt mittels der ID der Messlokation. 
     Diese Parameter sind verpflichtend anzugeben. Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht 
-    wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. Hinweis  wird von der Messlokation sowohl der Zählerstand für den Bezug als auch 
-    für die Erzeugung übermittelt, so kann dieser mit demselben Service übermittelt werden (array). 
-    Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 oder 00:15, oder 00:30, oder 00:45 Uhr 
-    gesetzliche deutsche Zeit und um Ende 00:00, oder 00:15, 00:30, 00:45, sodass das Zeintervall immer genau 15 minuten umfasst. 
-    Die Angabe erfolgt in UTC. Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann NICHT negativ sein 
+    wurde, um eine eindeutige Zuordnung des Messwertes zu ermöglichen. 
+    
+    
+    **Hinweis:** Wird von der Messlokation sowohl der Zählerstand für den Bezug als auch 
+    für die Erzeugung übermittelt, so kann dieser mit demselben Service übermittelt werden (Array). 
+    Als Zeitraum ist immer ein Zeitintervall anzugeben, zu dem die Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr, 00:15 Uhr, 00:30 Uhr oder 00:45 Uhr 
+    gesetzlich-deutsche Zeit und um Ende 00:00 Uhr, 00:15 Uhr, 00:30 Uhr oder 00:45 Uhr, sodass das Zeitintervall immer genau 15 Minuten umfasst. 
+    Die Angabe erfolgt in UTC. Es ist die Wertequalität des übermittelten Wertes anzugeben. **Hinweis:** Der Wert kann NICHT negativ sein.
 
       
 servers: # URLs unter der die API bereitsteht

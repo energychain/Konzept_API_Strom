@@ -3,7 +3,7 @@ openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 info: # Allgemeine Infos zur Schnittstelle
   title: EDI@Energy API-Webdienst zur Stornierung von übermittelten Energiemengen
   version: 1.0.0
-  description: Mit diesem Web-Service können übermittelte Werte storniert werden. Es sind die ursprünglichen Parameter, welcher übermittelt wurden und nun storniert werden sollen azugeben.
+  description: Mit diesem API-Webdienst können übermittelte Werte storniert werden. Es sind die ursprünglichen Parameter, welche übermittelt wurden und nun storniert werden sollen, anzugeben.
 servers: # URLs unter der die API bereitsteht
   - url: https://github.com/EDI-Energy
     description: GitHub-Server der EDI@Energy

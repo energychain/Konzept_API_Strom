@@ -1,17 +1,20 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Übermittlung von Energiemengen auf Ebene Messlokation für Zeitintervalle
+  title: EDI@Energy API-Webdienst zur Übermittlung von Energiemengen auf Ebene der Messlokation für Zeitintervalle
   version: 1.0.0
-  description: Mit diesem Web-Service werden Energiemengen auf Ebene der Messlokation zu Zeitintervallen übermittelt. 
-    Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen, als auch vom verantwortlichen MSB 
-    an den Messwerte-Hub. Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) 
-    so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). Die Übermittlung erfolgt mittels der ID Der Messlokation. 
-    Diese Parameter sind verpflichtend anzugeben. Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine 
-    eindeutige Zuordnung des Messwertes zu ermöglichen. Hinweis  wird von der Messlokation sowohl der Zählerstand für den Bezug als auch für die Erzeugung übermittelt, 
-    so kann dieser mit demselben Service übermittelt werden (array). 
-    Als Zeitraum ist immer ein Zeintintervall anzugeben, zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr gesetzliche deutsche Zeit und um Ende 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. 
-    Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann auch negativ sein (Korrekturenergiemenge)
+  description: Mit diesem API-Webdienst werden Energiemengen auf Ebene der Messlokation zu Zeitintervallen übermittelt. 
+    Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen als auch vom verantwortlichen MSB 
+    an den Messwerte-Hub. Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage/Reklamation (Request), 
+    so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). Die Übermittlung erfolgt mittels der ID der Messlokation. 
+    Diese Parameter sind verpflichtend anzugeben. Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde, um eine 
+    eindeutige Zuordnung des Messwertes zu ermöglichen. 
+    
+    
+    **Hinweis:** Wird von der Messlokation sowohl der Zählerstand für den Bezug als auch für die Erzeugung übermittelt, 
+    so kann dieser mit demselben Service übermittelt werden (Array). 
+    Als Zeitraum ist immer ein Zeitintervall anzugeben, zu dem die Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr gesetzlich-deutsche Zeit und um Ende 00:00 Uhr gesetzlich-deutsche Zeit, angegeben in UTC. 
+    Es ist die Wertequalität des übermittelten Wertes anzugeben. **Hinweis:** Der Wert kann auch negativ sein (Korrekturenergiemenge).
       
 servers: # URLs unter der die API bereitsteht
   - url: https://github.com/EDI-Energy

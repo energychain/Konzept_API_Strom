@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: EDI@Energy API-Webdienst zur Übermittlung der Kommunikationsdaten eines Lieferanten an einen Lieferanten
   version: 1.0.0
-  description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die Marktrollen LF
+  description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die Marktrolle LF.
 servers:
   - url: https://github.com/EDI-Energy
     description: GitHub-Server der EDI@Energy
