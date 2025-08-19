@@ -1,18 +1,18 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Anfrage von Werten auf Ebene der Messlokation.
+  title: EDI@Energy API-Webdienst zur Anfrage von Werten auf Ebene der Messlokation
   version: 1.0.0
-  description: Mit diesem Web-Service können Energiemengen oder Lastgänge auf Ebene der Netzlokation zu 
-    Zeitinvervallen angefragt werden. Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen, als auch von berechtigten Marktpartnern, 
-    welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. Die Anfrage erfolgt mittels der ID Der Netzlokation. 
-    Es ist zusätzlich verpflichtend eine Wertegranularität anzugeben '(granularity)' die angefragt wird. 
-    Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzliche deutsche Zeit, angegeben in UTC. 
-    Die Wiederholung erfolgt innerhalb des arrays im Body.
+  description: Mit diesem API-Webdienst können Energiemengen oder Lastgänge auf Ebene der Netzlokation zu 
+    Zeitintervallen angefragt werden. Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen als auch von berechtigten Marktpartnern, 
+    welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. Die Anfrage erfolgt mittels der ID der Netzlokation. 
+    Es ist zusätzlich verpflichtend, eine Wertegranularität anzugeben ('granularity'), die angefragt wird. 
+    Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzlich-deutscher Zeit, angegeben in UTC. 
+    Die Wiederholung erfolgt innerhalb des Arrays im Body.
       
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/
-    description: GitHub-Server der EDI@Energy.
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
 
 
 paths:
@@ -26,7 +26,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -34,7 +34,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -42,7 +42,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         content:
           application/json:

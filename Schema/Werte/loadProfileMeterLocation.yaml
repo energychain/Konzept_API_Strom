@@ -17,7 +17,7 @@ components:
         executionTimeUntil:
           $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
         obisCode:
-          $ref: '../Energiemengen/OBIS/obisCodeLoadProfile#/components/schemas/obisCodeLoadProfile'
+          $ref: '../Energiemengen/OBIS/obisCodeLoadProfile.yaml#/components/schemas/obisCodeLoadProfile'
         value:
           $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:

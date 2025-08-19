@@ -3,10 +3,10 @@ openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 info: # Allgemeine Infos zur Schnittstelle
   title: EDI@Energy API-Webdienst zur Stornierung von übermittelten Energiemengen
   version: 1.0.0
-  description: Mit diesem Web-Service können übermittelte Werte storniert werden. Es sind die ursprünglichen Parameter, welcher übermittelt wurden und nun storniert werden sollen azugeben.
+  description: Mit diesem API-Webdienst können übermittelte Werte storniert werden. Es sind die ursprünglichen Parameter, welche übermittelt wurden und nun storniert werden sollen, anzugeben.
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/
-    description: GitHub-Server der EDI@Energy.
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
 
 
 paths:
@@ -20,7 +20,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -28,7 +28,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -36,19 +36,12 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '../../../Schema/Werte/Werte_Reklamation/parameterMeasuredComplaintDatasTranche.yaml#/components/schemas/parameterMeasuredComplaintDatasTranche'
-
-
-
-
-
-
-
 
       responses:
         '202':

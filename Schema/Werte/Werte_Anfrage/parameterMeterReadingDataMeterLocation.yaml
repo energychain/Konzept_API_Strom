@@ -12,4 +12,4 @@ components:
         energyDirection:
          $ref: '../../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'  
         readingDateTime:
-          $ref: './readingDateTime.yaml#/components/schemas/dateTime'
+          $ref: '../../Zeitangaben/dateTime.yaml#/components/schemas/dateTime'

@@ -1,11 +1,14 @@
 openapi: 3.0.0
 info:
   title: EDI@Energy API-Webdienst zur Übermittlung der Kündigungsnachrichten zwischen zwei Lieferanten
-  version: v1.0.0
+  version: 1.0.0
   description: Diese Schnittstelle nutzen zwei Lieferanten zur Übermittlung der Nachrichten für den GPKE-Prozess der Kündigung.
 tags:
   - name: Kündigungsanfrage
     description: Find out more
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
     
 paths:
   /terminationRequest/v1:
@@ -22,7 +25,7 @@ paths:
           style: simple 
           explode: false
           schema: 
-            $ref: '../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -30,7 +33,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
@@ -38,7 +41,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         content:
          application/json:

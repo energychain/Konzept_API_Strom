@@ -1,22 +1,25 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Übermittlung von Zählerständen auf Ebene Messlokation für Zeitpunkte.
+  title: EDI@Energy API-Webdienst zur Übermittlung von Zählerständen auf Ebene der Messlokation für Zeitpunkte
   version: 1.0.0
-  description: Mit diesem Web-Service werden Zählerstände auf Ebene der Messlokation zu einem Zeitpunkten übermittelt.
-    Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen, als auch vom verantwortlichen MSB an den Messwerte-Hub. 
-    Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die 
+  description: Mit diesem API-Webdienst werden Zählerstände auf Ebene der Messlokation zu einem Zeitpunkt übermittelt.
+    Dies kann sowohl vom Messwerte-Hub an die berechtigten Marktpartner erfolgen als auch vom verantwortlichen MSB an den Messwerte-Hub. 
+    Handelt es sich bei der Übermittlung des Wertes um die Antwort auf eine Anfrage/Reklamation (Request), so ist entsprechend die 
     Referenz des ursprünglichen Services anzugeben (referenceID). 
-    Die Übermittlung erfolgt mittels der ID Der Messlokation und mittels der Zählernummer. 
-    Diese Parameter sind verpflichtend anzugeben. Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde 
-    um eine eindeutige Zuordnung des Messwertes zu ermöglichen. Hinweis  wird von der Messlokation sowohl der 
-    Zählerstand für den Bezug als auch für die Erzeugung übermittelt, so kann dieser mit demselben Service übermittelt werden (array). 
-    Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert verwendet wird. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzliche deutsche Zeit angegeben in UTC. 
+    Die Übermittlung erfolgt mittels der ID der Messlokation und mittels der Zählernummer. 
+    Diese Parameter sind verpflichtend anzugeben. Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde, 
+    um eine eindeutige Zuordnung des Messwertes zu ermöglichen. 
+    
+    
+    **Hinweis:** Wird von der Messlokation sowohl der 
+    Zählerstand für den Bezug als auch für die Erzeugung übermittelt, so kann dieser mit demselben Service übermittelt werden (Array). 
+    Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert verwendet wird. Es handelt sich hierbei jeweils um 00:00 Uhr gesetzlich-deutscher Zeit, angegeben in UTC. 
     Es ist die Wertequalität des übermittelten Wertes anzugeben. 
       
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/
-    description: GitHub-Server der EDI@Energy.
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
 
 
 paths:
@@ -30,7 +33,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -38,7 +41,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -46,7 +49,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
         - name: referenceId
           in: header
           description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
@@ -54,7 +57,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/referenceID.yaml#/components/schemas/referenceId'
+            $ref: '../../../Schema/Header/referenceId.yaml#/components/schemas/referenceId'
 
       requestBody:
         content:

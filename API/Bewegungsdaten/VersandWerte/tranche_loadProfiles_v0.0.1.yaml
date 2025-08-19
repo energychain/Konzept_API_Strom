@@ -1,20 +1,22 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Übermittlung von 1/4 Werten auf Ebene Tranche für Zeitintervalle.
+  title: EDI@Energy API-Webdienst zur Übermittlung von 1/4H-Werten auf Ebene der Tranche für Zeitintervalle
   version: 1.0.0
-  description: Mit diesem Web-Service wird ein Lastgang auf Ebene der Tranche zu Zeitintervallen übermittelt. 
+  description: Mit diesem API-Webdienst wird ein Lastgang auf Ebene der Tranche zu Zeitintervallen übermittelt. 
     Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. Handelt es sich bei der Übermittlung 
-    des Wertes um die Antwort auf eine Anfrage / Rekalamtion (request) so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). 
-    Die Übermittlung erfolgt mittels der ID Der Tranche. Diese Parameter sind verpflichtend anzugeben. 
-    Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde um eine eindeutige Zuordnung des Messwertes zu ermöglichen. 
-    Hinweis  werden mehrere 1/4h Werte übermittelt, so kann dieser mit demselben Service übermittelt werden (array). Als Zeitraum ist immer ein Zeintintervall anzugeben, 
-    zu dem der Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 oder 00:15, oder 00:30, oder 00:45 Uhr gesetzliche deutsche Zeit und um Ende 00:00, oder 00:15, 00:30, 00:45, sodass das Zeintervall immer genau 15 minuten umfasst. 
-    Die Angabe erfolgt in UTC. Es ist die Wertequalität des übermittelten Wertes anzugeben. Hinweis Der Wert kann NICHT negativ sein 
+    des Wertes um die Antwort auf eine Anfrage/Reklamation (Request), so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). 
+    Die Übermittlung erfolgt mittels der ID der Tranche. Diese Parameter sind verpflichtend anzugeben. 
+    Weiterhin ist die OBIS-Kennzahl anzugeben, welche im vorherigen Stammdatenaustausch ausgetauscht wurde, um eine eindeutige Zuordnung des Messwertes zu ermöglichen. 
+    
+    
+    **Hinweis:** Werden mehrere 1/4h-Werte übermittelt, so können diese mit demselben Service übermittelt werden (Array). Als Zeitraum ist immer ein Zeintintervall anzugeben, 
+    zu dem die Menge verwendet wird. Es handelt sich hierbei jeweils um Beginn 00:00 Uhr, 00:15 Uhr, 00:30 Uhr oder 00:45 Uhr gesetzlich-deutsche Zeit und um Ende 00:00 Uhr, 00:15 Uhr, 00:30 Uhr oder 00:45 Uhr, sodass das Zeitintervall immer genau 15 Minuten umfasst. 
+    Die Angabe erfolgt in UTC. Es ist die Wertequalität des übermittelten Wertes anzugeben. **Hinweis:** Der Wert kann NICHT negativ sein.
       
 servers: # URLs unter der die API bereitsteht
-  - url: https://github.com/EDI-Energy/
-    description: GitHub-Server der EDI@Energy.
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
 
 
 paths:
@@ -28,7 +30,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -36,7 +38,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
@@ -44,7 +46,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
         - name: referenceId
           in: header
           description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
@@ -52,7 +54,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../../Schema/header/referenceId.yaml#/components/schemas/referenceId'
+            $ref: '../../../Schema/Header/referenceId.yaml#/components/schemas/referenceId'
 
       requestBody:
         content:

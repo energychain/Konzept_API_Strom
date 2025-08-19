@@ -2,12 +2,12 @@ openapi: 3.0.0
 info:
   title: EDI@Energy API-Webdienst zur Übermittlung der Kommunikationsdaten eines Lieferanten an einen Lieferanten
   version: 1.0.0
-  description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die Marktrollen LF
+  description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die Marktrolle LF.
 servers:
-  - url: https://github.com/EDI-Energy/Konzept_API_Strom/blob/2025_08_01_Konsultation/API/Kommunikationsdatenblatt/KommunikationsdatenLFanLF.yaml
-    description: GitHub-Server der EDI@Energy.
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
 paths:
-  /kommunikationsparameterLFanLF/v1:
+  /communicationParameters/v1:
     post:
       tags:
         - Kommunikationsparamter LF an LF
@@ -21,7 +21,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt, an dem der Aufruf erstellt wurde
@@ -29,7 +29,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempotenzschlüssels im Falle eines Retry.
@@ -37,7 +37,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         required: true
         content:

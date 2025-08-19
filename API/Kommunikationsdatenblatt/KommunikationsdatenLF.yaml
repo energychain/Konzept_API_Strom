@@ -1,16 +1,19 @@
 openapi: 3.0.0
 info:
   title: EDI@Energy API-Webdienst zur Übermittlung der Kommunikationsdaten eines Lieferanten
-  version: v1.0.0
+  version: 1.0.0
   description: Diese Schnittstelle nutzt ein Unternehmen in der Marktrolle Lieferant zur Übermittlung seiner Kommunikationsdaten an die Marktrollen LF, NB, ÜNB und MSB.
 tags:
   - name: Übermittlung der Kommunikationsdaten
     description: Find out more
   - name: Abkündigung von Kommunikationsdaten
     description: Find out more
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
     
 paths:
-  /CommunicationInformation/v1:
+  /communicationInformation/v1:
     post: 
       tags: 
        - Übermittlung der Kommunikationsdaten
@@ -24,7 +27,7 @@ paths:
           style: simple 
           explode: false
           schema: 
-            $ref: '../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -32,7 +35,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
@@ -40,7 +43,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         content:
          application/json:
@@ -73,7 +76,7 @@ paths:
           style: simple 
           explode: false
           schema: 
-            $ref: '../../Schema/header/transactionId.yaml#/components/schemas/transactionId'
+            $ref: '../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
         - name: creationDateTime
           in: header
           description: Zeitpunkt an dem der Aufruf erstellt wurde
@@ -81,7 +84,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../Schema/header/creationDateTime.yaml#/components/schemas/creationDateTime'
+            $ref: '../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
         - name: initialTransactionId
           in: header
           description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
@@ -89,7 +92,7 @@ paths:
           style: simple
           explode: false
           schema:
-            $ref: '../../Schema/header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+            $ref: '../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
       requestBody:
         content:
          application/json:
