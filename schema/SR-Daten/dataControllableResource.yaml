@@ -1,0 +1,12 @@
+components:
+  schemas:
+    dataControllableResource:
+      required:
+      - dataMControllableResourceMarketPartner
+      - srId
+      type: object
+      properties:
+        srId:
+          $ref: '../IDs/srId.yaml#/components/schemas/srId'
+        dataControllableResourceMeasuringPointOperators:
+          $ref: './dataControllableResourceMeasuringPointOperators.yaml#/components/schemas/dataControllableResourceMeasuringPointOperators'

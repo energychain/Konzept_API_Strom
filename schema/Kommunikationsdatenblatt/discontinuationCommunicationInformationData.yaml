@@ -1,0 +1,10 @@
+components:
+  schemas:
+    discontinuationCommunicationInformationData:
+      required:
+        - versionData
+      type: object
+      properties:
+        versionData:
+         $ref: '../Versionen/versionData.yaml#/components/schemas/versionData'
+        

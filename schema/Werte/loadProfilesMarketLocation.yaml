@@ -1,0 +1,6 @@
+components:
+  schemas:
+    loadProfilesMarketLocation:
+      type: array
+      items:
+        $ref: './loadProfileMarketLocation.yaml#/components/schemas/loadProfileMarketLocation'

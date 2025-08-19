@@ -1,0 +1,9 @@
+components:
+  schemas:
+    commandRegular:
+      required:
+      - executionTimeFrom
+      type: object
+      properties:
+        executionTimeFrom:
+          $ref: '../Zeitangaben//executionTimeFrom.yaml#/components/schemas/executionTimeFrom'

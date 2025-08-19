@@ -1,0 +1,7 @@
+components:
+  schemas:
+    email:
+      type: string
+      description: Angabe einer E-Mail
+      example: test@test.de
+      pattern: \\^[a-zA-Z0–9._%+-]+@[a-zA-Z0–9.-]+\.[a-zA-Z]{2,}$

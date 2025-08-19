@@ -1,0 +1,6 @@
+components:
+  schemas:
+    tafId:
+      type: string
+      description: Zur Angabe der TAF-ID für die die Anpassung erfolgen soll.
+      example: XX-XX-XX-XX

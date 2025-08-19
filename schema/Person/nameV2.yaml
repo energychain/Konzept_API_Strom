@@ -1,0 +1,14 @@
+components:
+  schemas:
+    nameV2:
+      required:
+        - surnames
+        - firstnames
+      type: object
+      properties:
+        surnames:
+          $ref: './surnames.yaml#/components/schemas/surnames'
+        firstnames:
+          $ref: './firstnames.yaml#/components/schemas/firstnames'
+        title:
+          $ref: './title.yaml#/components/schemas/title'

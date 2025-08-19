@@ -1,0 +1,6 @@
+components:
+  schemas:
+    loadProfilesNetLocation:
+      type: array
+      items:
+        $ref: './loadProfileNetLocation.yaml#/components/schemas/loadProfileNetLocation'

@@ -1,0 +1,24 @@
+components:
+  schemas:
+    energyQuantityMeasurement:
+      type: object
+      description: Parameter, die einer bestimmten Messperiode zugeordnet werden können.
+      properties:
+        obisCode:
+          $ref: './obisCode.yaml#/components/schemas/obisCode'
+        qualityMeasuredValue:
+          $ref: './qualityMeasuredValue.yaml#/components/schemas/qualityMeasuredValue'
+        energyQuantity:
+          $ref: "./energyQuantity.yaml#/components/schemas/energyQuantity"
+        plausibilityCheck:
+          $ref: "./plausibilityCheck.yaml#/components/schemas/plausibilityCheck"
+        substituteValueFormationMethod:
+          $ref: "./substituteValueFormationMethod.yaml#/components/schemas/substituteValueFormationMethod"
+        reasonOfCorrection:
+          $ref: "./reasonOfCorrection.yaml#/components/schemas/reasonOfCorrection"
+        reasonOfSubstituteValueFormation:
+          $ref: "./reasonOfSubstituteValueFormation.yaml#/components/schemas/reasonOfSubstituteValueFormation"
+      required:
+        - obisCode
+        - qualityMeasuredValue
+        - energyQuantity

@@ -1,0 +1,24 @@
+components:
+  schemas:
+    loadProfileMarketLocation:
+      required:
+        - maloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        maloId:
+          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
+        executionTimeFrom:
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '../Energiemengen/OBIS/obisCodeLoadProfile.yaml#/components/schemas/obisCodeLoadProfile'
+        value:
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
+        valueQuality:
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

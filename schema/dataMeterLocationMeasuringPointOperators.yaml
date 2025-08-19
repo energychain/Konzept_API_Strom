@@ -1,6 +1,0 @@
-components:
-  schemas:
-    dataMeterLocationMeasuringPointOperators:
-      type: array
-      items:
-        $ref: './meterLocationMeasuringPointOperator.yaml#/components/schemas/meterLocationMeasuringPointOperator'

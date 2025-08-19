@@ -1,0 +1,7 @@
+components:
+  schemas:
+     parameterMeasuredDatasMarketLocation:
+      type: array
+      items:
+        $ref: './parameterMeasuredDataMarketLocation.yaml#/components/schemas/parameterMeasuredDataMarketLocation'
+

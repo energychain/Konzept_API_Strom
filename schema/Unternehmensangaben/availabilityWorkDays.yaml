@@ -1,0 +1,8 @@
+components:
+  schemas:
+   availabilityWorkDays:
+     description: Angabe zur Erreichbarkeit an Werktagen
+     required:
+
+     type: object
+     properties:

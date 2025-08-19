@@ -1,0 +1,10 @@
+components:
+  schemas:
+    typeOfMaloId:
+      type: string
+      description: Objektart der Marktlokations-Id
+      example: productionMaLo
+      enum:
+      - consumptionMaLo
+      - productionMaLo
+      - tranche

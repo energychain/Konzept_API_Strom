@@ -1,0 +1,18 @@
+components:
+  schemas:
+    parameterMeasuredDataNetLocation:
+      required:
+        - neloId
+        - granularity
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        neloId:
+          $ref: '../../IDs/neloId.yaml#/components/schemas/neloId'
+        granularity:
+          $ref: '../../Energiemengen/granularity.yaml#/components/schemas/granularity' 
+        executionTimeFrom:
+          $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '../../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

@@ -1,0 +1,17 @@
+components:
+  schemas:
+    substituteValueFormationMethod:
+      type: string
+      description: Ersatzwertbildungsverfahren
+      enum:
+        - Vergleichsmessung (nicht geeicht)
+        - Messwertnachbildung aus geeichten Werten 
+        - Messwertnachbildung aus nicht geeichten Werten 
+        - Interpolation
+        - Haltewert
+        - Bilanzierung Netzabschnitt
+        - Historische Messwerte
+        - Aufteilung
+        - Verwendung von Werten des Störmengenzählwerks
+        - Umgangs- und Korrekurmengen
+        - Ersatzwertbildungsverfahren gemäß Angaben auf Ebene der Messlokation

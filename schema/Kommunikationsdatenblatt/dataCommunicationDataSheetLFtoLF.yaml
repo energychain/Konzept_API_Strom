@@ -1,0 +1,96 @@
+components:
+    schemas:
+        dataCommunicationDataSheetLFtoLF:
+            type: array
+            description: Kommunikationsparameter, die zwischen den Marktrollen Lieferant (LF) und Lieferant (LF) auszutauschen sind.
+            items:
+                type: object
+                properties:
+                    company:
+                        $ref: "../Unternehmensangaben/company.yaml#/components/schemas/company"
+                    address:
+                        description: Adresse des Unternehmens
+                        $ref: "../Adresse/address.yaml#/components/schemas/address"
+                    dataBankDetails:
+                        description: Bankinformationen des Unternehmens 
+                        $ref: "../Bankdaten/dataBankDetails.yaml#/components/schemas/dataBankDetails"
+                    website:
+                        type: string
+                        description: Internetseite
+                        example: www.stadtwerkxy.de
+                    court: 
+                        type: string
+                        description: Name des Gerichts
+                        example: Amtsgericht Moers
+                    commercialRegister:
+                        type: string
+                        description: Handelsregister-Nummer
+                        example: HRA 1234
+                    taxId:
+                        type: string
+                        description: Umsatzsteuernummer oder Steuernummer
+                        example: DE124356789
+                    faxNumber:
+                        type: string
+                        description: FAX-Nummer
+                        pattern: '\+\\d{6,15}'
+                        example: +494012345678
+                    availability:
+                        type: string
+                        description: Erreichbarkeit des Unternehmens
+                        pattern: 'Verfügbarkeit Montag \d{2}:\d{2} bis \d{2}:\d{2} Uhr, Verfügbarkeit Dienstag \d{2}:\d{2} bis \d{2}:\d{2} Uhr, Verfügbarkeit Mittwoch \d{2}:\d{2} bis \d{2}:\d{2} Uhr, Verfügbarkeit Donnerstag \d{2}:\d{2} bis \d{2}:\d{2} Uhr, Verfügbarkeit Freitag \d{2}:\d{2} bis \d{2}:\d{2} Uhr, Mittagspause \d{2}:\d{2} bis \d{2}:\d{2} Uhr'
+                        example: Verfügbarkeit Donnerstag 08:00 bis 17:00 Uhr, Verfügbarkeit Freitag 08:00 bis 16:00 Uhr, Mittagspause 12:00 bis 13:00 Uhr"
+                    dataContactPersonDataExchange:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zum Übertragungsweg/Datenaustausch
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                    dataContactPersonFrameworkAgreements:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu Rahmenverträgen
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                    dataContactPersonCancellationProcess:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu Kündigungsprozessen
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                    dataContactPersonSwitchingProcess:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu Wechselprozessen
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                    dataContactPersonMasterDataProcess:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu Stammdatenprozessen
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                    dataContactPersonInputProcess:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu Einspeiseprozessen
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                    dataContactPersonBillingProcess:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu Abrechnungsprozessen
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                    dataContactPersonMMMAProcess:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu MMMA-Prozessen
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                    dataContactPersonTransactionData:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu Bewegungsdaten
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+                    dataContactPersonInterruptionRestorationConnectionUsageProcess:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu Prozessen zur Unterbrechung und Wiederherstellung derAnschlussnutzung
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"                    
+                    dataContactPersonBalancingProcess:
+                        description: Name und Anschrift des Ansprechpartners und Informationen zu BilanzierungsprozesseN / Bilanzkreismanagement
+                        $ref: "../Person/dataContactPerson.yaml#/components/schemas/dataContactPerson"
+            required:
+                - company
+                - address
+                - dataBankDetails
+                - website
+                - court
+                - commercialRegister
+                - taxId
+                - faxNumber
+                - availability
+                - dataContactPersonDataExchange
+                - dataContactPersonFrameworkAgreements
+                - dataContactPersonCancellationProcess
+                - dataContactPersonSwitchingProcess
+                - dataContactPersonMasterDataProcess
+                - dataContactPersonInputProcess
+                - dataContactPersonBillingProcess
+                - dataContactPersonMMMAProcess
+                - dataContactPersonTransactionData
+                - dataContactPersonInterruptionRestorationConnectionUsageProcess
+                - dataContactPersonBalancingProcess

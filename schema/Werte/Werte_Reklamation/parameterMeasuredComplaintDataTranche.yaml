@@ -1,0 +1,21 @@
+components:
+  schemas:
+    parameterMeasuredComplaintDataTranche:
+      required:
+        - tranchenId
+        - granularity
+        - obisCode
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        tranchenId:
+          $ref: '../../IDs/tranchenId.yaml#/components/schemas/tranchenId'
+        granularity:
+          $ref: '../../Energiemengen/granularity.yaml#/components/schemas/granularity'
+        obisCode:
+          $ref: '../../Energiemengen/OBIS/obisCodeComplaint.yaml#/components/schemas/obisCodeComplaint'
+        executionTimeFrom:
+          $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '../../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

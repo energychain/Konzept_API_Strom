@@ -1,0 +1,15 @@
+components:
+  schemas:
+     dataThreshold:
+      required:
+        - threshold
+        - lowerValue
+        - upperValue
+      type: object
+      properties:
+        threshold:
+          $ref: '../Schwellwerte/threshold.yaml#/components/schemas/threshold'
+        lowerValue:
+          $ref: '../Schwellwerte/lowerValue.yaml#/components/schemas/lowerValue'
+        upperValue:
+          $ref: '../Schwellwerte/upperValue.yaml#/components/schemas/upperValue'

@@ -1,0 +1,6 @@
+components:
+  schemas:
+    obisCode:
+     type: string 
+     description: Identifikator eines Messwerts (OBIS-Code)
+     example: "1-0.1.9.0"

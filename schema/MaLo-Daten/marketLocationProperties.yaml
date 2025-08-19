@@ -1,0 +1,14 @@
+components:
+  schemas:
+    marketLocationProperties:
+      required:
+      - executionTimeFrom
+      - marketLocationProperty
+      type: object
+      properties:
+        marketLocationProperty:
+          $ref: './marketLocationProperty.yaml#/components/schemas/marketLocationProperty'
+        executionTimeFrom:
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

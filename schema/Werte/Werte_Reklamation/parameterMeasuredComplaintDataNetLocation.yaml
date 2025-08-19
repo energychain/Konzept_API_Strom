@@ -1,0 +1,21 @@
+components:
+  schemas:
+    parameterMeasuredComplaintDataNetLocation:
+      required:
+        - neloId
+        - granularity
+        - obisCode
+        - executionTimeFrom
+        - executionTimeUntil
+      type: object
+      properties:
+        neloId:
+          $ref: '../../IDs/neloId.yaml#/components/schemas/neloId'
+        granularity:
+          $ref: '../../Energiemengen/granularity.yaml#/components/schemas/granularity'
+        obisCode:
+          $ref: '../../Energiemengen/OBIS/obisCodeComplaint.yaml#/components/schemas/obisCodeComplaint'
+        executionTimeFrom:
+          $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '../../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

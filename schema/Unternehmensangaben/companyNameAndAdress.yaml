@@ -1,0 +1,13 @@
+components:
+  schemas:
+   companyNameAndAdress:
+     description: Name und Anschrift eines Unternehmens 
+     required:
+      - address 
+      - company
+     type: object
+     properties:
+      company:
+        $ref: './company.yaml#/components/schemas/company'
+      address: 
+        $ref: '../Adresse/addressV2.yaml#/components/schemas/addressV2'

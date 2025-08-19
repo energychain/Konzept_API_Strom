@@ -1,0 +1,14 @@
+components:
+  schemas:
+    marketLocationNetworkOperators:
+      required:
+      - executionTimeFrom
+      - marketPartnerId
+      type: object
+      properties:
+        marketPartnerId:
+          $ref: '../IDs/marketPartnerId.yaml#/components/schemas/marketPartnerId'
+        executionTimeFrom:
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

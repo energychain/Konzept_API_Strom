@@ -1,0 +1,14 @@
+components:
+  schemas:
+    commandControl:
+      required:
+      - maximumPowerValue
+      - executionTimeFrom
+      type: object
+      properties:
+        maximumPowerValue:
+          $ref: '../Energiemengen/maximumPowerValue.yaml#/components/schemas/maximumPowerValue'
+        executionTimeFrom:
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'

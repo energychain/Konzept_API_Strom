@@ -1,0 +1,9 @@
+components:
+  schemas:
+    obisCode:
+      type: string
+      description: Angabe der OBIS-Kennzahl für die der WErt übermittelt wird (PLATZHALTER)
+      example: 1-25:1.29.0
+      enum:
+      - 1-0:1.8.0
+      - 1-1:1.29.0

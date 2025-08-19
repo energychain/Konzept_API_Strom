@@ -1,0 +1,24 @@
+components:
+  schemas:
+    energyAmountMeterLocation:
+      required:
+        - meloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - obisCode
+        - value
+        - valueQuality
+      type: object
+      properties:
+        meloId:
+          $ref: '../IDs/meloId.yaml#/components/schemas/meloId'
+        executionTimeFrom:
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+        obisCode:
+          $ref: '../Energiemengen/OBIS/obisCodeEnergyAmount.yaml#/components/schemas/obisCodeEnergyAmount'
+        value:
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
+        valueQuality:
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

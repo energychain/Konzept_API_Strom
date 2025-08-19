@@ -1,0 +1,6 @@
+components:
+  schemas:
+    energyAmountsMarketLocation:
+      type: array
+      items:
+        $ref: './energyAmountMarketLocation.yaml#/components/schemas/energyAmountMarketLocation'

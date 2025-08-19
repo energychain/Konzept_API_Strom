@@ -1,8 +1,0 @@
-components:
-  schemas:
-    statePositive:
-      type: string
-      description: Positiver Antwortgrund
-      example: succeeded
-      enum:
-      - succeeded

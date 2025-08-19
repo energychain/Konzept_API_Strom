@@ -1,0 +1,6 @@
+components:
+  schemas:
+    energyAmountsMeterLocation:
+      type: array
+      items:
+        $ref: './energyAmountMeterLocation.yaml#/components/schemas/energyAmountMeterLocation'

@@ -1,0 +1,6 @@
+components:
+  schemas:
+    website:
+      type: string
+      description: Angabe einer Internetseite
+      example: https://www.eine-unternehmens-adresse.de

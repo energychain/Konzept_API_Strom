@@ -1,0 +1,16 @@
+components:
+  schemas:
+    valueQuality:
+      type: string
+      description: Wertequalität des übermittelten Wertes
+      example: read
+      enum:
+      - read
+      - estimated_interpolation
+      - estimated_statistical
+      - estimated_comparsionMeterCalibrated
+      - estimated_comparsionMeter
+      - forecast
+      - suggested
+      - sum
+      - junk

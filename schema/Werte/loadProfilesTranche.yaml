@@ -1,0 +1,6 @@
+components:
+  schemas:
+    loadProfilesTranche:
+      type: array
+      items:
+        $ref: './loadProfileTranche.yaml#/components/schemas/loadProfileTranche'

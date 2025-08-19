@@ -1,6 +1,0 @@
-components:
-  schemas:
-    meterNumber:
-      type: string
-      description: Identifiziert das Gerät der Messlokation mittels Gerätenummer
-      example: 1SM-8465929523
