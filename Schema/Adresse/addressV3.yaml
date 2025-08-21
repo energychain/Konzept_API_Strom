@@ -1,4 +1,3 @@
-# adressV2.yaml: Weiterere Schema für eine adresse
 components:
   schemas:
    addressV2:
