@@ -1,8 +1,8 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Übermittlung von Energiemengen auf Ebene Marktlokation für Zeitintervalle mit Fachlichkeit statt OBIS
-  version: 2.0.0
+  title: EDI@Energy API-Webdienst zur Übermittlung von Energiemengen auf Ebene Marktlokation für Zeitintervalle mit Fachlichkeit statt OBIS und ReferenceId gelöscht
+  version: 3.0.0
   description: Mit diesem API-Webdienst werden Energiemengen auf Ebene der Marktlokation für Zeitintervalle übermittelt.
     Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. Handelt es sich bei der Übermittlung des 
     Wertes um die Antwort auf eine Anfrage/Reklamation (Request), so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). 
@@ -19,7 +19,7 @@ servers: # URLs unter der die API bereitsteht
 
 
 paths:
-  /marketLocation/amounts/v0.0.2:
+  /marketLocation/amounts/v0.0.3:
     post:
       parameters:
         - name: transactionId
@@ -46,14 +46,6 @@ paths:
           explode: false
           schema:
             $ref: '../../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
-        - name: referenceId
-          in: header
-          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
-          required: false
-          style: simple
-          explode: false
-          schema:
-            $ref: '../../../Schema/Header/referenceId.yaml#/components/schemas/referenceId'
 
       requestBody:
         content:
