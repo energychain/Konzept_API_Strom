@@ -8,7 +8,7 @@ components:
         - channel
         - measurand
         - valueType
-        -tariff
+        - tariff
         - value
         - valueQuality
       type: object
