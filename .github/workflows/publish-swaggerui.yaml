@@ -2,7 +2,7 @@ name: Referenzen umwandeln & Swagger-Dokumentation veröffentlichen
 
 on:
   push:
-    branches: [ main ]
+    branches: [ Konsultation_20250901 ]
     paths:
       - 'API/**'
       - 'Schema/**'
