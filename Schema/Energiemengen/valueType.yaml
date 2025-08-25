@@ -1,0 +1,13 @@
+components:
+  schemas:
+    channel:
+      type: string
+      description: Werteart 
+      enum:
+        - meterReading
+        - loadProfile
+        - energyAmount
+        - maximumPower
+        
+
+

@@ -1,0 +1,23 @@
+components:
+  schemas:
+    channel:
+      type: string
+      description: Tarifstufe 
+      enum:
+        - tariff 0
+        - tariff 1
+        - tariff 2
+        - tariff 3
+        - tariff 4
+        - tariff 5
+        - tariff 6
+        - tariff 7
+        - tariff 8
+        - tariff 9
+        - tariff 10
+        - tariff 11
+        - tariff 12
+        - tariff 13
+        - tariff 14
+        - tariff 15
+        - tariff 63

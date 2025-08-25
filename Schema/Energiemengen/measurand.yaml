@@ -1,0 +1,17 @@
+components:
+  schemas:
+    channel:
+      type: string
+      description: Messgröße 
+      enum:
+        - activePower + 
+        - activePower -
+        - reactivePower +
+        - reactivePower -
+        - reactivePower Q1
+        - reacitvePower Q2
+        - reactivePower Q3
+        - reactivePower Q4
+
+
+
