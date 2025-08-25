@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './parameterMeasuredDataNetLocation.yaml#/components/schemas/parameterMeasuredDataNetLocation'
+      minItems: 1
+      maxItems: 20000

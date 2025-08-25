@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './readingDataMarketLocation.yaml#/components/schemas/readingDataMarketLocation'
+      minItems: 1
+      maxItems: 40000

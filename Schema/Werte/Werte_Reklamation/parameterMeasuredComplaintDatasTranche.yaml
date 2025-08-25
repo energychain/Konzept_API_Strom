@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './parameterMeasuredComplaintDataTranche.yaml#/components/schemas/parameterMeasuredComplaintDataTranche'
+      minItems: 1
+      maxItems: 10000

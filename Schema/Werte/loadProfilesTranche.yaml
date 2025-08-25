@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './loadProfileTranche.yaml#/components/schemas/loadProfileTranche'
+      minItems: 1
+      maxItems: 40000

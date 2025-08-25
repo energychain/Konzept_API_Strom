@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './readingDataTranche.yaml#/components/schemas/readingDataTranche'
+      minItems: 1
+      maxItems: 40000

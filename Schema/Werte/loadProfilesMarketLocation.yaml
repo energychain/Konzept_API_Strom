@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './loadProfileMarketLocation.yaml#/components/schemas/loadProfileMarketLocation'
+      minItems: 1
+      maxItems: 40000

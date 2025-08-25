@@ -4,4 +4,5 @@ components:
       type: array
       items:
         $ref: './loadProfileMeterLocation.yaml#/components/schemas/loadProfileMeterLocation'
- 
+      minItems: 1
+      maxItems: 40000

@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './parameterMeterReadingComplaintDataMeterLocation.yaml#/components/schemas/parameterMeterReadingComplaintDataMeterLocation'
+      minItems: 1
+      maxItems: 10000

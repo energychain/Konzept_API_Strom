@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './parameterMeasuredComplaintDataMarketLocation.yaml#/components/schemas/parameterMeasuredComplaintDataMarketLocation'
+      minItems: 1
+      maxItems: 10000
