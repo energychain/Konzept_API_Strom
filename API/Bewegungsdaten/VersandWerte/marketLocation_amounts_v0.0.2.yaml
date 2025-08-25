@@ -1,0 +1,76 @@
+openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
+
+info: # Allgemeine Infos zur Schnittstelle
+  title: EDI@Energy API-Webdienst zur Übermittlung von Energiemengen auf Ebene Marktlokation für Zeitintervalle mit Fachlichkeit statt OBIS
+  version: 2.0.0
+  description: Mit diesem API-Webdienst werden Energiemengen auf Ebene der Marktlokation für Zeitintervalle übermittelt.
+    Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. Handelt es sich bei der Übermittlung des 
+    Wertes um die Antwort auf eine Anfrage/Reklamation (Request), so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). 
+    Die Übermittlung erfolgt mittels der ID der Marktlokation. Diese Parameter sind verpflichtend anzugeben. Weiterhin ist Fachlichkeit der Werte anzugeben, 
+    welche im vorherigen Stammdatenaustausch ausgetauscht wurde, um eine eindeutige Zuordnung des Messwertes zu ermöglichen. 
+    
+
+    **Hinweis:** Sollen mehrere Mengen übermittelt werden, so können diese mit demselben Service übermittelt werden (Array). Als Zeitraum ist immer ein Zeitintervall anzugeben, zu dem die Menge verwendet wird. Es handelt sich hierbei jeweils um den Beginn 00:00 Uhr
+    gesetzlich-deutscher Zeit und um Ende 00:00 Uhr gesetzlich-deutscher Zeit, angegeben in UTC. Es ist die Wertequalität des übermittelten Wertes anzugeben. **Hinweis:** Der Wert kann nicht negativ sein.
+      
+servers: # URLs unter der die API bereitsteht
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
+
+
+paths:
+  /marketLocation/amounts/v0.0.1:
+    post:
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
+          required: true 
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschlüssel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+        - name: referenceId
+          in: header
+          description: Externe Vorgangsreferenz zur eindeutigen Identifikation des ursprünglichen Vorgangs
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../../Schema/Header/referenceId.yaml#/components/schemas/referenceId'
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '../../../Schema/Werte/energyAmountsMarketLocation2.yaml#/components/schemas/energyAmountsMarketLocation2'
+
+      responses:
+        '202':
+          description: accepted
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '405':
+          description: Method not allowed
+        '500':
+          description: Internal Server Error
