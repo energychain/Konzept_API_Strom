@@ -60,7 +60,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../../../Schema/Werte/loadProfilesMarketLocation2.yaml#/components/schemas/loadProfilesMarketLocation2'
+              $ref: '../../../Schema/Werte/loadProfileMarketLocation2.yaml#/components/schemas/loadProfileMarketLocation2'
 
       responses:
         '202':
