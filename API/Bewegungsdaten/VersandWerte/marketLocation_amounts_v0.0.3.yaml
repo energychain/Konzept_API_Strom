@@ -1,14 +1,17 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Anfrage von Werten auf Ebene der Netzlokation
-  version: 1.0.0
-  description: Mit diesem API-Webdienst können Energiemengen oder Lastgänge auf Ebene der Netzlokation zu 
-    Zeitintervallen angefragt werden. Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen als auch von berechtigten Marktpartnern, 
-    welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. Die Anfrage erfolgt mittels der ID der Netzlokation. 
-    Es ist zusätzlich verpflichtend, eine Wertegranularität anzugeben ('granularity'), die angefragt wird. 
-    Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzlich-deutscher Zeit, angegeben in UTC. 
-    Die Wiederholung erfolgt innerhalb des Arrays im Body.
+  title: EDI@Energy API-Webdienst zur Übermittlung von Energiemengen auf Ebene Marktlokation für Zeitintervalle mit Fachlichkeit statt OBIS und ReferenceId gelöscht
+  version: 3.0.0
+  description: Mit diesem API-Webdienst werden Energiemengen auf Ebene der Marktlokation für Zeitintervalle übermittelt.
+    Dies kann ausschließlich vom Messwerte-Hub an die berechtigten Marktpartner erfolgen. Handelt es sich bei der Übermittlung des 
+    Wertes um die Antwort auf eine Anfrage/Reklamation (Request), so ist entsprechend die Referenz des ursprünglichen Services anzugeben (referenceID). 
+    Die Übermittlung erfolgt mittels der ID der Marktlokation. Diese Parameter sind verpflichtend anzugeben. Weiterhin ist Fachlichkeit der Werte anzugeben, 
+    welche im vorherigen Stammdatenaustausch ausgetauscht wurde, um eine eindeutige Zuordnung des Messwertes zu ermöglichen. 
+    
+
+    **Hinweis:** Sollen mehrere Mengen übermittelt werden, so können diese mit demselben Service übermittelt werden (Array). Als Zeitraum ist immer ein Zeitintervall anzugeben, zu dem die Menge verwendet wird. Es handelt sich hierbei jeweils um den Beginn 00:00 Uhr
+    gesetzlich-deutscher Zeit und um Ende 00:00 Uhr gesetzlich-deutscher Zeit, angegeben in UTC. Es ist die Wertequalität des übermittelten Wertes anzugeben. **Hinweis:** Der Wert kann nicht negativ sein.
       
 servers: # URLs unter der die API bereitsteht
   - url: https://github.com/EDI-Energy
@@ -16,13 +19,13 @@ servers: # URLs unter der die API bereitsteht
 
 
 paths:
-  /netLocation/measuredDatas/request/v0.0.1:
+  /marketLocation/amounts/v0.0.3:
     post:
       parameters:
         - name: transactionId
           in: header
           description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
-          required: true
+          required: true 
           style: simple
           explode: false
           schema:
@@ -43,11 +46,12 @@ paths:
           explode: false
           schema:
             $ref: '../../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '../../../Schema/Werte/Werte_Anfrage/parameterMeasuredDatasNetLocation.yaml#/components/schemas/parameterMeasuredDatasNetLocation'
+              $ref: '../../../Schema/Werte/energyAmountsMarketLocation2.yaml#/components/schemas/energyAmountsMarketLocation2'
 
       responses:
         '202':
@@ -62,4 +66,3 @@ paths:
           description: Method not allowed
         '500':
           description: Internal Server Error
-

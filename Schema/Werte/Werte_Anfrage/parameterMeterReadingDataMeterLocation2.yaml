@@ -1,0 +1,15 @@
+components:
+  schemas:
+     parameterMeterReadingDataMeterLocation2:
+      required:
+        - meterNumber
+        - readingDateTime
+        - energyDirection
+      type: object
+      properties:
+        meloId:
+          $ref: '../../MeLo-Daten/meterNumber.yaml#/components/schemas/meterNumber'
+        energyDirection:
+         $ref: '../../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'  
+        readingDateTime:
+          $ref: '../../Zeitangaben/dateTime.yaml#/components/schemas/dateTime'

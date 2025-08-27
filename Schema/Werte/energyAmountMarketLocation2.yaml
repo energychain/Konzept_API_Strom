@@ -1,0 +1,33 @@
+components:
+  schemas:
+    energyAmountMarketLocation2:
+      required:
+        - maloId
+        - executionTimeFrom
+        - executionTimeUntil
+        - channel
+        - measurand
+        - valueType
+        - tariff
+        - value
+        - valueQuality
+      type: object
+      properties:
+        maloId:
+          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
+        executionTimeFrom:
+          $ref: '../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
+        executionTimeUntil:
+          $ref: '../Zeitangaben/executionTimeUntil.yaml#/components/schemas/executionTimeUntil'
+        channel:
+          $ref: '../Energiemengen/channel.yaml#/components/schemas/channel'
+        measurand:
+          $ref: '../Energiemengen/measurand.yaml#/components/schemas/measurand'
+        valueType:
+          $ref: '../Energiemengen/valueType.yaml#/components/schemas/valueType'
+        tariff:
+          $ref: '../Energiemengen/tariff.yaml#/components/schemas/tariff'
+        value:
+          $ref: '../Energiemengen/value.yaml#/components/schemas/value'
+        valueQuality:
+          $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'

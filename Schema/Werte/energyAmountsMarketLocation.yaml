@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './energyAmountMarketLocation.yaml#/components/schemas/energyAmountMarketLocation'
+      minItems: 1
+      maxItems: 40000

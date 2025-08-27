@@ -5,3 +5,5 @@ components:
       items:
         $ref: './parameterMeasuredDataMarketLocation.yaml#/components/schemas/parameterMeasuredDataMarketLocation'
 
+      minItems: 1
+      maxItems: 20000

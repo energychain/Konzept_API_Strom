@@ -1,0 +1,8 @@
+components:
+  schemas:
+    parameterMeterReadingDataMeterLocations2:
+      type: array
+      items:
+        $ref: './parameterMeterReadingDataMeterLocation2.yaml#/components/schemas/parameterMeterReadingDataMeterLocation2'
+      minItems: 1
+      maxItems: 35000

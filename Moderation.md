@@ -18,7 +18,7 @@ Die folgenden Inhalte sind nicht gestattet und werden ohne Vorwarnung entfernt:
 
 ## Moderation
 
-Sollten Ihnen Inhalte auffallen, die Sie als unangemessen oder rechtswidrig einschätzen, können Sie diese entweder über ein zentrales [**Formular**](https://support.github.com/contact/report-abuse?category=report-abuse&report=other&report_type=unspecified) an den GitHub-Support oder über die Funktion **"Report Content"** an das Moderationsteam des Repositories melden (weitere Informationen hierzu finden Sie [hier](https://docs.github.com/de/communities/maintaining-your-safety-on-github/reporting-abuse-or-spam)).
+Sollten Ihnen Inhalte auffallen, die Sie als unangemessen oder rechtswidrig einschätzen, können Sie diese über ein zentrales [**Formular**](https://support.github.com/contact/report-abuse?category=report-abuse&report=other&report_type=unspecified) an den GitHub-Support melden.
 
 ---
 

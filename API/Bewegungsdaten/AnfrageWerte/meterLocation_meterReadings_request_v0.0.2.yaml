@@ -1,14 +1,21 @@
 openapi: 3.0.0 # OpenAPI-Version (erlaubte Features und Syntax)
 
 info: # Allgemeine Infos zur Schnittstelle
-  title: EDI@Energy API-Webdienst zur Anfrage von Werten auf Ebene der Netzlokation
-  version: 1.0.0
-  description: Mit diesem API-Webdienst können Energiemengen oder Lastgänge auf Ebene der Netzlokation zu 
-    Zeitintervallen angefragt werden. Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen als auch von berechtigten Marktpartnern, 
-    welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. Die Anfrage erfolgt mittels der ID der Netzlokation. 
-    Es ist zusätzlich verpflichtend, eine Wertegranularität anzugeben ('granularity'), die angefragt wird. 
-    Das Zeitintervall umfasst mindestens einen vollständigen Kalendertag und beginnt und endet jeweils um 00:00 Uhr gesetzlich-deutscher Zeit, angegeben in UTC. 
-    Die Wiederholung erfolgt innerhalb des Arrays im Body.
+  title: EDI@Energy API-Webdienst zur Anfrage von Zählerständen auf Ebene der Messlokation oder mit Gerätenummer
+  version: 2.0.0
+  description: Mit diesem API-Webdienst können mehrere Zählerstände auf Ebene der Messlokation zu verschiedenen 
+    Zeitpunkten angefragt werden. Die Wiederholung erfolgt innerhalb des Arrays im Body. 
+    Dies kann sowohl vom Messwerte-Hub beim MSB erfolgen als auch von berechtigten Marktpartnern, 
+    welche zum Zeitpunkt der Anfrage der Lokation zugeordnet sind, beim Messwerte-Hub. 
+    Die Anfrage erfolgt mittels der ID der Messlokation. 
+    Es ist zusätzlich verpflichtend, eine Energieflussrichtung anzugeben, welche für die Berechnung der Menge der Marktlokation notwendig ist. 
+    Hinweis, die Anpassung in dieser Version ist lediglich zur Darstellung der Schemakombination
+
+
+    **Hinweis:** Wird von der Messlokation sowohl der Zählerstand für den Bezug als auch für die Erzeugung benötigt, 
+    so ist der Request je Energieflussrichtung einmal auszuführen. 
+    Als readingDateTime ist der Zeitpunkt anzugeben, zu dem der Messwert benötigt wird. 
+    Es handelt sich hierbei jeweils um 00:00 Uhr gesetzlich-deutscher Zeit, angegeben in UTC.
       
 servers: # URLs unter der die API bereitsteht
   - url: https://github.com/EDI-Energy
@@ -16,13 +23,13 @@ servers: # URLs unter der die API bereitsteht
 
 
 paths:
-  /netLocation/measuredDatas/request/v0.0.1:
+  /meterLocation/meterReadings/request/v0.0.2:
     post:
       parameters:
         - name: transactionId
           in: header
           description: Externe Transaktions-Id zur eindeutigen Identifikation der Anfrage.
-          required: true
+          required: true 
           style: simple
           explode: false
           schema:
@@ -47,8 +54,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../../../Schema/Werte/Werte_Anfrage/parameterMeasuredDatasNetLocation.yaml#/components/schemas/parameterMeasuredDatasNetLocation'
-
+              oneOf:
+                - $ref: '../../../Schema/Werte/Werte_Anfrage/parameterMeterReadingDataMeterLocations.yaml#/components/schemas/parameterMeterReadingDataMeterLocations'
+                - $ref: '../../../Schema/Werte/Werte_Anfrage/parameterMeterReadingDataMeterLocations2.yaml#/components/schemas/parameterMeterReadingDataMeterLocations2'
       responses:
         '202':
           description: accepted

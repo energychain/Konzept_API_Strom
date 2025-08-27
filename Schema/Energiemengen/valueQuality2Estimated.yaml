@@ -1,0 +1,12 @@
+components:
+  schemas:
+    valueQuality2Estimated:
+      type: string
+      description: Wertequalität des übermittelten Ersatzwertes (Bildungslogik)
+      example: comparsionMeter
+      enum:
+      - interpolation
+      - statistical
+      - comparsionMeterCalibrated
+      - comparsionMeter
+      - thumbValue

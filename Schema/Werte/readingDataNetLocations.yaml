@@ -4,3 +4,5 @@ components:
       type: array
       items:
         $ref: './readingDataNetLocation.yaml#/components/schemas/readingDataNetLocation'
+      minItems: 1
+      maxItems: 40000
