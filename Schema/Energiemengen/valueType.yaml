@@ -1,6 +1,6 @@
 components:
   schemas:
-    channel:
+    valueType:
       type: string
       description: Werteart 
       enum:

@@ -1,6 +1,6 @@
 components:
   schemas:
-    channel:
+    measurand:
       type: string
       description: Messgröße 
       enum:

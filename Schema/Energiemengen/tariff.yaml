@@ -1,6 +1,6 @@
 components:
   schemas:
-    channel:
+    tariff:
       type: string
       description: Tarifstufe 
       enum:
