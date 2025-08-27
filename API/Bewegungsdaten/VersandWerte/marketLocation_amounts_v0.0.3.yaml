@@ -51,7 +51,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../../../Schema/Werte/energyAmountsMarketLocation2.yaml#/components/schemas/energyAmountsMarketLocation2'
+              $ref: '../../../Schema/Werte/energyAmountMarketLocation2.yaml#/components/schemas/energyAmountMarketLocation2'
 
       responses:
         '202':
