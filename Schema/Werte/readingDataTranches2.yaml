@@ -1,0 +1,8 @@
+components:
+  schemas:
+    readingDataTranches2:
+      type: array
+      items:
+        $ref: './readingDataTranche2.yaml#/components/schemas/readingDataTranche2'
+      minItems: 1
+      maxItems: 10000

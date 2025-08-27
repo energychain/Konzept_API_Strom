@@ -1,0 +1,13 @@
+components:
+  schemas:
+    valueQuality2:
+      type: string
+      description: Wertequalität des übermittelten Wertes
+      example: read
+      enum:
+      - read
+      - estimated
+      - forecast
+      - suggested
+      - sum
+      - junk
