@@ -1,0 +1,69 @@
+# API/Wechselprozesse GPKE/PortfolioAbfrage.yaml
+openapi: 3.0.0
+info:
+  title: EDI@Energy API-Webdienst zur Portfolio-Abfrage
+  version: 1.0.0
+  description: |-
+    Diese Schnittstelle wird vom Netzbetreiber bereitgestellt.
+    Sie ermöglicht es einem Lieferanten, eine Liste aller Marktlokationen abzurufen,
+    die für ihn an einem bestimmten Stichtag in der Vergangenheit aktiv waren.
+    Dies dient der Portfoliobereinigung und der Synchronisation im Rahmen von MaBIS.
+tags:
+  - name: Portfolio
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
+
+paths:
+  /portfolio/activeMaLos:
+    get:
+      tags:
+        - Portfolio
+      summary: Abfrage des aktiven MaLo-Portfolios zu einem Stichtag
+      description: |-
+        Gibt eine paginierte Liste aller Marktlokationen zurück, die für den anfragenden
+        Lieferanten an einem bestimmten Stichtag aktiv waren.
+      parameters:
+        - name: marketPartnerId
+          in: query
+          description: Die ID des anfragenden Lieferanten.
+          required: true
+          schema:
+            $ref: '../../Schema/IDs/marketPartnerId.yaml#/components/schemas/marketPartnerId'
+        - name: effectiveDate
+          in: query
+          description: Der Stichtag in der Vergangenheit (ISO 8601 Format, YYYY-MM-DD), für den das Portfolio abgefragt wird.
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: page
+          in: query
+          description: Die Seitennummer für die Paginierung.
+          required: false
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: pageSize
+          in: query
+          description: Die Anzahl der MaLos pro Seite.
+          required: false
+          schema:
+            type: integer
+            default: 1000
+            minimum: 1
+            maximum: 10000
+      responses:
+        "200":
+          description: "Erfolgreiche Abfrage. Die Antwort enthält die Liste der aktiven MaLos."
+          content:
+            application/json:
+              schema:
+                $ref: '../../Schema/Antwort/activeMaLoListResponse.yaml#/components/schemas/activeMaLoListResponse'
+        "400":
+          description: "Bad Request - Fehlende oder ungültige Parameter (z.B. Stichtag in der Zukunft)."
+        "401":
+          description: "Unauthorized - Der anfragende Marktpartner ist nicht authentifiziert."
+        "500":
+          description: "Internal Server Error"

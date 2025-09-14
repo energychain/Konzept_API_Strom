@@ -1,0 +1,32 @@
+# Schema/Antwort/activeMaLoListResponse.yaml
+components:
+  schemas:
+    activeMaLoListResponse:
+      type: object
+      description: "Eine paginierte Liste von Marktlokationen, die für einen Marktpartner an einem Stichtag aktiv waren."
+      properties:
+        pagination:
+          type: object
+          description: "Informationen zur Paginierung der Ergebnisliste."
+          properties:
+            totalItems:
+              type: integer
+              example: 4250
+              description: "Gesamtzahl der aktiven MaLos für diesen Stichtag."
+            totalPages:
+              type: integer
+              example: 5
+              description: "Gesamtzahl der Seiten."
+            currentPage:
+              type: integer
+              example: 1
+              description: "Die aktuell zurückgegebene Seite."
+            pageSize:
+              type: integer
+              example: 1000
+              description: "Anzahl der Einträge pro Seite."
+        marketLocations:
+          type: array
+          description: "Die Liste der aktiven Marktlokations-IDs für die angefragte Seite."
+          items:
+            $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
