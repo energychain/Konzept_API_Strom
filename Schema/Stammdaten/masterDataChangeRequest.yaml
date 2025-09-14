@@ -1,0 +1,18 @@
+# Schema/Stammdaten/masterDataChangeRequest.yaml
+# Dieses Schema definiert die Struktur für einen Vorschlag zur Änderung von Stammdaten.
+# Es ist eine Teilmenge von dataMarketLocation.yaml, bei der alle Felder optional sind.
+components:
+  schemas:
+    masterDataChangeRequest:
+      type: object
+      description: "Ein Vorschlag zur Änderung von Stammdaten einer Marktlokation. Es müssen nur die zu ändernden Felder angegeben werden."
+      properties:
+        dataMarketLocationName:
+          $ref: '../Person/name.yaml#/components/schemas/name'
+        dataMarketLocationAddress:
+          $ref: '../Adresse/address.yaml#/components/schemas/address'
+        annualConsumptionForecast:
+          type: integer
+          description: "Die Jahresverbrauchsprognose in kWh."
+          example: 13500
+        # Weitere optional zu ändernde Felder könnten hier hinzugefügt werden.

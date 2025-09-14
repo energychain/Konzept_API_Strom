@@ -1,0 +1,79 @@
+# API/Wechselprozesse GPKE/StammdatenÄnderungsvorschlag.yaml
+openapi: 3.0.0
+info:
+  title: EDI@Energy API-Webdienst für Stammdaten-Änderungsvorschläge
+  version: 1.0.0
+  description: |-
+    Diese Schnittstelle ermöglicht es einem Marktpartner (z.B. Lieferant), dem "Master" der Stammdaten
+    (z.B. Netzbetreiber) einen Vorschlag zur Änderung von MaLo-Stammdaten zu unterbreiten.
+    Dies formalisiert bilaterale Klärprozesse und stößt nach Annahme die offizielle
+    Marktkommunikation (UTILMD) an.
+tags:
+  - name: Stammdaten
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
+
+paths:
+  /marketLocations/{maloId}/masterData:
+    patch:
+      tags:
+        - Stammdaten
+      summary: Einreichen eines Vorschlags zur Stammdatenänderung
+      description: |-
+        Übermittelt einen Vorschlag zur Änderung von Stammdaten für eine Marktlokation.
+        Die Anfrage wird asynchron verarbeitet. Die Antwort enthält einen Link,
+        unter dem der Status des Antrags abgefragt werden kann.
+      parameters:
+        - name: maloId
+          in: path
+          required: true
+          schema:
+            $ref: '../../Schema/IDs/maloId.yaml#/components/schemas/maloId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../../Schema/Stammdaten/masterDataChangeRequest.yaml#/components/schemas/masterDataChangeRequest'
+      responses:
+        "202":
+          description: "Accepted - Der Änderungsvorschlag wurde erfolgreich entgegengenommen und wird nun asynchron geprüft."
+          headers:
+            Location:
+              description: "Die URL, unter der der Status des Änderungsantrags abgefragt werden kann."
+              schema:
+                type: string
+                format: uri
+                example: "/masterDataChangeRequests/b7a5e4e0-9a2c-4e1d-8c0e-3e2b1f4a6c8d"
+        "400":
+          description: "Bad Request - Der Request-Body ist fehlerhaft."
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not Found - Die MaLo existiert nicht."
+
+  /masterDataChangeRequests/{requestId}:
+    get:
+      tags:
+        - Stammdaten
+      summary: Abfrage des Status eines Änderungsvorschlags
+      description: "Fragt den aktuellen Status eines zuvor übermittelten Stammdaten-Änderungsvorschlags ab."
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: "Erfolgreiche Abfrage. Die Antwort enthält den aktuellen Status des Antrags."
+          content:
+            application/json:
+              schema:
+                $ref: '../../Schema/Antwort/masterDataChangeRequestStatus.yaml#/components/schemas/masterDataChangeRequestStatus'
+        "404":
+          description: "Not Found - Die angegebene Request-ID existiert nicht."
+        "401":
+          description: "Unauthorized"

@@ -1,0 +1,38 @@
+# Schema/Antwort/masterDataChangeRequestStatus.yaml
+components:
+  schemas:
+    masterDataChangeRequestStatus:
+      type: object
+      description: "Stellt den Status eines Vorschlags zur Stammdatenänderung dar."
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: "Die eindeutige ID des Änderungsantrags."
+        maloId:
+          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
+        status:
+          type: string
+          description: "Der aktuelle Status des Antrags."
+          enum:
+            - PENDING   # Der Antrag wurde angenommen und wird geprüft.
+            - ACCEPTED  # Der Antrag wurde angenommen und die UTILMD wurde/wird versendet.
+            - REJECTED  # Der Antrag wurde abgelehnt.
+        proposedChanges:
+          $ref: '../Stammdaten/masterDataChangeRequest.yaml#/components/schemas/masterDataChangeRequest'
+        rejectionDetails:
+          type: object
+          description: "Details zur Ablehnung. Nur gefüllt, wenn der Status REJECTED ist."
+          properties:
+            reasonCode:
+              type: string
+              example: "DATA_INCONSISTENT"
+            message:
+              type: string
+              example: "Die angegebene Adresse konnte nicht validiert werden."
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
