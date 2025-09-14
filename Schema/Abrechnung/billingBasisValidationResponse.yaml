@@ -1,0 +1,39 @@
+# Schema/Abrechnung/billingBasisValidationResponse.yaml
+components:
+  schemas:
+    billingBasisValidationResponse:
+      type: array
+      description: "Das Ergebnis der Validierung für jede angefragte Lokation."
+      items:
+        type: object
+        properties:
+          locationId:
+            type: string
+            description: "Die ID der Markt- oder Messlokation, auf die sich das Ergebnis bezieht."
+            example: "DE0011112222333344445555666677777"
+          status:
+            type: string
+            description: "Der Gesamtstatus der Validierung für diese Lokation."
+            enum: [ VALID, INVALID ]
+          discrepancies:
+            type: array
+            description: "Eine Liste der festgestellten Abweichungen. Nur gefüllt, wenn der Status INVALID ist."
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  description: "Das Feld, in dem die Abweichung gefunden wurde."
+                  example: "annualConsumptionForecast"
+                expectedValue:
+                  type: string
+                  description: "Der Wert, den der Rechnungsempfänger erwartet hat."
+                  example: "12500"
+                providedValue:
+                  type: string
+                  description: "Der Wert, der vom Rechnungssteller zur Prüfung übermittelt wurde."
+                  example: "11800"
+                message:
+                  type: string
+                  description: "Eine menschenlesbare Beschreibung der Abweichung."
+                  example: "Die Jahresverbrauchsprognose stimmt nicht mit dem bei uns hinterlegten Wert überein."

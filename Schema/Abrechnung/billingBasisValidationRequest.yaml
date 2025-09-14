@@ -1,0 +1,40 @@
+# Schema/Abrechnung/billingBasisValidationRequest.yaml
+components:
+  schemas:
+    billingBasisValidationRequest:
+      type: array
+      description: "Eine Liste von Abrechnungsgrundlagen für eine oder mehrere Lokationen, die validiert werden sollen."
+      items:
+        type: object
+        required:
+          - locationId
+          - locationType
+          - billingPeriodStart
+          - billingPeriodEnd
+          - annualConsumptionForecast
+          - measurementMethod
+        properties:
+          locationId:
+            type: string
+            description: "Die ID der Markt- oder Messlokation (je nach locationType)."
+            example: "DE0011112222333344445555666677777"
+          locationType:
+            type: string
+            description: "Gibt an, ob es sich um eine Markt- oder Messlokation handelt."
+            enum: [ MALO, MELO ]
+          billingPeriodStart:
+            type: string
+            format: date
+            description: "Beginn des Abrechnungszeitraums."
+          billingPeriodEnd:
+            type: string
+            format: date
+            description: "Ende des Abrechnungszeitraums."
+          annualConsumptionForecast:
+            type: integer
+            description: "Die Jahresverbrauchsprognose in kWh, die zur Abrechnung verwendet wird."
+            example: 12500
+          measurementMethod:
+            type: string
+            description: "Die Messmethode (RLM oder SLP)."
+            enum: [ RLM, SLP ]

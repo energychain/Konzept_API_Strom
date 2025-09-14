@@ -1,0 +1,46 @@
+# API/Wechselprozesse GPKE/AbrechnungsbasisValidierung.yaml
+openapi: 3.0.0
+info:
+  title: EDI@Energy API-Webdienst zur Validierung von Abrechnungsgrundlagen
+  version: 1.0.0
+  description: |-
+    Diese Schnittstelle wird von einem Rechnungsempfänger (z.B. Netzbetreiber oder Lieferant) bereitgestellt.
+    Sie ermöglicht es einem Rechnungssteller, die abrechnungsrelevanten Stammdaten für eine oder mehrere
+    Markt-/Messlokationen vor dem Versand einer Rechnung (INVOIC) zu validieren.
+    Dies dient der proaktiven Fehlervermeidung und erhöht die Automatisierungsrate.
+tags:
+  - name: Abrechnung
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
+
+paths:
+  /billingBasis/validate:
+    post:
+      tags:
+        - Abrechnung
+      summary: Validierung von Abrechnungsgrundlagen vor der Rechnungsstellung
+      description: |-
+        Überprüft eine übergebene Liste von abrechnungsrelevanten Stammdaten gegen den
+        Datenbestand des Rechnungsempfängers und gibt eine detaillierte Rückmeldung
+        über eventuelle Abweichungen zurück.
+      requestBody:
+        description: "Eine Liste von Abrechnungspositionen, die validiert werden sollen."
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../../Schema/Abrechnung/billingBasisValidationRequest.yaml#/components/schemas/billingBasisValidationRequest'
+      responses:
+        "200":
+          description: "Validierung erfolgreich durchgeführt. Die Antwort enthält das detaillierte Ergebnis für jede Position."
+          content:
+            application/json:
+              schema:
+                $ref: '../../Schema/Abrechnung/billingBasisValidationResponse.yaml#/components/schemas/billingBasisValidationResponse'
+        "400":
+          description: "Bad Request - Die Anfrage war fehlerhaft formatiert."
+        "401":
+          description: "Unauthorized - Der anfragende Marktpartner ist nicht authentifiziert."
+        "500":
+          description: "Internal Server Error"
