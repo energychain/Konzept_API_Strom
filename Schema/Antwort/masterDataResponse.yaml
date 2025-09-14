@@ -1,0 +1,6 @@
+# Schema/Antwort/masterDataResponse.yaml
+components:
+  schemas:
+    masterDataResponse:
+      description: "Die vollständigen, aktuell gültigen Stammdaten für eine Marktlokation."
+      $ref: '../MaLo-Daten/dataMarketLocation.yaml#/components/schemas/dataMarketLocation'

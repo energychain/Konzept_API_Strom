@@ -1,0 +1,54 @@
+# API/Wechselprozesse GPKE/StammdatenAbfrage.yaml
+openapi: 3.0.0
+info:
+  title: EDI@Energy API-Webdienst zum Abruf von MaLo-Stammdaten
+  version: 1.0.0
+  description: |-
+    Diese Schnittstelle wird vom Netzbetreiber bereitgestellt.
+    Sie ermöglicht es dem aktuell beliefernden Lieferanten, die vollständigen,
+    gültigen Stammdaten für eine Marktlokation abzurufen.
+    Dies schließt Bilanzierungsgrundlagen wie Prognosegrundlage und Messmethode ein.
+tags:
+  - name: Stammdaten
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
+
+paths:
+  /marketLocations/{maloId}/masterData:
+    get:
+      tags:
+        - Stammdaten
+      summary: Abfrage der vollständigen Stammdaten einer Marktlokation
+      description: |-
+        Gibt die vollständigen, aktuell gültigen Stammdaten für eine Marktlokation zurück,
+        so wie sie beim Netzbetreiber gespeichert sind. Die Abfrage ist nur für den
+        aktuell an der MaLo beliefernden Marktpartner erlaubt.
+      parameters:
+        - name: maloId
+          in: path
+          description: Die ID der Marktlokation, deren Stammdaten abgefragt werden.
+          required: true
+          schema:
+            $ref: '../../Schema/IDs/maloId.yaml#/components/schemas/maloId'
+        - name: marketPartnerId
+          in: query
+          description: Die ID des anfragenden Lieferanten zur Verifizierung der Berechtigung.
+          required: true
+          schema:
+            $ref: '../../Schema/IDs/marketPartnerId.yaml#/components/schemas/marketPartnerId'
+      responses:
+        "200":
+          description: "Erfolgreiche Abfrage. Die Antwort enthält die vollständigen Stammdaten der Marktlokation."
+          content:
+            application/json:
+              schema:
+                $ref: '../../Schema/Antwort/masterDataResponse.yaml#/components/schemas/masterDataResponse'
+        "400":
+          description: "Bad Request - Ungültige MaLo-ID oder fehlende Parameter."
+        "401":
+          description: "Unauthorized - Der anfragende Marktpartner ist nicht authentifiziert oder nicht der aktuelle Lieferant."
+        "404":
+          description: "Not Found - Die angegebene Marktlokation existiert im System des Netzbetreibers nicht."
+        "500":
+          description: "Internal Server Error"
