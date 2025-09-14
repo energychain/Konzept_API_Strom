@@ -11,6 +11,7 @@ components:
         - tariff
         - value
         - valueQuality
+        - energyDirection
       type: object
       properties:
         maloId:
@@ -27,6 +28,8 @@ components:
           $ref: '../Energiemengen/valueType.yaml#/components/schemas/valueType'
         tariff:
           $ref: '../Energiemengen/tariff.yaml#/components/schemas/tariff'
+        energyDirection:
+          $ref: '../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'
         value:
           $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:
