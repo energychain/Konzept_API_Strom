@@ -2,26 +2,9 @@ components:
   schemas:
     reasonOfSubstituteValueFormation:
       type: string
-      description: Grund der Ersatzwertbildung
+      description: "Grund für die Bildung eines Ersatzwertes (äquivalent zu STS+Z31 in MSCONS)."
       enum:
-        - Kein Zugang
-        - Kommunikationsstörung
-        - Netzausfall
-        - Gerätewechsel
-        - Gerät arbeitet außerhalb der Betriebsbedingungen
-        - Messeinrichtung gestört/defekt
-        - Unsicherheit Messung
-        - Berücksichtigung Störmengenzählwerk
-        - Mengenumwertung unvollständig
-        - Uhrzeit gestellt/Synchronisation
-        - Messwert unplausibel
-        - Fehlerhafte Ablesung
-        - Änderung der Berechnung
-        - Umbau der Messlokation
-        - Datenbearbeitungsfehler
-        - Störung / Defekt Messeinrichtung
-        - Impulswertigkeit nicht ausreichend
-        - Wartungsarbeiten an geeichtem Messgerät
-        - gestörte Werte
-        - Wartungsarbeiten an eichrechtskonformen Messgeräten
-        - Konsistenz- und Synchronprüfung
+        - METER_DEFECT # Gerätedefekt
+        - COMMUNICATION_FAILURE # Kommunikationsstörung
+        - DATA_MISSING # Messwert fehlt
+        - OTHER # Sonstiges

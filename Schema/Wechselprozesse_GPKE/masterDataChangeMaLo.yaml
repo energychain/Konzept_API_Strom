@@ -1,0 +1,12 @@
+components:
+  schemas:
+    masterDataChangeMaLo:
+      type: object
+      required:
+        - changeDateTime
+        - dataMarketLocation
+      properties:
+        changeDateTime:
+          $ref: '../Zeitangaben/changeDateTime.yaml#/components/schemas/changeDateTime'
+        dataMarketLocation:
+          $ref: '../MaLo-Daten/dataMarketLocation.yaml#/components/schemas/dataMarketLocation'

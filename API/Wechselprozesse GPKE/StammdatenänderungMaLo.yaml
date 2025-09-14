@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: EDI@Energy API-Webdienst zur Übermittlung der Stammdatenänderung für eine MaLo
+  version: 1.0.0
+  description: Diese Schnittstelle nutzen Marktpartner zur Übermittlung der Stammdatenänderung für eine MaLo.
+tags:
+  - name: Stammdatenänderung
+    description: Find out more
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
+
+paths:
+  /masterDataChangeMaLo/v1:
+    post:
+      tags:
+       - Stammdatenänderung
+      description: 'Dieser POST wird aufgerufen, wenn ein MP eine Stammdatenänderung an einer MaLo übermitteln möchte'
+      summary: Stammdatenänderung MaLo
+      parameters:
+        - name: transactionId
+          in: header
+          description: Externe Transaktions-Id zur eindeutigen Identifikation der Übermittlung der Stammdatenänderung.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../Schema/Header/transactionId.yaml#/components/schemas/transactionId'
+        - name: creationDateTime
+          in: header
+          description: Zeitpunkt an dem der Aufruf erstellt wurde
+          required: true
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../Schema/Header/creationDateTime.yaml#/components/schemas/creationDateTime'
+        - name: initialTransactionId
+          in: header
+          description: Zur Angabe des Idempodenzschluessel im Falle eines Retry.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            $ref: '../../Schema/Header/initialTransactionId.yaml#/components/schemas/initialTransactionId'
+      requestBody:
+        content:
+         application/json:
+           schema:
+             $ref: '../../Schema/Wechselprozesse_GPKE/masterDataChangeMaLo.yaml#/components/schemas/masterDataChangeMaLo'
+      responses:
+        "202":
+          description: accepted
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "405":
+          description: Method not allowed
+        "500":
+          description: Internal Server Error

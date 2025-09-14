@@ -2,16 +2,10 @@ components:
   schemas:
     substituteValueFormationMethod:
       type: string
-      description: Ersatzwertbildungsverfahren
+      description: "Verfahren, mit dem der Ersatzwert gebildet wurde (äquivalent zu STS+Z31 in MSCONS)."
       enum:
-        - Vergleichsmessung (nicht geeicht)
-        - Messwertnachbildung aus geeichten Werten 
-        - Messwertnachbildung aus nicht geeichten Werten 
-        - Interpolation
-        - Haltewert
-        - Bilanzierung Netzabschnitt
-        - Historische Messwerte
-        - Aufteilung
-        - Verwendung von Werten des Störmengenzählwerks
-        - Umgangs- und Korrekurmengen
-        - Ersatzwertbildungsverfahren gemäß Angaben auf Ebene der Messlokation
+        - HISTORICAL_VALUES # Verwendung historischer Werte
+        - PROFILE # Verwendung eines Standardlastprofils
+        - MANUAL_ESTIMATION # Manuelle Schätzung
+        - ALGORITHMIC_ESTIMATION # Algorithmische Schätzung
+        - OTHER # Sonstiges

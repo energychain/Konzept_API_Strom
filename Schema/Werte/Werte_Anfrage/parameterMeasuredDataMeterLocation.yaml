@@ -7,6 +7,7 @@ components:
         - energyDirection
         - executionTimeFrom
         - executionTimeUntil
+        - reasonCode
       type: object
       properties:
         meloId:
@@ -14,7 +15,9 @@ components:
         granularity:
           $ref: '../../Energiemengen/granularity.yaml#/components/schemas/granularity'
         energyDirection:
-          $ref: '../../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'  
+          $ref: '../../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'
+        reasonCode:
+          $ref: './reasonCode.yaml#/components/schemas/reasonCode'
         executionTimeFrom:
           $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:

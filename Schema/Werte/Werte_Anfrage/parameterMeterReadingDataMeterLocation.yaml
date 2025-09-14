@@ -5,11 +5,14 @@ components:
         - meloId
         - readingDateTime
         - energyDirection
+        - reasonCode
       type: object
       properties:
         meloId:
           $ref: '../../IDs/meloId.yaml#/components/schemas/meloId'
         energyDirection:
-         $ref: '../../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'  
+         $ref: '../../MaLo-Daten/energyDirection.yaml#/components/schemas/energyDirection'
+        reasonCode:
+          $ref: './reasonCode.yaml#/components/schemas/reasonCode'
         readingDateTime:
           $ref: '../../Zeitangaben/dateTime.yaml#/components/schemas/dateTime'

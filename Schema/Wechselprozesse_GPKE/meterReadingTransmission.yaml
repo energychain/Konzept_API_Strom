@@ -1,0 +1,9 @@
+components:
+  schemas:
+    meterReadingTransmission:
+      type: object
+      required:
+        - dataTransferEnergyQuantities
+      properties:
+        dataTransferEnergyQuantities:
+          $ref: '../Energiemengen/dataTransferEnergyQuantities.yaml#/components/schemas/dataTransferEnergyQuantities'

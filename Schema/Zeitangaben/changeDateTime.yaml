@@ -1,0 +1,6 @@
+components:
+  schemas:
+    changeDateTime:
+      type: string
+      format: date-time
+      description: Zeitpunkt, zu dem die Stammdatenänderung wirksam werden soll.

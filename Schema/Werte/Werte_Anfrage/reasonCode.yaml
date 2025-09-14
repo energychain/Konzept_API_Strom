@@ -1,0 +1,14 @@
+components:
+  schemas:
+    reasonCode:
+      type: string
+      description: "Grund der Anforderung von Messwerten, basierend auf den EDIFACT-ORDERS-Nachrichten."
+      enum:
+        - E01 # Jahresablesung
+        - E02 # Auszug
+        - E03 # Einzug
+        - E04 # Zwischenablesung
+        - E05 # Lieferantenwechsel
+        - E06 # Kontrollablesung
+        - E07 # Gerätewechsel
+        - Z33 # Monatsablesung für iMSys

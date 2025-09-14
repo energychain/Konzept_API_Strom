@@ -31,3 +31,7 @@ components:
           $ref: '../Energiemengen/value.yaml#/components/schemas/value'
         valueQuality:
           $ref: '../Energiemengen/valueQuality.yaml#/components/schemas/valueQuality'
+        reasonOfSubstituteValueFormation:
+          $ref: '../Energiemengen/reasonOfSubstituteValueFormation.yaml#/components/schemas/reasonOfSubstituteValueFormation'
+        substituteValueFormationMethod:
+          $ref: '../Energiemengen/substituteValueFormationMethod.yaml#/components/schemas/substituteValueFormationMethod'

@@ -6,12 +6,15 @@ components:
         - granularity
         - executionTimeFrom
         - executionTimeUntil
+        - reasonCode
       type: object
       properties:
         maloId:
           $ref: '../../IDs/maloId.yaml#/components/schemas/maloId'
         granularity:
           $ref: '../../Energiemengen/granularity.yaml#/components/schemas/granularity'
+        reasonCode:
+          $ref: './reasonCode.yaml#/components/schemas/reasonCode'
         executionTimeFrom:
           $ref: '../../Zeitangaben/executionTimeFrom.yaml#/components/schemas/executionTimeFrom'
         executionTimeUntil:
