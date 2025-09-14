@@ -1,0 +1,47 @@
+# API/Wechselprozesse GPKE/LieferstatusAbfrage.yaml
+openapi: 3.0.0
+info:
+  title: EDI@Energy API-Webdienst zur Abfrage des Lieferstatus
+  version: 1.0.0
+  description: Diese Schnittstelle wird vom Netzbetreiber bereitgestellt und ermöglicht es einem Lieferanten, seinen eigenen aktuellen oder vergangenen Lieferstatus für eine bestimmte Marktlokation zu überprüfen.
+tags:
+  - name: Lieferstatus
+servers:
+  - url: https://github.com/EDI-Energy
+    description: GitHub-Server der EDI@Energy
+
+paths:
+  /marketLocations/{maloId}/supplyStatus:
+    get:
+      tags:
+        - Lieferstatus
+      summary: Abfrage des eigenen Lieferstatus an einer Marktlokation
+      description: Ermöglicht einem Lieferanten die Überprüfung, ob er der aktuelle oder letzte Lieferant an einer Marktlokation ist und liefert die entsprechenden Lieferzeiträume.
+      parameters:
+        - name: maloId
+          in: path
+          description: Die ID der Marktlokation, deren Status abgefragt wird.
+          required: true
+          schema:
+            $ref: '../../Schema/IDs/maloId.yaml#/components/schemas/maloId'
+        - name: marketPartnerId
+          in: query
+          description: Die ID des anfragenden Lieferanten zur Verifizierung.
+          required: true
+          schema:
+            $ref: '../../Schema/IDs/marketPartnerId.yaml#/components/schemas/marketPartnerId'
+      responses:
+        "200":
+          description: "Erfolgreiche Abfrage. Die Antwort enthält den Lieferstatus."
+          content:
+            application/json:
+              schema:
+                $ref: '../../Schema/Antwort/supplyStatusResponse.yaml#/components/schemas/supplyStatusResponse'
+        "400":
+          description: "Bad Request - Ungültige MaLo-ID oder fehlende Parameter."
+        "401":
+          description: "Unauthorized - Der anfragende Marktpartner ist nicht authentifiziert."
+        "404":
+          description: "Not Found - Die angegebene Marktlokation existiert im System des Netzbetreibers nicht."
+        "500":
+          description: "Internal Server Error"

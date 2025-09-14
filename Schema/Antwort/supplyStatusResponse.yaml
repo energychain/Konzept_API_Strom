@@ -1,0 +1,27 @@
+# Schema/Antwort/supplyStatusResponse.yaml
+components:
+  schemas:
+    supplyStatusResponse:
+      type: object
+      description: "Antwort auf eine Abfrage des Lieferstatus für eine Marktlokation."
+      properties:
+        maloId:
+          $ref: '../IDs/maloId.yaml#/components/schemas/maloId'
+        status:
+          type: string
+          description: "Gibt den Lieferstatus des anfragenden Marktpartners an dieser Marktlokation an."
+          enum:
+            - ACTIVE      # Der anfragende MP ist der aktuelle Lieferant
+            - INACTIVE    # Der anfragende MP war der letzte Lieferant
+            - NEVER_SUPPLIED # Der anfragende MP hat diese MaLo nie beliefert
+            - NOT_AUTHORIZED # Der Anfragende ist nicht berechtigt, den Status einzusehen
+        supplyBegin:
+          type: string
+          format: date
+          description: "Beginn des (letzten) Lieferzeitraums. Null, wenn nie beliefert wurde."
+          nullable: true
+        supplyEnd:
+          type: string
+          format: date
+          nullable: true
+          description: "Ende des letzten Lieferzeitraums. Null, wenn die Lieferung aktiv ist oder nie beliefert wurde."
